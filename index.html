@@ -1881,7 +1881,7 @@
             return stars;
         }
 
-        // Criar notificação de compra em tempo real
+        // Criar notificação de compra em tempo real com horário atual real
         function createRealTimeNotification(productName = null, productPrice = null) {
             const isMale = Math.random() > 0.5;
             const name = isMale ? 
@@ -1903,11 +1903,11 @@
                 packageItem = dataManager.getRandomPackage();
             }
             
-            const currentTime = new Date().toLocaleTimeString('pt-BR', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                hour12: false 
-            });
+            // OBTENDO HORÁRIO ATUAL REAL
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const currentTime = `${hours}:${minutes}`;
             
             const notification = document.createElement('div');
             notification.className = 'notification';
