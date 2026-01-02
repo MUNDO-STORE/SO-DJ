@@ -49,21 +49,136 @@
             overflow-x: hidden;
         }
 
+        /* Fundo Animado Profissional */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(15, 52, 96, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(233, 69, 96, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(26, 26, 46, 0.1) 0%, transparent 50%);
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite linear;
+        }
+
+        .particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 5%;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.1) 0%, transparent 70%);
+            animation-duration: 20s;
+        }
+
+        .particle:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            background: radial-gradient(circle, rgba(15, 52, 96, 0.1) 0%, transparent 70%);
+            animation-duration: 25s;
+            animation-delay: -5s;
+        }
+
+        .particle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 15%;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.05) 0%, transparent 70%);
+            animation-duration: 18s;
+            animation-delay: -10s;
+        }
+
+        .particle:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            right: 20%;
+            background: radial-gradient(circle, rgba(26, 26, 46, 0.1) 0%, transparent 70%);
+            animation-duration: 22s;
+            animation-delay: -8s;
+        }
+
+        .pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.03) 0%, transparent 70%);
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(0) rotate(180deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(270deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.2;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0.5;
+            }
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Header */
         header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(to right, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9));
             padding: 20px 0;
             text-align: center;
             border-bottom: 3px solid var(--highlight);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         .logo {
@@ -100,9 +215,10 @@
         .hero {
             padding: 60px 0 40px;
             text-align: center;
-            background: var(--secondary);
+            background: rgba(22, 33, 62, 0.8);
             position: relative;
             z-index: 100;
+            backdrop-filter: blur(5px);
         }
 
         .hero h2 {
@@ -152,12 +268,13 @@
         }
 
         .package-card {
-            background: var(--secondary);
+            background: rgba(22, 33, 62, 0.9);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .package-card:hover {
@@ -166,7 +283,7 @@
         }
 
         .package-header {
-            background: var(--accent);
+            background: rgba(15, 52, 96, 0.9);
             padding: 25px;
             text-align: center;
             border-bottom: 3px solid var(--highlight);
@@ -281,11 +398,12 @@
 
         /* Pro Package Section */
         .pro-package {
-            background: var(--accent);
+            background: rgba(15, 52, 96, 0.9);
             border-radius: 15px;
             overflow: hidden;
             margin-top: 40px;
             border: 3px solid var(--highlight);
+            backdrop-filter: blur(10px);
         }
 
         .pro-header {
@@ -377,11 +495,12 @@
 
         /* Seção de Afiliados */
         .affiliate-section {
-            background: linear-gradient(135deg, var(--accent), #1a3d7c);
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.9), rgba(26, 61, 124, 0.9));
             padding: 60px 0;
             margin-top: 40px;
             border-top: 3px solid #FFD700;
             border-bottom: 3px solid #FFD700;
+            backdrop-filter: blur(10px);
         }
 
         .affiliate-container {
@@ -438,6 +557,122 @@
             background: linear-gradient(135deg, #FFA500, #FF8C00);
             transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+        }
+
+        /* SEÇÃO DE DEPOIMENTOS NO FINAL DA PÁGINA */
+        .testimonials-section {
+            padding: 80px 0;
+            background: rgba(22, 33, 62, 0.9);
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonials-section .section-title {
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(15, 52, 96, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--highlight);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-avatar-large {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--highlight);
+            flex-shrink: 0;
+        }
+
+        .testimonial-avatar-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .testimonial-social {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #25D366;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-social i {
+            color: #25D366;
+        }
+
+        .testimonial-rating-large {
+            color: #FFD700;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text-large {
+            font-style: italic;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .testimonial-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-platform {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .platform-facebook {
+            color: #1877F2;
+        }
+
+        .platform-instagram {
+            color: #E4405F;
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Notificações de Compradores */
@@ -838,12 +1073,13 @@
 
         /* Footer */
         footer {
-            background: var(--primary);
+            background: rgba(26, 26, 46, 0.9);
             padding: 40px 0 20px;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         .footer-logo {
@@ -910,6 +1146,17 @@
             }
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Para dispositivos móveis */
         @media (max-width: 768px) {
             .purchase-notifications {
@@ -963,11 +1210,26 @@
                 padding: 16px 30px;
                 font-size: 20px;
             }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
     </style>
 </head>
 <body>
+    <!-- Fundo Animado Profissional -->
+    <div class="animated-background">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="pulse"></div>
+        </div>
+    </div>
+
     <!-- Áudio elements -->
     <audio id="background-music" loop>
         <source src="musica.mp3" type="audio/mpeg">
@@ -1162,6 +1424,26 @@
         </div>
     </section>
 
+    <!-- SEÇÃO DE DEPOIMENTOS (NOVO) -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">O QUE NOSSOS CLIENTES DIZEM</h2>
+            <p style="text-align: center; color: #ccc; margin-bottom: 50px; font-size: 1.1rem;">
+                Depoimentos reais de clientes satisfeitos nas redes sociais
+            </p>
+            
+            <div class="testimonials-grid" id="testimonials-grid">
+                <!-- Os depoimentos serão inseridos aqui pelo JavaScript -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <p style="color: #888; font-size: 0.9rem;">
+                    <i class="fas fa-sync-alt"></i> Depoimentos atualizados automaticamente a cada minuto
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1183,20 +1465,21 @@
         backgroundMusic.volume = 0.3; // 30% de volume
         rouletteSound.volume = 0.5; // 50% de volume
 
-        // Iniciar música de fundo automaticamente
-        function startBackgroundMusic() {
-            if (!isMusicPlaying) {
+        // Iniciar música de fundo automaticamente quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
                 backgroundMusic.play()
                     .then(() => {
                         isMusicPlaying = true;
                         musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                        console.log('Música de fundo iniciada automaticamente');
                     })
                     .catch(error => {
                         console.log('A reprodução automática foi bloqueada. Clique no botão para iniciar a música.');
                         musicControl.innerHTML = '<i class="fas fa-play"></i>';
                     });
-            }
-        }
+            }, 1000);
+        });
 
         // Controlar música
         function toggleMusic() {
@@ -1295,7 +1578,7 @@
                     'confirmou o pagamento de'
                 ];
 
-                // Dados para depoimentos - SEM REPETIÇÃO
+                // Dados para depoimentos flutuantes - SEM REPETIÇÃO
                 this.testimonialTexts = [
                     "Músicas atualizadas perfeitas para minhas festas!",
                     "O melhor investimento que fiz para meu trabalho como DJ!",
@@ -1314,6 +1597,25 @@
                     "Atendimento excelente e material de qualidade!"
                 ];
 
+                // Dados para depoimentos da seção - SEM REPETIÇÃO
+                this.sectionTestimonialTexts = [
+                    "Comprei o Pack Pro DJ e foi a melhor decisão! O conteúdo é absurdo de completo!",
+                    "Como DJ iniciante, o Pack VIP foi essencial para eu começar a trabalhar!",
+                    "Atualizações constantes e um suporte incrível! Vale cada centavo!",
+                    "O material do Telegram é super organizado, fácil de baixar e usar!",
+                    "Já indiquei para vários amigos DJs! Todos amaram!",
+                    "Paguei apenas R$1,00 na promoção da roleta! Sensacional!",
+                    "O Pack Gospel me salvou nas festas de igreja que faço!",
+                    "Mais de 25 mil músicas e todas de ótima qualidade!",
+                    "A organização por ritmos facilitou muito meu trabalho!",
+                    "Conteúdo atualizado semanalmente! Sempre com as novidades!",
+                    "O suporte via WhatsApp é rápido e resolveu todas minhas dúvidas!",
+                    "Material profissional por um preço acessível! Recomendo!",
+                    "As playlists prontas para casamento são perfeitas!",
+                    "DJ há 10 anos e nunca vi um material tão completo!",
+                    "Fácil de usar, download rápido e organização impecável!"
+                ];
+
                 // URLs das fotos de avatar
                 this.malePhotos = [];
                 this.femalePhotos = [];
@@ -1324,72 +1626,155 @@
                     this.femalePhotos.push(`https://randomuser.me/api/portraits/women/${i}.jpg`);
                 }
 
-                // Controle de itens usados
-                this.usedMaleNames = new Set();
-                this.usedFemaleNames = new Set();
-                this.usedMalePhotos = new Set();
-                this.usedFemalePhotos = new Set();
-                this.usedTestimonialTexts = new Set();
+                // Controle de itens usados para notificações
+                this.usedMaleNamesNotif = new Set();
+                this.usedFemaleNamesNotif = new Set();
+                this.usedMalePhotosNotif = new Set();
+                this.usedFemalePhotosNotif = new Set();
+                this.usedTestimonialTextsNotif = new Set();
+
+                // Controle de itens usados para depoimentos da seção
+                this.usedMaleNamesSection = new Set();
+                this.usedFemaleNamesSection = new Set();
+                this.usedMalePhotosSection = new Set();
+                this.usedFemalePhotosSection = new Set();
+                this.usedTestimonialTextsSection = new Set();
+
+                // Plataformas para depoimentos
+                this.platforms = ['Facebook', 'Instagram'];
+                this.usedPlatforms = new Set();
             }
 
-            // Obter nome masculino único
-            getUniqueMaleName() {
-                const availableNames = this.maleNames.filter(name => !this.usedMaleNames.has(name));
+            // Obter nome masculino único para notificações
+            getUniqueMaleNameNotif() {
+                const availableNames = this.maleNames.filter(name => !this.usedMaleNamesNotif.has(name));
                 if (availableNames.length === 0) {
-                    this.usedMaleNames.clear();
+                    this.usedMaleNamesNotif.clear();
                     return this.maleNames[Math.floor(Math.random() * this.maleNames.length)];
                 }
                 const name = availableNames[Math.floor(Math.random() * availableNames.length)];
-                this.usedMaleNames.add(name);
+                this.usedMaleNamesNotif.add(name);
                 return name;
             }
 
-            // Obter nome feminino único
-            getUniqueFemaleName() {
-                const availableNames = this.femaleNames.filter(name => !this.usedFemaleNames.has(name));
+            // Obter nome feminino único para notificações
+            getUniqueFemaleNameNotif() {
+                const availableNames = this.femaleNames.filter(name => !this.usedFemaleNamesNotif.has(name));
                 if (availableNames.length === 0) {
-                    this.usedFemaleNames.clear();
+                    this.usedFemaleNamesNotif.clear();
                     return this.femaleNames[Math.floor(Math.random() * this.femaleNames.length)];
                 }
                 const name = availableNames[Math.floor(Math.random() * availableNames.length)];
-                this.usedFemaleNames.add(name);
+                this.usedFemaleNamesNotif.add(name);
                 return name;
             }
 
-            // Obter foto masculina única
-            getUniqueMalePhoto() {
-                const availablePhotos = this.malePhotos.filter(photo => !this.usedMalePhotos.has(photo));
+            // Obter foto masculina única para notificações
+            getUniqueMalePhotoNotif() {
+                const availablePhotos = this.malePhotos.filter(photo => !this.usedMalePhotosNotif.has(photo));
                 if (availablePhotos.length === 0) {
-                    this.usedMalePhotos.clear();
+                    this.usedMalePhotosNotif.clear();
                     return this.malePhotos[Math.floor(Math.random() * this.malePhotos.length)];
                 }
                 const photo = availablePhotos[Math.floor(Math.random() * availablePhotos.length)];
-                this.usedMalePhotos.add(photo);
+                this.usedMalePhotosNotif.add(photo);
                 return photo;
             }
 
-            // Obter foto feminina única
-            getUniqueFemalePhoto() {
-                const availablePhotos = this.femalePhotos.filter(photo => !this.usedFemalePhotos.has(photo));
+            // Obter foto feminina única para notificações
+            getUniqueFemalePhotoNotif() {
+                const availablePhotos = this.femalePhotos.filter(photo => !this.usedFemalePhotosNotif.has(photo));
                 if (availablePhotos.length === 0) {
-                    this.usedFemalePhotos.clear();
+                    this.usedFemalePhotosNotif.clear();
                     return this.femalePhotos[Math.floor(Math.random() * this.femalePhotos.length)];
                 }
                 const photo = availablePhotos[Math.floor(Math.random() * availablePhotos.length)];
-                this.usedFemalePhotos.add(photo);
+                this.usedFemalePhotosNotif.add(photo);
                 return photo;
             }
 
-            // Obter texto de depoimento único
-            getUniqueTestimonialText() {
-                const availableTexts = this.testimonialTexts.filter(text => !this.usedTestimonialTexts.has(text));
+            // Obter texto de depoimento único para notificações
+            getUniqueTestimonialTextNotif() {
+                const availableTexts = this.testimonialTexts.filter(text => !this.usedTestimonialTextsNotif.has(text));
                 if (availableTexts.length === 0) {
-                    this.usedTestimonialTexts.clear();
+                    this.usedTestimonialTextsNotif.clear();
                     return this.testimonialTexts[Math.floor(Math.random() * this.testimonialTexts.length)];
                 }
                 const text = availableTexts[Math.floor(Math.random() * availableTexts.length)];
-                this.usedTestimonialTexts.add(text);
+                this.usedTestimonialTextsNotif.add(text);
                 return text;
+            }
+
+            // Obter nome masculino único para seção de depoimentos
+            getUniqueMaleNameSection() {
+                const availableNames = this.maleNames.filter(name => !this.usedMaleNamesSection.has(name));
+                if (availableNames.length === 0) {
+                    this.usedMaleNamesSection.clear();
+                    return this.maleNames[Math.floor(Math.random() * this.maleNames.length)];
+                }
+                const name = availableNames[Math.floor(Math.random() * availableNames.length)];
+                this.usedMaleNamesSection.add(name);
+                return name;
+            }
+
+            // Obter nome feminino único para seção de depoimentos
+            getUniqueFemaleNameSection() {
+                const availableNames = this.femaleNames.filter(name => !this.usedFemaleNamesSection.has(name));
+                if (availableNames.length === 0) {
+                    this.usedFemaleNamesSection.clear();
+                    return this.femaleNames[Math.floor(Math.random() * this.femaleNames.length)];
+                }
+                const name = availableNames[Math.floor(Math.random() * availableNames.length)];
+                this.usedFemaleNamesSection.add(name);
+                return name;
+            }
+
+            // Obter foto masculina única para seção de depoimentos
+            getUniqueMalePhotoSection() {
+                const availablePhotos = this.malePhotos.filter(photo => !this.usedMalePhotosSection.has(photo));
+                if (availablePhotos.length === 0) {
+                    this.usedMalePhotosSection.clear();
+                    return this.malePhotos[Math.floor(Math.random() * this.malePhotos.length)];
+                }
+                const photo = availablePhotos[Math.floor(Math.random() * availablePhotos.length)];
+                this.usedMalePhotosSection.add(photo);
+                return photo;
+            }
+
+            // Obter foto feminina única para seção de depoimentos
+            getUniqueFemalePhotoSection() {
+                const availablePhotos = this.femalePhotos.filter(photo => !this.usedFemalePhotosSection.has(photo));
+                if (availablePhotos.length === 0) {
+                    this.usedFemalePhotosSection.clear();
+                    return this.femalePhotos[Math.floor(Math.random() * this.femalePhotos.length)];
+                }
+                const photo = availablePhotos[Math.floor(Math.random() * availablePhotos.length)];
+                this.usedFemalePhotosSection.add(photo);
+                return photo;
+            }
+
+            // Obter texto de depoimento único para seção
+            getUniqueTestimonialTextSection() {
+                const availableTexts = this.sectionTestimonialTexts.filter(text => !this.usedTestimonialTextsSection.has(text));
+                if (availableTexts.length === 0) {
+                    this.usedTestimonialTextsSection.clear();
+                    return this.sectionTestimonialTexts[Math.floor(Math.random() * this.sectionTestimonialTexts.length)];
+                }
+                const text = availableTexts[Math.floor(Math.random() * availableTexts.length)];
+                this.usedTestimonialTextsSection.add(text);
+                return text;
+            }
+
+            // Obter plataforma única
+            getUniquePlatform() {
+                const availablePlatforms = this.platforms.filter(platform => !this.usedPlatforms.has(platform));
+                if (availablePlatforms.length === 0) {
+                    this.usedPlatforms.clear();
+                    return this.platforms[Math.floor(Math.random() * this.platforms.length)];
+                }
+                const platform = availablePlatforms[Math.floor(Math.random() * availablePlatforms.length)];
+                this.usedPlatforms.add(platform);
+                return platform;
             }
 
             // Obter estado aleatório
@@ -1410,6 +1795,12 @@
             // Obter avaliação aleatória
             getRandomRating() {
                 return Math.random() > 0.2 ? 5 : 4; // 80% 5 estrelas, 20% 4 estrelas
+            }
+
+            // Obter tempo aleatório (para simular quando foi postado)
+            getRandomTimeAgo() {
+                const times = ['há 2 horas', 'há 1 dia', 'há 3 dias', 'há 1 semana', 'há 2 semanas'];
+                return times[Math.floor(Math.random() * times.length)];
             }
         }
 
@@ -1432,12 +1823,12 @@
         function createRealTimeNotification(productName = null, productPrice = null) {
             const isMale = Math.random() > 0.5;
             const name = isMale ? 
-                dataManager.getUniqueMaleName() : 
-                dataManager.getUniqueFemaleName();
+                dataManager.getUniqueMaleNameNotif() : 
+                dataManager.getUniqueFemaleNameNotif();
             
             const photo = isMale ? 
-                dataManager.getUniqueMalePhoto() : 
-                dataManager.getUniqueFemalePhoto();
+                dataManager.getUniqueMalePhotoNotif() : 
+                dataManager.getUniqueFemalePhotoNotif();
             
             const state = dataManager.getRandomState();
             const action = dataManager.getRandomAction();
@@ -1475,18 +1866,18 @@
             return notification;
         }
 
-        // Criar depoimento
+        // Criar depoimento flutuante
         function createTestimonial() {
             const isMale = Math.random() > 0.5;
             const name = isMale ? 
-                dataManager.getUniqueMaleName() : 
-                dataManager.getUniqueFemaleName();
+                dataManager.getUniqueMaleNameNotif() : 
+                dataManager.getUniqueFemaleNameNotif();
             
             const photo = isMale ? 
-                dataManager.getUniqueMalePhoto() : 
-                dataManager.getUniqueFemalePhoto();
+                dataManager.getUniqueMalePhotoNotif() : 
+                dataManager.getUniqueFemalePhotoNotif();
             
-            const text = dataManager.getUniqueTestimonialText();
+            const text = dataManager.getUniqueTestimonialTextNotif();
             const rating = dataManager.getRandomRating();
             
             const testimonial = document.createElement('div');
@@ -1505,9 +1896,88 @@
             return testimonial;
         }
 
+        // Criar card de depoimento para a seção
+        function createTestimonialCard() {
+            const isMale = Math.random() > 0.5;
+            const name = isMale ? 
+                dataManager.getUniqueMaleNameSection() : 
+                dataManager.getUniqueFemaleNameSection();
+            
+            const photo = isMale ? 
+                dataManager.getUniqueMalePhotoSection() : 
+                dataManager.getUniqueFemalePhotoSection();
+            
+            const text = dataManager.getUniqueTestimonialTextSection();
+            const rating = dataManager.getRandomRating();
+            const platform = dataManager.getUniquePlatform();
+            const timeAgo = dataManager.getRandomTimeAgo();
+            
+            const testimonialCard = document.createElement('div');
+            testimonialCard.className = 'testimonial-card';
+            testimonialCard.style.animation = 'fadeIn 0.5s ease';
+            
+            const platformIcon = platform === 'Facebook' ? 
+                '<i class="fab fa-facebook platform-facebook"></i>' : 
+                '<i class="fab fa-instagram platform-instagram"></i>';
+            
+            testimonialCard.innerHTML = `
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar-large">
+                        <img src="${photo}" alt="${name}">
+                    </div>
+                    <div class="testimonial-info">
+                        <h4>${name}</h4>
+                        <div class="testimonial-social">
+                            ${platformIcon}
+                            <span>${platform}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-rating-large">
+                    ${generateStars(rating)}
+                </div>
+                
+                <div class="testimonial-text-large">
+                    "${text}"
+                </div>
+                
+                <div class="testimonial-footer">
+                    <div class="testimonial-platform">
+                        ${platformIcon}
+                        <span>${platform}</span>
+                    </div>
+                    <div class="testimonial-time">
+                        ${timeAgo}
+                    </div>
+                </div>
+            `;
+            
+            return testimonialCard;
+        }
+
+        // Atualizar depoimentos na seção
+        function updateTestimonialsSection() {
+            const grid = document.getElementById('testimonials-grid');
+            if (!grid) return;
+            
+            // Limpar grid atual
+            grid.innerHTML = '';
+            
+            // Adicionar 3 novos depoimentos
+            for (let i = 0; i < 3; i++) {
+                const testimonialCard = createTestimonialCard();
+                grid.appendChild(testimonialCard);
+            }
+            
+            console.log('Depoimentos da seção atualizados:', new Date().toLocaleTimeString());
+        }
+
         // Mostrar notificação de compra em tempo real
         function showRealTimeNotification(productName = null, productPrice = null) {
             const container = document.getElementById('notifications-container');
+            if (!container) return;
+            
             const notification = createRealTimeNotification(productName, productPrice);
             
             container.appendChild(notification);
@@ -1525,9 +1995,11 @@
             }
         }
 
-        // Mostrar depoimento
+        // Mostrar depoimento flutuante
         function showTestimonial() {
             const container = document.getElementById('testimonials-container');
+            if (!container) return;
+            
             const testimonial = createTestimonial();
             
             container.appendChild(testimonial);
@@ -1569,7 +2041,7 @@
             setTimeout(() => showRealTimeNotification(), 20000);
         }
 
-        // Iniciar depoimentos
+        // Iniciar depoimentos flutuantes
         function startTestimonials() {
             // Primeiro depoimento após 5 segundos
             setTimeout(showTestimonial, 5000);
@@ -1580,6 +2052,15 @@
             // Depoimentos iniciais
             setTimeout(showTestimonial, 15000);
             setTimeout(showTestimonial, 25000);
+        }
+
+        // Iniciar atualização de depoimentos da seção
+        function startSectionTestimonials() {
+            // Primeira atualização após 2 segundos
+            setTimeout(updateTestimonialsSection, 2000);
+            
+            // Atualizar a cada 1 minuto (60000 ms)
+            setInterval(updateTestimonialsSection, 60000);
         }
 
         // Código da Roleta
@@ -1808,15 +2289,13 @@
 
         // Inicializar quando a página carregar
         document.addEventListener('DOMContentLoaded', function() {
-            // Iniciar música de fundo após pequeno delay
-            setTimeout(startBackgroundMusic, 1000);
-            
             // Configurar eventos
             musicControl.addEventListener('click', toggleMusic);
             
             // Iniciar outras funcionalidades
             startNotifications();
             startTestimonials();
+            startSectionTestimonials();
             setupVideoAudioControl();
         });
     </script>
