@@ -16,11 +16,11 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'SEU_ID_DO_PIXEL_AQUI'); // SUBSTITUA PELO SEU ID DO PIXEL
+    fbq('init', '25652670291043537');
     fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=SEU_ID_DO_PIXEL_AQUI&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=25652670291043537&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
     
@@ -375,55 +375,6 @@
             }
         }
 
-        /* Footer */
-        footer {
-            background: var(--primary);
-            padding: 40px 0 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 100;
-        }
-
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--highlight);
-            margin-bottom: 20px;
-        }
-
-        .footer-info {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-
-        .copyright {
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .packages-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
-
         /* Notificações de Compradores */
         .purchase-notifications {
             position: fixed;
@@ -506,20 +457,39 @@
             font-size: 0.7rem;
         }
 
-        .notification-time .live-badge {
+        /* Botão flutuante para controlar música */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9997;
+            background: var(--accent);
+            border: 2px solid var(--highlight);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
             background: var(--highlight);
+        }
+
+        .music-control i {
+            font-size: 24px;
             color: white;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            animation: pulse 2s infinite;
         }
 
         /* Depoimentos Flutuantes */
         .testimonials-container {
             position: fixed;
-            bottom: 20px;
+            bottom: 90px;
             left: 20px;
             z-index: 9998;
             display: flex;
@@ -585,17 +555,250 @@
             margin-bottom: 3px;
         }
 
-        .testimonial-time {
-            color: #888;
-            font-size: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        /* Seção da Roleta */
+        .roulette-section {
+            background: transparent;
+            padding: 60px 0;
+            margin-top: 40px;
+            border-top: 3px solid var(--highlight);
+            border-bottom: 3px solid var(--highlight);
         }
 
-        .testimonial-time i {
-            color: #25D366;
-            font-size: 0.7rem;
+        .roulette-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(15, 52, 96, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            border: 2px solid var(--highlight);
+            backdrop-filter: blur(5px);
+        }
+
+        .roulette-title {
+            font-size: 28px;
+            color: #fff;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .roulette-subtitle {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .legend {
+            margin: 0 auto 30px;
+            font-weight: 700;
+            background: rgba(40, 167, 69, 0.2);
+            border: 1px solid #28a745;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-size: 16px;
+            width: fit-content;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            color: white;
+        }
+
+        .legend span.green { 
+            color: #28a745; 
+            font-weight: 900; 
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .legend span.red { 
+            color: #dc3545; 
+            font-weight: 900; 
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .roulette-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 25px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            margin: 0 auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .roulette-item-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .roulette-display {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            position: relative; 
+        }
+
+        .roulette {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 10px solid #ffc107;
+            overflow: hidden;
+            background: conic-gradient(
+                #28a745 0% 16.6%,
+                #dc3545 16.6% 33.3%,
+                #28a745 33.3% 50%,
+                #dc3545 50% 66.6%,
+                #28a745 66.6% 83.3%,
+                #dc3545 83.3% 100%
+            );
+            transition: transform 4s ease-out;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .pointer-fixed {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%); 
+            z-index: 100; 
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 25px solid #DAA520;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+        }
+
+        .result-message {
+            margin-top: 15px;
+            min-height: 30px;
+            font-weight: 800;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .tries-counter {
+            margin-top: 15px;
+            font-weight: 600;
+            font-size: 15px;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .roulette-button {
+            margin-top: 25px;
+            padding: 16px;
+            width: 100%;
+            max-width: none;
+            background: #ffc107;
+            color: #212529;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.2s ease;
+            border-bottom: 4px solid #cc9900;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .roulette-button:not([disabled]):hover {
+            background: #e6b300;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        .roulette-button[disabled] { 
+            background: rgba(233, 236, 239, 0.5); 
+            color: #adb5bd;
+            cursor: not-allowed; 
+            border-bottom: none;
+        }
+
+        .roulette-timer {
+            margin-top: 15px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #dc3545;
+            min-height: 25px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .roulette-telegram-btn {
+            display: block;
+            margin: 25px auto;
+            padding: 18px;
+            width: 90%;
+            max-width: 600px;
+            background: #0088cc;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px; 
+            font-weight: 800; 
+            text-decoration: none;
+            cursor: pointer;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            text-align: center;
+            border-bottom: 5px solid #006699;
+        }
+
+        .roulette-telegram-btn:hover { 
+            background: #0077b3; 
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            padding: 40px 0 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 100;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--highlight);
+            margin-bottom: 20px;
+        }
+
+        .footer-info {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.9rem;
         }
 
         @keyframes slideIn {
@@ -652,10 +855,17 @@
             }
             
             .testimonials-container {
-                bottom: 10px;
+                bottom: 80px;
                 left: 10px;
                 right: 10px;
                 max-width: none;
+            }
+            
+            .music-control {
+                bottom: 10px;
+                right: 10px;
+                width: 50px;
+                height: 50px;
             }
             
             .notification, .testimonial {
@@ -666,10 +876,37 @@
                 width: 40px;
                 height: 40px;
             }
+            
+            .roulette-container {
+                padding: 20px;
+            }
+            
+            .roulette-display {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .roulette-title {
+                font-size: 24px;
+            }
         }
+
     </style>
 </head>
 <body>
+    <!-- Áudio elements -->
+    <audio id="background-music" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="roulette-sound">
+        <source src="roleta.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Botão flutuante para controlar música -->
+    <div class="music-control" id="musicControl">
+        <i class="fas fa-music"></i>
+    </div>
+
     <!-- Notificações de Compradores -->
     <div class="purchase-notifications" id="notifications-container"></div>
 
@@ -796,6 +1033,45 @@
         </div>
     </section>
 
+    <!-- Seção da Roleta -->
+    <section class="roulette-section">
+        <div class="container roulette-container">
+            <h2 class="roulette-title">SORTEIO PACK 25 MIL MÚSICAS + VIDEOCLIPES - PAGA APENAS R$1,00 SE GANHAR!</h2>
+            
+            <p class="roulette-subtitle">Gire a roleta e tente ganhar super desconto! Apenas 3 tentativas!</p>
+            
+            <div class="legend">
+                <span class="green">VERDE: GANHA DESCONTO! PAGA SOMENTE R$1,00 NO PACK 25 MIL MÚSICAS</span><br>
+                <span class="red">VERMELHO: NÃO GANHOU!</span>
+            </div>
+            
+            <div class="roulette-box">
+                <div class="roulette-item-title">
+                    PACK 25 MIL MÚSICAS + VIDEOCLIPES — SE GANHAR PAGA APENAS R$1,00!
+                </div>
+
+                <div class="roulette-display">
+                    <div class="pointer-fixed" aria-hidden="true"></div>
+                    <div id="roulette1" class="roulette" data-redirect="https://4br.me/QADTXgSwh" data-price="R$1,00"></div>
+                </div>
+                
+                <div id="msg1" class="result-message"></div>
+
+                <div class="tries-counter">
+                    Tentativas usadas: <span id="tries1">0</span>/3
+                </div>
+
+                <button id="spinBtn1" class="roulette-button" onclick="spinRoulette('roulette1','msg1','spinBtn1')">GIRAR ROLETA</button>
+
+                <div id="timer1" class="roulette-timer" aria-live="polite"></div>
+            </div>
+            
+            <a href="https://t.me/+xcMUpCNGNoI3NDUx" target="_blank" class="roulette-telegram-btn">
+                <span style="font-size:22px;">CLICK AQUI PARA ENTRAR NO GRUPO TELEGRAM</span>
+            </a>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -806,6 +1082,104 @@
     </footer>
 
     <script>
+        // Elementos de áudio
+        const backgroundMusic = document.getElementById('background-music');
+        const rouletteSound = document.getElementById('roulette-sound');
+        const musicControl = document.getElementById('musicControl');
+        let isMusicPlaying = false;
+        let youtubePlayer = null;
+
+        // Configurar volume baixo da música
+        backgroundMusic.volume = 0.3; // 30% de volume
+        rouletteSound.volume = 0.5; // 50% de volume
+
+        // Iniciar música de fundo automaticamente
+        function startBackgroundMusic() {
+            if (!isMusicPlaying) {
+                backgroundMusic.play()
+                    .then(() => {
+                        isMusicPlaying = true;
+                        musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    })
+                    .catch(error => {
+                        console.log('A reprodução automática foi bloqueada. Clique no botão para iniciar a música.');
+                        musicControl.innerHTML = '<i class="fas fa-play"></i>';
+                    });
+            }
+        }
+
+        // Controlar música
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                backgroundMusic.pause();
+                musicControl.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                backgroundMusic.play()
+                    .then(() => {
+                        musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    })
+                    .catch(error => {
+                        console.log('Erro ao reproduzir música:', error);
+                        musicControl.innerHTML = '<i class="fas fa-play"></i>';
+                    });
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
+        // Controlar volume do vídeo do YouTube
+        function setupVideoAudioControl() {
+            const videoIframe = document.getElementById('video-player');
+            let player;
+            
+            // Carregar API do YouTube
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            
+            // Quando a API estiver pronta
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('video-player', {
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+                youtubePlayer = player;
+            };
+            
+            function onPlayerReady(event) {
+                // Observar quando a seção está visível
+                const videoSection = document.querySelector('.pro-package');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Dar play no vídeo
+                            event.target.playVideo();
+                            
+                            // Baixar volume da música quando vídeo começar
+                            backgroundMusic.volume = 0.1;
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(videoSection);
+            }
+            
+            function onPlayerStateChange(event) {
+                // Quando o vídeo está tocando
+                if (event.data === YT.PlayerState.PLAYING) {
+                    // Baixar volume da música de fundo
+                    backgroundMusic.volume = 0.1;
+                }
+                // Quando o vídeo pausa
+                else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                    // Aumentar volume da música de fundo
+                    backgroundMusic.volume = 0.3;
+                }
+            }
+        }
+
         // Dados para notificações
         const maleNames = ['Carlos', 'João', 'Pedro', 'Lucas', 'Marcos', 'Fernando', 'Ricardo', 'Roberto', 'Antônio', 'José', 'Paulo', 'Miguel', 'Rafael', 'Daniel', 'Eduardo', 'Felipe', 'Gustavo', 'Leandro', 'Marcelo', 'Sérgio'];
         const femaleNames = ['Ana', 'Maria', 'Juliana', 'Patrícia', 'Aline', 'Fernanda', 'Camila', 'Beatriz', 'Carla', 'Daniela', 'Eduarda', 'Gabriela', 'Isabela', 'Laura', 'Mariana', 'Natália', 'Renata', 'Sandra', 'Tatiane', 'Vanessa'];
@@ -828,7 +1202,7 @@
             'confirmou o pagamento de'
         ];
 
-        // Dados para depoimentos
+        // Dados para depoimentos (SEM HORAS)
         const testimonials = [
             { text: "Músicas atualizadas perfeitas para minhas festas!", rating: 5 },
             { text: "O melhor investimento que fiz para meu trabalho como DJ!", rating: 5 },
@@ -867,16 +1241,6 @@
             'https://randomuser.me/api/portraits/women/10.jpg'
         ];
 
-        // Formatar hora atual
-        function getCurrentTime() {
-            const now = new Date();
-            return now.toLocaleTimeString('pt-BR', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                hour12: false 
-            });
-        }
-
         // Gerar estrelas de avaliação
         function generateStars(rating) {
             let stars = '';
@@ -890,7 +1254,7 @@
             return stars;
         }
 
-        // Criar notificação de compra em tempo real
+        // Criar notificação de compra em tempo real (SEM "AO VIVO")
         function createRealTimeNotification(productName = null, productPrice = null) {
             const isMale = Math.random() > 0.5;
             const name = isMale ? 
@@ -912,7 +1276,11 @@
                 packageItem = packages[Math.floor(Math.random() * packages.length)];
             }
             
-            const currentTime = getCurrentTime();
+            const currentTime = new Date().toLocaleTimeString('pt-BR', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: false 
+            });
             
             const notification = document.createElement('div');
             notification.className = 'notification';
@@ -926,7 +1294,6 @@
                     <div class="notification-product">${packageItem.name} ${packageItem.price}</div>
                     <div class="notification-time">
                         <i class="fas fa-clock"></i> ${currentTime}
-                        <span class="live-badge">AO VIVO</span>
                     </div>
                 </div>
             `;
@@ -934,7 +1301,7 @@
             return notification;
         }
 
-        // Criar depoimento
+        // Criar depoimento (SEM HORAS)
         function createTestimonial() {
             const isMale = Math.random() > 0.5;
             const name = isMale ? 
@@ -946,7 +1313,6 @@
                 femalePhotos[Math.floor(Math.random() * femalePhotos.length)];
             
             const testimonialItem = testimonials[Math.floor(Math.random() * testimonials.length)];
-            const currentTime = getCurrentTime();
             
             const testimonial = document.createElement('div');
             testimonial.className = 'testimonial';
@@ -958,9 +1324,6 @@
                     <div class="testimonial-name">${name}</div>
                     <div class="testimonial-text">"${testimonialItem.text}"</div>
                     <div class="testimonial-rating">${generateStars(testimonialItem.rating)}</div>
-                    <div class="testimonial-time">
-                        <i class="fas fa-clock"></i> ${currentTime}
-                    </div>
                 </div>
             `;
             
@@ -1012,11 +1375,10 @@
             // Mostrar notificação em tempo real imediatamente
             showRealTimeNotification(productName, price);
             
-            // Também registrar no console para debug
-            console.log(`Compra registrada: ${productName} - R$ ${price}`);
+            // Rastrear no Facebook Pixel
+            fbq('track', 'Purchase', {value: price, currency: 'BRL'});
             
-            // Aqui você pode adicionar integração com analytics
-            // ou enviar dados para seu backend se necessário
+            console.log(`Compra registrada: ${productName} - R$ ${price}`);
         }
 
         // Iniciar notificações automáticas
@@ -1045,54 +1407,171 @@
             setTimeout(showTestimonial, 25000);
         }
 
-        // Configurar autoplay do vídeo
-        function setupVideoAutoPlay() {
-            const videoSection = document.querySelector('.pro-package');
-            const videoIframe = document.getElementById('video-player');
-            let player;
-            let hasPlayed = false;
-            
-            // Carregar API do YouTube
-            const tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-            
-            // Quando a API estiver pronta
-            window.onYouTubeIframeAPIReady = function() {
-                player = new YT.Player('video-player', {
-                    events: {
-                        'onReady': onPlayerReady
-                    }
-                });
-            };
-            
-            function onPlayerReady(event) {
-                // Observar quando a seção está visível
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting && !hasPlayed) {
-                            // Dar play no vídeo
-                            event.target.playVideo();
-                            hasPlayed = true;
-                            
-                            // Pausar quando sair da tela
-                            const pauseObserver = new IntersectionObserver((pauseEntries) => {
-                                pauseEntries.forEach(pauseEntry => {
-                                    if (!pauseEntry.isIntersecting) {
-                                        event.target.pauseVideo();
-                                    }
-                                });
-                            }, { threshold: 0.1 });
-                            
-                            pauseObserver.observe(videoSection);
-                        }
-                    });
-                }, { threshold: 0.5 });
-                
-                observer.observe(videoSection);
+        // Código da Roleta
+        (function(){
+            // Configurações
+            const MAX_TRIES = 3;
+            const LOCK_MINUTES = 2; // Bloqueia por 2 minutos
+            const animationTime = 4200;
+            const WIN_CHANCE = 0.5; // 50% de chance de ganhar
+
+            // Funções utilitárias
+            function nowMs(){ return Date.now(); }
+            function keyTries(){ return 'roleta_tries'; }
+            function keyLockedUntil(){ return 'roleta_lockedUntil'; }
+
+            function formatTime(ms) {
+                const totalSeconds = Math.ceil(ms / 1000);
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }
-        }
+
+            function lockButtonUntil(btn, timerDiv, lockedUntil) {
+                btn.disabled = true;
+                btn.textContent = 'AGUARDE...';
+
+                function updateTimer() {
+                    const remainingTime = lockedUntil - nowMs();
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+                        timerDiv.textContent = '';
+                        btn.disabled = false;
+                        btn.textContent = 'GIRAR ROLETA';
+                        localStorage.removeItem(keyLockedUntil());
+                        document.getElementById('tries1').textContent = 0;
+                        localStorage.setItem(keyTries(), 0);
+                    } else {
+                        timerDiv.textContent = `Tente novamente em ${formatTime(remainingTime)}`;
+                    }
+                }
+
+                const timerInterval = setInterval(updateTimer, 1000);
+                updateTimer();
+            }
+
+            // Função principal para girar a roleta
+            window.spinRoulette = function(rouletteId, msgId, btnId){
+                const roulette = document.getElementById(rouletteId);
+                const msg = document.getElementById(msgId);
+                const btn = document.getElementById(btnId);
+                const triesSpan = document.getElementById('tries1');
+
+                // Verificar se está bloqueado
+                const lockedUntil = parseInt(localStorage.getItem(keyLockedUntil())) || 0;
+                if(lockedUntil && lockedUntil > nowMs()){
+                    return;
+                }
+
+                // Verificar tentativas
+                let tries = parseInt(localStorage.getItem(keyTries())) || 0;
+                if(tries >= MAX_TRIES){
+                    const lockedUntilTs = nowMs() + LOCK_MINUTES * 60 * 1000;
+                    localStorage.setItem(keyLockedUntil(), lockedUntilTs);
+                    const timerDiv = document.getElementById('timer1');
+                    lockButtonUntil(btn, timerDiv, lockedUntilTs);
+                    return;
+                }
+
+                if(btn.disabled) return;
+                btn.disabled = true;
+
+                // Tocar som da roleta
+                rouletteSound.currentTime = 0;
+                rouletteSound.play().catch(e => console.log('Erro ao tocar som da roleta:', e));
+
+                // Determinar se ganhou ou não
+                const win = Math.random() < WIN_CHANCE;
+
+                // Ângulos para vitória (verde) e derrota (vermelho)
+                const anglesWin = [330, 90, 210]; // Posições verdes
+                const anglesLose = [30, 150, 270]; // Posições vermelhas
+                
+                const chosenBaseAngle = win ? 
+                    anglesWin[Math.floor(Math.random() * anglesWin.length)]
+                    : anglesLose[Math.floor(Math.random() * anglesLose.length)];
+                
+                const variation = Math.floor(Math.random() * 50) - 25;
+                const chosenStopAngle = chosenBaseAngle + variation;
+                const fullRotations = 360 * (8 + Math.floor(Math.random()*3));
+                const finalAngle = fullRotations + chosenStopAngle;
+
+                // Aplicar animação
+                roulette.style.transition = `transform ${animationTime}ms cubic-bezier(.22,.98,.35,1)`;
+                roulette.style.transform = `rotate(${finalAngle}deg)`;
+
+                msg.innerHTML = '<span style="color:#ccc;">Girando...</span>';
+
+                // Resultado após animação
+                setTimeout(() => {
+                    roulette.style.transition = 'none';
+                    roulette.style.transform = `rotate(${chosenStopAngle}deg)`;
+
+                    if(win){
+                        // VITÓRIA
+                        msg.innerHTML = `<span style="color:#28a745; font-weight:800;">🎉 VOCÊ GANHOU! PAGUE APENAS R$1,00 🎉</span>`;
+                        triesSpan.textContent = 0;
+                        localStorage.setItem(keyTries(), 0);
+                        
+                        // Rastrear no Facebook Pixel
+                        fbq('track', 'Purchase', {value: 1.00, currency: 'BRL'});
+                        
+                        // Redirecionar após 1.5 segundos
+                        setTimeout(() => {
+                            window.location.href = roulette.dataset.redirect;
+                        }, 1500);
+                        
+                    } else {
+                        // DERROTA
+                        tries = tries + 1;
+                        localStorage.setItem(keyTries(), tries);
+                        triesSpan.textContent = tries;
+                        msg.innerHTML = `<span style="color:#dc3545; font-weight:800;">❌ NÃO GANHOU! TENTE NOVAMENTE</span>`;
+
+                        if(tries >= MAX_TRIES){
+                            // Bloquear por 2 minutos
+                            const lockedUntilTs = nowMs() + LOCK_MINUTES * 60 * 1000;
+                            localStorage.setItem(keyLockedUntil(), lockedUntilTs);
+                            const timerDiv = document.getElementById('timer1');
+                            lockButtonUntil(btn, timerDiv, lockedUntilTs);
+                        } else {
+                            btn.disabled = false;
+                            btn.textContent = 'GIRAR ROLETA';
+                        }
+                    }
+                }, animationTime + 50);
+            };
+
+            // Inicialização
+            function initRoleta(){
+                const btn = document.getElementById('spinBtn1');
+                const timerDiv = document.getElementById('timer1');
+                const triesSpan = document.getElementById('tries1');
+
+                const lockedUntil = parseInt(localStorage.getItem(keyLockedUntil())) || 0;
+                const tries = parseInt(localStorage.getItem(keyTries())) || 0;
+
+                triesSpan.textContent = tries;
+
+                if (lockedUntil > nowMs()) {
+                    lockButtonUntil(btn, timerDiv, lockedUntil);
+                } else {
+                    if (tries >= MAX_TRIES) {
+                        const lockedUntilTs = nowMs() + LOCK_MINUTES * 60 * 1000;
+                        localStorage.setItem(keyLockedUntil(), lockedUntilTs);
+                        lockButtonUntil(btn, timerDiv, lockedUntilTs);
+                    } else {
+                        btn.disabled = false;
+                        btn.textContent = 'GIRAR ROLETA';
+                    }
+                }
+            }
+
+            // Inicializar quando a página carregar
+            document.addEventListener('DOMContentLoaded', initRoleta);
+            window.addEventListener('pageshow', initRoleta);
+
+        })();
 
         // Efeito de rolagem suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1154,9 +1633,16 @@
 
         // Inicializar quando a página carregar
         document.addEventListener('DOMContentLoaded', function() {
+            // Iniciar música de fundo após pequeno delay
+            setTimeout(startBackgroundMusic, 1000);
+            
+            // Configurar eventos
+            musicControl.addEventListener('click', toggleMusic);
+            
+            // Iniciar outras funcionalidades
             startNotifications();
             startTestimonials();
-            setupVideoAutoPlay();
+            setupVideoAudioControl();
         });
     </script>
 </body>
