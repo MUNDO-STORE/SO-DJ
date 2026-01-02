@@ -506,6 +506,16 @@
             font-size: 0.7rem;
         }
 
+        .notification-time .live-badge {
+            background: var(--highlight);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
         /* Depoimentos Flutuantes */
         .testimonials-container {
             position: fixed;
@@ -620,6 +630,18 @@
             }
         }
 
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
         /* Para dispositivos móveis */
         @media (max-width: 768px) {
             .purchase-notifications {
@@ -697,7 +719,7 @@
                             <li><i class="fas fa-times-circle" style="color: #ff6b6b;"></i> <span style="color: #ff6b6b;">Sem atualizações futuras</span></li>
                         </ul>
                         <div class="package-buttons">
-                            <a href="https://4br.me/87EkjZg9" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 3.99, currency: 'BRL'});">
+                            <a href="https://4br.me/87EkjZg9" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 3.99, currency: 'BRL'}); trackRealPurchase('Pack Atualizar Pendrive', 3.99);">
                                 <i class="fas fa-shopping-cart"></i> Clique Aqui para Comprar Pack Atualizar Pendrive!
                             </a>
                         </div>
@@ -720,10 +742,10 @@
                             <li><i class="fas fa-check-circle"></i> Material 100% hospedado no Telegram</li>
                         </ul>
                         <div class="package-buttons">
-                            <a href="https://wa.link/wyxz3h" class="btn btn-whatsapp" target="_blank" onclick="fbq('track', 'InitiateCheckout', {value: 15.00, currency: 'BRL'});">
+                            <a href="https://wa.link/wyxz3h" class="btn btn-whatsapp" target="_blank" onclick="fbq('track', 'InitiateCheckout', {value: 15.00, currency: 'BRL'}); trackRealPurchase('Pack Atualizar Pendrive VIP', 15.00);">
                                 <i class="fab fa-whatsapp"></i> Comprar pelo WhatsApp
                             </a>
-                            <a href="https://4br.me/87EkjZg9" class="btn btn-secondary" target="_blank" onclick="fbq('track', 'InitiateCheckout', {value: 15.00, currency: 'BRL'});">
+                            <a href="https://4br.me/87EkjZg9" class="btn btn-secondary" target="_blank" onclick="fbq('track', 'InitiateCheckout', {value: 15.00, currency: 'BRL'}); trackRealPurchase('Pack Atualizar Pendrive VIP', 15.00);">
                                 <i class="fas fa-shopping-cart"></i> Comprar pelo Site
                             </a>
                         </div>
@@ -763,10 +785,10 @@
                 </div>
                 
                 <div class="pro-buttons">
-                    <a href="https://4br.me/54Wms" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 50.00, currency: 'BRL'});">
+                    <a href="https://4br.me/54Wms" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 50.00, currency: 'BRL'}); trackRealPurchase('Pack Profissional DJ', 50.00);">
                         <i class="fas fa-shopping-cart"></i> Clique Aqui para Comprar Pack Pro DJ R$50,00 pelo Site!
                     </a>
-                    <a href="https://wa.link/cj28rm" class="btn btn-whatsapp" target="_blank" onclick="fbq('track', 'Purchase', {value: 45.00, currency: 'BRL'});">
+                    <a href="https://wa.link/cj28rm" class="btn btn-whatsapp" target="_blank" onclick="fbq('track', 'Purchase', {value: 45.00, currency: 'BRL'}); trackRealPurchase('Pack Profissional DJ WhatsApp', 45.00);">
                         <i class="fab fa-whatsapp"></i> Clique Aqui para Comprar Pack Pro DJ R$45,00 pelo WhatsApp!
                     </a>
                 </div>
@@ -792,7 +814,8 @@
         const packages = [
             { name: 'Pack Atualizar Pendrive', price: 'R$ 3,99' },
             { name: 'Pack Atualizar Pendrive VIP', price: 'R$ 15,00' },
-            { name: 'Pack Profissional DJ', price: 'R$ 50,00' }
+            { name: 'Pack Profissional DJ', price: 'R$ 50,00' },
+            { name: 'Pack Profissional DJ WhatsApp', price: 'R$ 45,00' }
         ];
         
         const actions = [
@@ -800,7 +823,9 @@
             'comprou agora',
             'adquiriu há poucos instantes',
             'finalizou a compra de',
-            'acaba de garantir'
+            'acaba de garantir',
+            'realizou a compra de',
+            'confirmou o pagamento de'
         ];
 
         // Dados para depoimentos
@@ -842,16 +867,17 @@
             'https://randomuser.me/api/portraits/women/10.jpg'
         ];
 
-        // Função para formatar hora
-        function formatTime(date) {
-            return date.toLocaleTimeString('pt-BR', { 
+        // Formatar hora atual
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString('pt-BR', { 
                 hour: '2-digit', 
                 minute: '2-digit',
                 hour12: false 
             });
         }
 
-        // Função para gerar estrelas de avaliação
+        // Gerar estrelas de avaliação
         function generateStars(rating) {
             let stars = '';
             for (let i = 0; i < 5; i++) {
@@ -864,8 +890,8 @@
             return stars;
         }
 
-        // Função para criar uma notificação de compra
-        function createNotification() {
+        // Criar notificação de compra em tempo real
+        function createRealTimeNotification(productName = null, productPrice = null) {
             const isMale = Math.random() > 0.5;
             const name = isMale ? 
                 maleNames[Math.floor(Math.random() * maleNames.length)] : 
@@ -876,9 +902,17 @@
                 femalePhotos[Math.floor(Math.random() * femalePhotos.length)];
             
             const state = states[Math.floor(Math.random() * states.length)];
-            const packageItem = packages[Math.floor(Math.random() * packages.length)];
             const action = actions[Math.floor(Math.random() * actions.length)];
-            const now = new Date(); // SEMPRE HORÁRIO ATUAL
+            
+            // Usar produto específico ou aleatório
+            let packageItem;
+            if (productName && productPrice) {
+                packageItem = { name: productName, price: `R$ ${productPrice.toFixed(2).replace('.', ',')}` };
+            } else {
+                packageItem = packages[Math.floor(Math.random() * packages.length)];
+            }
+            
+            const currentTime = getCurrentTime();
             
             const notification = document.createElement('div');
             notification.className = 'notification';
@@ -891,7 +925,8 @@
                     <div class="notification-action">${action}</div>
                     <div class="notification-product">${packageItem.name} ${packageItem.price}</div>
                     <div class="notification-time">
-                        <i class="fas fa-clock"></i> ${formatTime(now)}
+                        <i class="fas fa-clock"></i> ${currentTime}
+                        <span class="live-badge">AO VIVO</span>
                     </div>
                 </div>
             `;
@@ -899,7 +934,7 @@
             return notification;
         }
 
-        // Função para criar um depoimento
+        // Criar depoimento
         function createTestimonial() {
             const isMale = Math.random() > 0.5;
             const name = isMale ? 
@@ -911,7 +946,7 @@
                 femalePhotos[Math.floor(Math.random() * femalePhotos.length)];
             
             const testimonialItem = testimonials[Math.floor(Math.random() * testimonials.length)];
-            const now = new Date(); // SEMPRE HORÁRIO ATUAL
+            const currentTime = getCurrentTime();
             
             const testimonial = document.createElement('div');
             testimonial.className = 'testimonial';
@@ -924,7 +959,7 @@
                     <div class="testimonial-text">"${testimonialItem.text}"</div>
                     <div class="testimonial-rating">${generateStars(testimonialItem.rating)}</div>
                     <div class="testimonial-time">
-                        <i class="fas fa-clock"></i> ${formatTime(now)}
+                        <i class="fas fa-clock"></i> ${currentTime}
                     </div>
                 </div>
             `;
@@ -932,86 +967,98 @@
             return testimonial;
         }
 
-        // Função para mostrar notificação
-        function showNotification() {
+        // Mostrar notificação de compra em tempo real
+        function showRealTimeNotification(productName = null, productPrice = null) {
             const container = document.getElementById('notifications-container');
-            const notification = createNotification();
+            const notification = createRealTimeNotification(productName, productPrice);
             
             container.appendChild(notification);
             
-            // Remove a notificação após 10 segundos
+            // Remover após 10 segundos
             setTimeout(() => {
                 if (notification.parentNode === container) {
                     container.removeChild(notification);
                 }
             }, 10000);
             
-            // Limita a 3 notificações visíveis simultaneamente
+            // Limitar a 3 notificações visíveis
             if (container.children.length > 3) {
                 container.removeChild(container.firstChild);
             }
         }
 
-        // Função para mostrar depoimento
+        // Mostrar depoimento
         function showTestimonial() {
             const container = document.getElementById('testimonials-container');
             const testimonial = createTestimonial();
             
             container.appendChild(testimonial);
             
-            // Remove o depoimento após 30 segundos
+            // Remover após 30 segundos
             setTimeout(() => {
                 if (testimonial.parentNode === container) {
                     container.removeChild(testimonial);
                 }
             }, 30000);
             
-            // Limita a 2 depoimentos visíveis simultaneamente
+            // Limitar a 2 depoimentos visíveis
             if (container.children.length > 2) {
                 container.removeChild(container.firstChild);
             }
         }
 
-        // Inicia as notificações
-        function startNotifications() {
-            // Mostra a primeira notificação após 3 segundos
-            setTimeout(showNotification, 3000);
+        // Rastrear compra real (quando alguém clica em comprar)
+        function trackRealPurchase(productName, price) {
+            // Mostrar notificação em tempo real imediatamente
+            showRealTimeNotification(productName, price);
             
-            // Mostra notificações a cada 1 minuto (60000ms)
-            setInterval(showNotification, 60000);
+            // Também registrar no console para debug
+            console.log(`Compra registrada: ${productName} - R$ ${price}`);
             
-            // Mostra algumas notificações iniciais
-            setTimeout(showNotification, 10000);
-            setTimeout(showNotification, 20000);
+            // Aqui você pode adicionar integração com analytics
+            // ou enviar dados para seu backend se necessário
         }
 
-        // Inicia os depoimentos
+        // Iniciar notificações automáticas
+        function startNotifications() {
+            // Primeira notificação após 3 segundos
+            setTimeout(() => showRealTimeNotification(), 3000);
+            
+            // Notificações automáticas a cada 1 minuto
+            setInterval(() => showRealTimeNotification(), 60000);
+            
+            // Notificações iniciais
+            setTimeout(() => showRealTimeNotification(), 10000);
+            setTimeout(() => showRealTimeNotification(), 20000);
+        }
+
+        // Iniciar depoimentos
         function startTestimonials() {
-            // Mostra o primeiro depoimento após 5 segundos
+            // Primeiro depoimento após 5 segundos
             setTimeout(showTestimonial, 5000);
             
-            // Mostra depoimentos a cada 2 minutos (120000ms)
+            // Depoimentos a cada 2 minutos
             setInterval(showTestimonial, 120000);
             
-            // Mostra alguns depoimentos iniciais
+            // Depoimentos iniciais
             setTimeout(showTestimonial, 15000);
             setTimeout(showTestimonial, 25000);
         }
 
-        // Função para detectar quando o Pack Profissional DJ está visível
+        // Configurar autoplay do vídeo
         function setupVideoAutoPlay() {
             const videoSection = document.querySelector('.pro-package');
             const videoIframe = document.getElementById('video-player');
             let player;
             let hasPlayed = false;
             
-            // Carrega a API do YouTube
+            // Carregar API do YouTube
             const tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
             const firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
             
-            // Quando a API do YouTube estiver pronta
+            // Quando a API estiver pronta
             window.onYouTubeIframeAPIReady = function() {
                 player = new YT.Player('video-player', {
                     events: {
@@ -1021,15 +1068,15 @@
             };
             
             function onPlayerReady(event) {
-                // Observador de interseção para detectar quando a seção está visível
+                // Observar quando a seção está visível
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting && !hasPlayed) {
-                            // Dá play no vídeo
+                            // Dar play no vídeo
                             event.target.playVideo();
                             hasPlayed = true;
                             
-                            // Pausa o vídeo quando sair da tela
+                            // Pausar quando sair da tela
                             const pauseObserver = new IntersectionObserver((pauseEntries) => {
                                 pauseEntries.forEach(pauseEntry => {
                                     if (!pauseEntry.isIntersecting) {
@@ -1041,13 +1088,13 @@
                             pauseObserver.observe(videoSection);
                         }
                     });
-                }, { threshold: 0.5 }); // 50% visível
+                }, { threshold: 0.5 });
                 
                 observer.observe(videoSection);
             }
         }
 
-        // Efeito de rolagem suave para os links
+        // Efeito de rolagem suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1064,7 +1111,7 @@
             });
         });
 
-        // Adiciona classe de animação aos cards quando aparecem na tela
+        // Animação dos cards
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1078,12 +1125,11 @@
             });
         }, observerOptions);
 
-        // Observa os cards dos pacotes
         document.querySelectorAll('.package-card').forEach(card => {
             observer.observe(card);
         });
 
-        // Função para rastrear cliques nos botões de compra
+        // Rastrear cliques nos botões de compra
         document.querySelectorAll('.btn-primary, .btn-whatsapp, .btn-secondary').forEach(button => {
             button.addEventListener('click', function() {
                 const priceText = this.closest('.package-card')?.querySelector('.package-price')?.textContent || 
@@ -1097,7 +1143,7 @@
                     }
                 }
                 
-                // Rastreia o clique no botão
+                // Rastrear clique
                 fbq('track', 'AddToCart', {
                     value: price,
                     currency: 'BRL',
@@ -1106,7 +1152,7 @@
             });
         });
 
-        // Inicializa as funcionalidades quando a página carregar
+        // Inicializar quando a página carregar
         document.addEventListener('DOMContentLoaded', function() {
             startNotifications();
             startTestimonials();
