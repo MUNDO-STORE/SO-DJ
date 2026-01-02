@@ -37,8 +37,12 @@
             --secondary: #16213e;
             --accent: #0f3460;
             --highlight: #e94560;
+            --vip-gold: #ffd700;
+            --vip-glow: rgba(255, 215, 0, 0.3);
             --light: #f1f1f1;
             --gray: #8a8a8a;
+            --success: #28a745;
+            --warning: #ffc107;
         }
 
         body {
@@ -161,6 +165,30 @@
             }
         }
 
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px var(--vip-glow);
+            }
+            50% {
+                box-shadow: 0 0 20px var(--vip-glow);
+            }
+            100% {
+                box-shadow: 0 0 5px var(--vip-glow);
+            }
+        }
+
+        @keyframes pulse-gold {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -234,6 +262,32 @@
             color: #ccc;
         }
 
+        /* Timer Promocional */
+        .promo-timer {
+            background: rgba(220, 53, 69, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 400px;
+            text-align: center;
+            border: 2px solid #ff6b6b;
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+            animation: pulse-gold 2s infinite;
+        }
+
+        .promo-timer h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            font-family: 'Courier New', monospace;
+        }
+
         /* Packages Section */
         .packages {
             padding: 60px 0;
@@ -262,9 +316,15 @@
 
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
+        }
+
+        @media (min-width: 992px) {
+            .packages-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .package-card {
@@ -275,11 +335,53 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            position: relative;
         }
 
         .package-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Pacote VIP com Destaque */
+        .vip-highlight {
+            border: 3px solid var(--vip-gold);
+            box-shadow: 0 0 20px var(--vip-glow);
+            animation: glow 2s infinite;
+            transform: scale(1.05);
+            order: 2;
+        }
+
+        @media (max-width: 992px) {
+            .vip-highlight {
+                order: 3;
+                transform: scale(1);
+            }
+        }
+
+        .recommended-badge {
+            position: absolute;
+            top: 15px;
+            left: -15px;
+            background: linear-gradient(45deg, #ff0000, #ff9900);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 10;
+            transform: rotate(-5deg);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .recommended-badge:before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 20px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #cc6600;
         }
 
         .package-header {
@@ -290,9 +392,19 @@
             position: relative;
         }
 
+        .vip-highlight .package-header {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.9), rgba(255, 215, 0, 0.2));
+            border-bottom: 3px solid var(--vip-gold);
+        }
+
         .package-header h3 {
             font-size: 1.8rem;
             margin-bottom: 10px;
+        }
+
+        .vip-highlight .package-header h3 {
+            color: var(--vip-gold);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .package-badge {
@@ -311,6 +423,11 @@
             font-size: 2.5rem;
             font-weight: 800;
             color: var(--highlight);
+        }
+
+        .vip-highlight .package-price {
+            color: var(--vip-gold);
+            animation: pulse-gold 2s infinite;
         }
 
         .package-price span {
@@ -339,9 +456,17 @@
         }
 
         .package-features i {
-            color: var(--highlight);
             margin-right: 10px;
             font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .basic-features i {
+            color: var(--highlight);
+        }
+
+        .vip-features i {
+            color: var(--success);
         }
 
         .package-buttons {
@@ -363,16 +488,21 @@
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
-            background: var(--highlight);
-            color: white;
+            background: linear-gradient(135deg, var(--warning), #ff9800);
+            color: #212529;
+            border-bottom: 4px solid #cc7a00;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
         }
 
         .btn-primary:hover {
-            background: #ff2e4f;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #ff9800, #e68a00);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.6);
         }
 
         .btn-secondary {
@@ -389,11 +519,58 @@
         .btn-whatsapp {
             background: #25D366;
             color: white;
+            border-bottom: 4px solid #1a9f4d;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
         }
 
         .btn-whatsapp:hover {
             background: #1da851;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .vip-btn {
+            background: linear-gradient(135deg, var(--vip-gold), #ffaa00);
+            color: #212529;
+            border-bottom: 4px solid #cc9900;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .vip-btn:hover {
+            background: linear-gradient(135deg, #ffaa00, #e69500);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Bônus do VIP */
+        .vip-bonus {
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid var(--vip-gold);
+        }
+
+        .vip-bonus h4 {
+            color: var(--vip-gold);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .bonus-list {
+            list-style: none;
+        }
+
+        .bonus-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        .bonus-list i {
+            color: var(--vip-gold);
+            margin-right: 10px;
         }
 
         /* Pro Package Section */
@@ -675,7 +852,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* NOTIFICAÇÕES DE COMPRADORES - CORRIGIDO (TEXTO NÃO MAIS CORTADO) */
+        /* NOTIFICAÇÕES DE COMPRADORES */
         .purchase-notifications {
             position: fixed;
             top: 10px;
@@ -765,7 +942,52 @@
             font-size: 0.75rem;
         }
 
-        /* Botão flutuante para controlar música - MODIFICADO */
+        /* Pop-up de venda recente */
+        .sale-popup {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9998;
+            background: rgba(22, 33, 62, 0.95);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--success);
+            max-width: 300px;
+            backdrop-filter: blur(8px);
+            animation: slideInLeft 0.5s ease;
+        }
+
+        .sale-popup-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sale-popup-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--success);
+        }
+
+        .sale-popup-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sale-popup-text {
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .sale-popup-text strong {
+            color: var(--success);
+        }
+
+        /* Botão flutuante para controlar música */
         .music-control {
             position: fixed;
             bottom: 20px;
@@ -795,7 +1017,7 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Depoimentos Flutuantes - CORRIGIDO (TEXTO NÃO MAIS CORTADO) */
+        /* Depoimentos Flutuantes */
         .testimonials-container {
             position: fixed;
             bottom: 80px;
@@ -1173,14 +1395,30 @@
             }
         }
 
-        /* Para dispositivos móveis - CORRIGIDO */
+        /* Para dispositivos móveis */
         @media (max-width: 768px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .vip-highlight {
+                transform: none;
+                order: 3;
+            }
+            
             .purchase-notifications {
                 top: 5px;
                 right: 5px;
                 left: 5px;
                 max-width: none;
                 gap: 8px;
+            }
+            
+            .sale-popup {
+                top: 5px;
+                left: 5px;
+                right: 5px;
+                max-width: none;
             }
             
             .testimonials-container {
@@ -1226,14 +1464,6 @@
                 line-height: 1.3;
             }
             
-            /* Garantir que não cubram botões importantes em mobile */
-            .affiliate-btn,
-            .roulette-telegram-btn,
-            .btn-primary {
-                position: relative;
-                z-index: 100;
-            }
-            
             .roulette-container {
                 padding: 20px;
             }
@@ -1261,10 +1491,10 @@
             }
         }
 
-        /* Para telas muito pequenas (Celulares em retrato) */
         @media (max-width: 480px) {
             .purchase-notifications,
-            .testimonials-container {
+            .testimonials-container,
+            .sale-popup {
                 display: none;
             }
             
@@ -1273,32 +1503,6 @@
                 right: 15px;
                 width: 40px;
                 height: 40px;
-            }
-            
-            .notification, .testimonial {
-                padding: 10px 8px;
-            }
-            
-            .notification-avatar, .testimonial-avatar {
-                width: 35px;
-                height: 35px;
-            }
-            
-            .notification-name,
-            .testimonial-name {
-                font-size: 0.85rem;
-            }
-            
-            .notification-action,
-            .notification-product,
-            .notification-time,
-            .testimonial-text,
-            .testimonial-rating {
-                font-size: 0.75rem;
-            }
-            
-            .testimonial-text {
-                line-height: 1.25;
             }
         }
 
@@ -1311,7 +1515,6 @@
             position: relative;
             z-index: 100;
         }
-
     </style>
 </head>
 <body>
@@ -1342,6 +1545,18 @@
     <!-- Notificações de Compradores -->
     <div class="purchase-notifications" id="notifications-container"></div>
 
+    <!-- Pop-up de venda recente -->
+    <div class="sale-popup" id="sale-popup">
+        <div class="sale-popup-content">
+            <div class="sale-popup-avatar">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João">
+            </div>
+            <div class="sale-popup-text">
+                <strong>João de São Paulo</strong> acabou de baixar o Pack VIP!
+            </div>
+        </div>
+    </div>
+
     <!-- Depoimentos Flutuantes -->
     <div class="testimonials-container" id="testimonials-container"></div>
 
@@ -1361,6 +1576,14 @@
         <div class="container">
             <h2>Atualize Seu Repertório com Milhares de Músicas</h2>
             <p>Pacotes completos com músicas atualizadas, organizadas por ritmo e estilo. Ideal para DJs que querem estar sempre preparados para qualquer evento.</p>
+            
+            <!-- Timer Promocional -->
+            <div class="promo-timer">
+                <h3>🚨 OFERTA ESPECIAL LIMITADA 🚨</h3>
+                <p>Preço promocional do Pack VIP expira em:</p>
+                <div class="timer" id="promo-timer">14:00</div>
+                <p style="font-size: 0.9rem; margin-top: 10px; color: #ffdddd;">Aproveite esta oportunidade única!</p>
+            </div>
         </div>
     </section>
 
@@ -1370,14 +1593,14 @@
             <h2 class="section-title">Escolha o Pacote Ideal para Você</h2>
             
             <div class="packages-grid">
-                <!-- Package 1 -->
+                <!-- Package 1 - Básico -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>Pack Atualizar Pendrive</h3>
                         <div class="package-price">R$<span>3,99</span></div>
                     </div>
                     <div class="package-body">
-                        <ul class="package-features">
+                        <ul class="package-features basic-features">
                             <li><i class="fas fa-check-circle"></i> Mais de 25 mil músicas MP3</li>
                             <li><i class="fas fa-check-circle"></i> +30 ritmos atualizados</li>
                             <li><i class="fas fa-check-circle"></i> Sem vinhetas</li>
@@ -1386,33 +1609,69 @@
                         </ul>
                         <div class="package-buttons">
                             <a href="https://4br.me/87EkjZg9" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 3.99, currency: 'BRL'}); trackRealPurchase('Pack Atualizar Pendrive', 3.99);">
-                                <i class="fas fa-shopping-cart"></i> Clique Aqui para Comprar Pack Atualizar Pendrive!
+                                <i class="fas fa-shopping-cart"></i> Comprar Agora
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Package 2 -->
-                <div class="package-card">
+                <!-- Package 2 - VIP (DESTAQUE) -->
+                <div class="package-card vip-highlight">
+                    <div class="recommended-badge">RECOMENDADO</div>
                     <div class="package-header">
-                        <h3>Pack Atualizar Pendrive VIP</h3>
+                        <h3>Acesso Vitalício + Atualizações 2026</h3>
                         <div class="package-price">R$<span>15,00</span></div>
                     </div>
                     <div class="package-body">
-                        <ul class="package-features">
+                        <ul class="package-features vip-features">
                             <li><i class="fas fa-check-circle"></i> Mais de 25 mil músicas MP3</li>
                             <li><i class="fas fa-check-circle"></i> +30 ritmos atualizados</li>
                             <li><i class="fas fa-check-circle"></i> Sem vinhetas</li>
                             <li><i class="fas fa-check-circle"></i> Download imediato</li>
-                            <li><i class="fas fa-check-circle"></i> Atualizações constantes</li>
+                            <li><i class="fas fa-check-circle"></i> Atualizações constantes 2026</li>
                             <li><i class="fas fa-check-circle"></i> Material 100% hospedado no Telegram</li>
+                            <li><i class="fas fa-check-circle"></i> Acesso vitalício ao grupo VIP</li>
+                        </ul>
+                        
+                        <!-- Bônus do VIP -->
+                        <div class="vip-bonus">
+                            <h4>🎁 BÔNUS EXCLUSIVOS INCLUÍDOS:</h4>
+                            <ul class="bonus-list">
+                                <li><i class="fas fa-gift"></i> Planilha de Organização de Repertório</li>
+                                <li><i class="fas fa-gift"></i> Pack de Efeitos (Transitions/Explosões)</li>
+                                <li><i class="fas fa-gift"></i> Hits que vão bombar no Carnaval 2026</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="package-buttons">
+                            <a href="https://4br.me/nfUdIhDGC" class="btn vip-btn" target="_blank" onclick="fbq('track', 'Purchase', {value: 15.00, currency: 'BRL'}); trackRealPurchase('Acesso Vitalício + Atualizações 2026', 15.00);">
+                                <i class="fas fa-crown"></i> COMPRAR AGORA - R$15,00
+                            </a>
+                            <a href="https://wa.link/wyxz3h" class="btn btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Tire suas dúvidas
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 3 - Intermediário -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Pack Atualizar Pendrive PLUS</h3>
+                        <div class="package-price">R$<span>9,99</span></div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features basic-features">
+                            <li><i class="fas fa-check-circle"></i> Mais de 25 mil músicas MP3</li>
+                            <li><i class="fas fa-check-circle"></i> +30 ritmos atualizados</li>
+                            <li><i class="fas fa-check-circle"></i> Sem vinhetas</li>
+                            <li><i class="fas fa-check-circle"></i> Download imediato</li>
+                            <li><i class="fas fa-check-circle"></i> Links enviados por email após pagamento</li>
+                            <li><i class="fas fa-check-circle"></i> +5 mil músicas extras</li>
                         </ul>
                         <div class="package-buttons">
-                            <a href="https://wa.link/wyxz3h" class="btn btn-whatsapp" target="_blank" onclick="fbq('track', 'InitiateCheckout', {value: 15.00, currency: 'BRL'}); trackRealPurchase('Pack Atualizar Pendrive VIP', 15.00);">
-                                <i class="fab fa-whatsapp"></i> Comprar pelo WhatsApp
-                            </a>
-                            <a href="https://4br.me/nfUdIhDGC" class="btn btn-secondary" target="_blank" onclick="fbq('track', 'InitiateCheckout', {value: 15.00, currency: 'BRL'}); trackRealPurchase('Pack Atualizar Pendrive VIP', 15.00);">
-                                <i class="fas fa-shopping-cart"></i> Comprar pelo Site
+                            <a href="https://4br.me/87EkjZg9" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 9.99, currency: 'BRL'}); trackRealPurchase('Pack Atualizar Pendrive PLUS', 9.99);">
+                                <i class="fas fa-shopping-cart"></i> Comprar Agora
                             </a>
                         </div>
                     </div>
@@ -1592,6 +1851,48 @@
             isMusicPlaying = !isMusicPlaying;
         }
 
+        // Timer promocional
+        function startPromoTimer() {
+            const timerElement = document.getElementById('promo-timer');
+            let minutes = 14;
+            let seconds = 0;
+            
+            const timer = setInterval(() => {
+                if (seconds === 0) {
+                    minutes--;
+                    seconds = 59;
+                } else {
+                    seconds--;
+                }
+                
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Quando o timer chegar a 5 minutos, adicionar efeito de urgência
+                if (minutes === 5 && seconds === 0) {
+                    timerElement.style.color = '#ff0000';
+                    timerElement.style.animation = 'pulse 1s infinite';
+                }
+                
+                if (minutes === 0 && seconds === 0) {
+                    clearInterval(timer);
+                    timerElement.textContent = "Oferta expirada!";
+                    timerElement.style.color = '#ff0000';
+                    
+                    // Desabilitar botão de compra do VIP
+                    const vipButton = document.querySelector('.vip-btn');
+                    if (vipButton) {
+                        vipButton.textContent = 'OFERTA EXPIRADA';
+                        vipButton.style.background = '#999';
+                        vipButton.style.cursor = 'not-allowed';
+                        vipButton.onclick = function(e) {
+                            e.preventDefault();
+                            alert('Esta oferta promocional expirou!');
+                        };
+                    }
+                }
+            }, 1000);
+        }
+
         // Controlar volume do vídeo do YouTube
         function setupVideoAudioControl() {
             const videoIframe = document.getElementById('video-player');
@@ -1656,7 +1957,8 @@
                 
                 this.packages = [
                     { name: 'Pack Atualizar Pendrive', price: 'R$ 3,99' },
-                    { name: 'Pack Atualizar Pendrive VIP', price: 'R$ 15,00' },
+                    { name: 'Pack Atualizar Pendrive PLUS', price: 'R$ 9,99' },
+                    { name: 'Acesso Vitalício + Atualizações 2026', price: 'R$ 15,00' },
                     { name: 'Pack Profissional DJ', price: 'R$ 50,00' },
                     { name: 'Pack Profissional DJ WhatsApp', price: 'R$ 45,00' }
                 ];
@@ -1692,13 +1994,13 @@
 
                 // Dados para depoimentos da seção - SEM REPETIÇÃO
                 this.sectionTestimonialTexts = [
-                    "Comprei o Pack Pro DJ e foi a melhor decisão! O conteúdo é absurdo de completo!",
+                    "Comprei o Pack VIP e foi a melhor decisão! O conteúdo é absurdo de completo!",
                     "Como DJ iniciante, o Pack VIP foi essencial para eu começar a trabalhar!",
                     "Atualizações constantes e um suporte incrível! Vale cada centavo!",
                     "O material do Telegram é super organizado, fácil de baixar e usar!",
                     "Já indiquei para vários amigos DJs! Todos amaram!",
                     "Paguei apenas R$1,00 na promoção da roleta! Sensacional!",
-                    "O Pack Gospel me salvou nas festas de igreja que faço!",
+                    "Os bônus do Pack VIP são incríveis, especialmente a planilha!",
                     "Mais de 25 mil músicas e todas de ótima qualidade!",
                     "A organização por ritmos facilitou muito meu trabalho!",
                     "Conteúdo atualizado semanalmente! Sempre com as novidades!",
@@ -2110,10 +2412,32 @@
             }
         }
 
+        // Controlar pop-up de venda
+        function showSalePopup() {
+            const popup = document.getElementById('sale-popup');
+            if (!popup) return;
+            
+            // Mostrar pop-up
+            popup.style.display = 'block';
+            
+            // Ocultar após 10 segundos
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 10000);
+            
+            // Mostrar novamente a cada 2 minutos
+            setTimeout(showSalePopup, 120000);
+        }
+
         // Rastrear compra real (quando alguém clica em comprar)
         function trackRealPurchase(productName, price) {
             // Mostrar notificação em tempo real imediatamente
             showRealTimeNotification(productName, price);
+            
+            // Mostrar pop-up de venda se for o pacote VIP
+            if (productName.includes('VIP') || productName.includes('Vitalício')) {
+                showSalePopup();
+            }
             
             // Rastrear no Facebook Pixel
             fbq('track', 'Purchase', {value: price, currency: 'BRL'});
@@ -2358,7 +2682,7 @@
         });
 
         // Rastrear cliques nos botões de compra
-        document.querySelectorAll('.btn-primary, .btn-whatsapp, .btn-secondary').forEach(button => {
+        document.querySelectorAll('.btn-primary, .btn-whatsapp, .vip-btn, .btn-secondary').forEach(button => {
             button.addEventListener('click', function() {
                 const priceText = this.closest('.package-card')?.querySelector('.package-price')?.textContent || 
                                 this.closest('.pro-package')?.querySelector('.package-price')?.textContent;
@@ -2386,10 +2710,14 @@
             musicControl.addEventListener('click', toggleMusic);
             
             // Iniciar outras funcionalidades
+            startPromoTimer();
             startNotifications();
             startTestimonials();
             startSectionTestimonials();
             setupVideoAudioControl();
+            
+            // Mostrar pop-up inicial após 5 segundos
+            setTimeout(showSalePopup, 5000);
         });
     </script>
 </body>
