@@ -375,6 +375,71 @@
             }
         }
 
+        /* Seção de Afiliados */
+        .affiliate-section {
+            background: linear-gradient(135deg, var(--accent), #1a3d7c);
+            padding: 60px 0;
+            margin-top: 40px;
+            border-top: 3px solid #FFD700;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        .affiliate-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .affiliate-title {
+            font-size: 32px;
+            color: #FFD700;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .affiliate-subtitle {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .affiliate-description {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .affiliate-btn {
+            display: block;
+            margin: 0 auto;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #212529;
+            border: none;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            border-bottom: 6px solid #cc9900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .affiliate-btn:hover {
+            background: linear-gradient(135deg, #FFA500, #FF8C00);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+        }
+
         /* Notificações de Compradores */
         .purchase-notifications {
             position: fixed;
@@ -889,6 +954,15 @@
             .roulette-title {
                 font-size: 24px;
             }
+            
+            .affiliate-title {
+                font-size: 26px;
+            }
+            
+            .affiliate-btn {
+                padding: 16px 30px;
+                font-size: 20px;
+            }
         }
 
     </style>
@@ -1072,6 +1146,22 @@
         </div>
     </section>
 
+    <!-- Seção de Afiliados -->
+    <section class="affiliate-section">
+        <div class="container affiliate-container">
+            <h2 class="affiliate-title">QUER LUCRAR SENDO AFILIADO?</h2>
+            <p class="affiliate-subtitle">Afilia-se e comece a vender! Você recebe 50% de comissão!</p>
+            <p class="affiliate-description">
+                Torne-se um afiliado do Mundo DJ e comece a ganhar dinheiro indicando nossos pacotes!<br>
+                <strong>Para cada venda do Pack Profissional DJ, você ganha R$25,00!</strong><br>
+                É simples, rápido e você não precisa ter estoque. Basta divulgar e receber sua comissão!
+            </p>
+            <a href="https://4br.me/54Wms" class="affiliate-btn" target="_blank" onclick="fbq('track', 'Lead');">
+                CLICK AQUI PARA AFILIAR-SE
+            </a>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1180,66 +1270,150 @@
             }
         }
 
-        // Dados para notificações
-        const maleNames = ['Carlos', 'João', 'Pedro', 'Lucas', 'Marcos', 'Fernando', 'Ricardo', 'Roberto', 'Antônio', 'José', 'Paulo', 'Miguel', 'Rafael', 'Daniel', 'Eduardo', 'Felipe', 'Gustavo', 'Leandro', 'Marcelo', 'Sérgio'];
-        const femaleNames = ['Ana', 'Maria', 'Juliana', 'Patrícia', 'Aline', 'Fernanda', 'Camila', 'Beatriz', 'Carla', 'Daniela', 'Eduarda', 'Gabriela', 'Isabela', 'Laura', 'Mariana', 'Natália', 'Renata', 'Sandra', 'Tatiane', 'Vanessa'];
-        const states = ['SP', 'RJ', 'MG', 'RS', 'PR', 'SC', 'BA', 'PE', 'CE', 'GO', 'DF', 'ES', 'MT', 'MS', 'PB', 'RN', 'AL', 'SE', 'MA', 'PI'];
-        
-        const packages = [
-            { name: 'Pack Atualizar Pendrive', price: 'R$ 3,99' },
-            { name: 'Pack Atualizar Pendrive VIP', price: 'R$ 15,00' },
-            { name: 'Pack Profissional DJ', price: 'R$ 50,00' },
-            { name: 'Pack Profissional DJ WhatsApp', price: 'R$ 45,00' }
-        ];
-        
-        const actions = [
-            'acabou de adquirir',
-            'comprou agora',
-            'adquiriu há poucos instantes',
-            'finalizou a compra de',
-            'acaba de garantir',
-            'realizou a compra de',
-            'confirmou o pagamento de'
-        ];
+        // Sistema de notificações e depoimentos sem repetição
+        class UniqueDataManager {
+            constructor() {
+                // Dados para notificações - SEM REPETIÇÃO
+                this.maleNames = ['Carlos', 'João', 'Pedro', 'Lucas', 'Marcos', 'Fernando', 'Ricardo', 'Roberto', 'Antônio', 'José', 'Paulo', 'Miguel', 'Rafael', 'Daniel', 'Eduardo', 'Felipe', 'Gustavo', 'Leandro', 'Marcelo', 'Sérgio'];
+                this.femaleNames = ['Ana', 'Maria', 'Juliana', 'Patrícia', 'Aline', 'Fernanda', 'Camila', 'Beatriz', 'Carla', 'Daniela', 'Eduarda', 'Gabriela', 'Isabela', 'Laura', 'Mariana', 'Natália', 'Renata', 'Sandra', 'Tatiane', 'Vanessa'];
+                this.states = ['SP', 'RJ', 'MG', 'RS', 'PR', 'SC', 'BA', 'PE', 'CE', 'GO', 'DF', 'ES', 'MT', 'MS', 'PB', 'RN', 'AL', 'SE', 'MA', 'PI'];
+                
+                this.packages = [
+                    { name: 'Pack Atualizar Pendrive', price: 'R$ 3,99' },
+                    { name: 'Pack Atualizar Pendrive VIP', price: 'R$ 15,00' },
+                    { name: 'Pack Profissional DJ', price: 'R$ 50,00' },
+                    { name: 'Pack Profissional DJ WhatsApp', price: 'R$ 45,00' }
+                ];
+                
+                this.actions = [
+                    'acabou de adquirir',
+                    'comprou agora',
+                    'adquiriu há poucos instantes',
+                    'finalizou a compra de',
+                    'acaba de garantir',
+                    'realizou a compra de',
+                    'confirmou o pagamento de'
+                ];
 
-        // Dados para depoimentos (SEM HORAS)
-        const testimonials = [
-            { text: "Músicas atualizadas perfeitas para minhas festas!", rating: 5 },
-            { text: "O melhor investimento que fiz para meu trabalho como DJ!", rating: 5 },
-            { text: "Atualizei meu pendrive e agora estou pronto para qualquer evento!", rating: 5 },
-            { text: "Material completo e muito organizado. Recomendo!", rating: 4 },
-            { text: "As playlists prontas salvaram meu casamento!", rating: 5 },
-            { text: "Vale cada centavo! As atualizações são constantes!", rating: 5 },
-            { text: "Fácil download e organização impecável!", rating: 4 },
-            { text: "Transformou completamente meu repertório!", rating: 5 }
-        ];
+                // Dados para depoimentos - SEM REPETIÇÃO
+                this.testimonialTexts = [
+                    "Músicas atualizadas perfeitas para minhas festas!",
+                    "O melhor investimento que fiz para meu trabalho como DJ!",
+                    "Atualizei meu pendrive e agora estou pronto para qualquer evento!",
+                    "Material completo e muito organizado. Recomendo!",
+                    "As playlists prontas salvaram meu casamento!",
+                    "Vale cada centavo! As atualizações são constantes!",
+                    "Fácil download e organização impecável!",
+                    "Transformou completamente meu repertório!",
+                    "Paguei apenas R$1,00 com o desconto da roleta!",
+                    "Serviço excelente e suporte rápido!",
+                    "Músicas de ótima qualidade e bem organizadas!",
+                    "Melhor aquisição para meu trabalho como DJ!",
+                    "Conteúdo atualizado semanalmente!",
+                    "Superou minhas expectativas!",
+                    "Atendimento excelente e material de qualidade!"
+                ];
 
-        // URLs das fotos de avatar
-        const malePhotos = [
-            'https://randomuser.me/api/portraits/men/1.jpg',
-            'https://randomuser.me/api/portraits/men/2.jpg',
-            'https://randomuser.me/api/portraits/men/3.jpg',
-            'https://randomuser.me/api/portraits/men/4.jpg',
-            'https://randomuser.me/api/portraits/men/5.jpg',
-            'https://randomuser.me/api/portraits/men/6.jpg',
-            'https://randomuser.me/api/portraits/men/7.jpg',
-            'https://randomuser.me/api/portraits/men/8.jpg',
-            'https://randomuser.me/api/portraits/men/9.jpg',
-            'https://randomuser.me/api/portraits/men/10.jpg'
-        ];
-        
-        const femalePhotos = [
-            'https://randomuser.me/api/portraits/women/1.jpg',
-            'https://randomuser.me/api/portraits/women/2.jpg',
-            'https://randomuser.me/api/portraits/women/3.jpg',
-            'https://randomuser.me/api/portraits/women/4.jpg',
-            'https://randomuser.me/api/portraits/women/5.jpg',
-            'https://randomuser.me/api/portraits/women/6.jpg',
-            'https://randomuser.me/api/portraits/women/7.jpg',
-            'https://randomuser.me/api/portraits/women/8.jpg',
-            'https://randomuser.me/api/portraits/women/9.jpg',
-            'https://randomuser.me/api/portraits/women/10.jpg'
-        ];
+                // URLs das fotos de avatar
+                this.malePhotos = [];
+                this.femalePhotos = [];
+                
+                // Gerar URLs únicas para fotos
+                for (let i = 1; i <= 50; i++) {
+                    this.malePhotos.push(`https://randomuser.me/api/portraits/men/${i}.jpg`);
+                    this.femalePhotos.push(`https://randomuser.me/api/portraits/women/${i}.jpg`);
+                }
+
+                // Controle de itens usados
+                this.usedMaleNames = new Set();
+                this.usedFemaleNames = new Set();
+                this.usedMalePhotos = new Set();
+                this.usedFemalePhotos = new Set();
+                this.usedTestimonialTexts = new Set();
+            }
+
+            // Obter nome masculino único
+            getUniqueMaleName() {
+                const availableNames = this.maleNames.filter(name => !this.usedMaleNames.has(name));
+                if (availableNames.length === 0) {
+                    this.usedMaleNames.clear();
+                    return this.maleNames[Math.floor(Math.random() * this.maleNames.length)];
+                }
+                const name = availableNames[Math.floor(Math.random() * availableNames.length)];
+                this.usedMaleNames.add(name);
+                return name;
+            }
+
+            // Obter nome feminino único
+            getUniqueFemaleName() {
+                const availableNames = this.femaleNames.filter(name => !this.usedFemaleNames.has(name));
+                if (availableNames.length === 0) {
+                    this.usedFemaleNames.clear();
+                    return this.femaleNames[Math.floor(Math.random() * this.femaleNames.length)];
+                }
+                const name = availableNames[Math.floor(Math.random() * availableNames.length)];
+                this.usedFemaleNames.add(name);
+                return name;
+            }
+
+            // Obter foto masculina única
+            getUniqueMalePhoto() {
+                const availablePhotos = this.malePhotos.filter(photo => !this.usedMalePhotos.has(photo));
+                if (availablePhotos.length === 0) {
+                    this.usedMalePhotos.clear();
+                    return this.malePhotos[Math.floor(Math.random() * this.malePhotos.length)];
+                }
+                const photo = availablePhotos[Math.floor(Math.random() * availablePhotos.length)];
+                this.usedMalePhotos.add(photo);
+                return photo;
+            }
+
+            // Obter foto feminina única
+            getUniqueFemalePhoto() {
+                const availablePhotos = this.femalePhotos.filter(photo => !this.usedFemalePhotos.has(photo));
+                if (availablePhotos.length === 0) {
+                    this.usedFemalePhotos.clear();
+                    return this.femalePhotos[Math.floor(Math.random() * this.femalePhotos.length)];
+                }
+                const photo = availablePhotos[Math.floor(Math.random() * availablePhotos.length)];
+                this.usedFemalePhotos.add(photo);
+                return photo;
+            }
+
+            // Obter texto de depoimento único
+            getUniqueTestimonialText() {
+                const availableTexts = this.testimonialTexts.filter(text => !this.usedTestimonialTexts.has(text));
+                if (availableTexts.length === 0) {
+                    this.usedTestimonialTexts.clear();
+                    return this.testimonialTexts[Math.floor(Math.random() * this.testimonialTexts.length)];
+                }
+                const text = availableTexts[Math.floor(Math.random() * availableTexts.length)];
+                this.usedTestimonialTexts.add(text);
+                return text;
+            }
+
+            // Obter estado aleatório
+            getRandomState() {
+                return this.states[Math.floor(Math.random() * this.states.length)];
+            }
+
+            // Obter ação aleatória
+            getRandomAction() {
+                return this.actions[Math.floor(Math.random() * this.actions.length)];
+            }
+
+            // Obter pacote aleatório
+            getRandomPackage() {
+                return this.packages[Math.floor(Math.random() * this.packages.length)];
+            }
+
+            // Obter avaliação aleatória
+            getRandomRating() {
+                return Math.random() > 0.2 ? 5 : 4; // 80% 5 estrelas, 20% 4 estrelas
+            }
+        }
+
+        const dataManager = new UniqueDataManager();
 
         // Gerar estrelas de avaliação
         function generateStars(rating) {
@@ -1254,26 +1428,26 @@
             return stars;
         }
 
-        // Criar notificação de compra em tempo real (SEM "AO VIVO")
+        // Criar notificação de compra em tempo real
         function createRealTimeNotification(productName = null, productPrice = null) {
             const isMale = Math.random() > 0.5;
             const name = isMale ? 
-                maleNames[Math.floor(Math.random() * maleNames.length)] : 
-                femaleNames[Math.floor(Math.random() * femaleNames.length)];
+                dataManager.getUniqueMaleName() : 
+                dataManager.getUniqueFemaleName();
             
             const photo = isMale ? 
-                malePhotos[Math.floor(Math.random() * malePhotos.length)] : 
-                femalePhotos[Math.floor(Math.random() * femalePhotos.length)];
+                dataManager.getUniqueMalePhoto() : 
+                dataManager.getUniqueFemalePhoto();
             
-            const state = states[Math.floor(Math.random() * states.length)];
-            const action = actions[Math.floor(Math.random() * actions.length)];
+            const state = dataManager.getRandomState();
+            const action = dataManager.getRandomAction();
             
             // Usar produto específico ou aleatório
             let packageItem;
             if (productName && productPrice) {
                 packageItem = { name: productName, price: `R$ ${productPrice.toFixed(2).replace('.', ',')}` };
             } else {
-                packageItem = packages[Math.floor(Math.random() * packages.length)];
+                packageItem = dataManager.getRandomPackage();
             }
             
             const currentTime = new Date().toLocaleTimeString('pt-BR', { 
@@ -1301,18 +1475,19 @@
             return notification;
         }
 
-        // Criar depoimento (SEM HORAS)
+        // Criar depoimento
         function createTestimonial() {
             const isMale = Math.random() > 0.5;
             const name = isMale ? 
-                maleNames[Math.floor(Math.random() * maleNames.length)] : 
-                femaleNames[Math.floor(Math.random() * femaleNames.length)];
+                dataManager.getUniqueMaleName() : 
+                dataManager.getUniqueFemaleName();
             
             const photo = isMale ? 
-                malePhotos[Math.floor(Math.random() * malePhotos.length)] : 
-                femalePhotos[Math.floor(Math.random() * femalePhotos.length)];
+                dataManager.getUniqueMalePhoto() : 
+                dataManager.getUniqueFemalePhoto();
             
-            const testimonialItem = testimonials[Math.floor(Math.random() * testimonials.length)];
+            const text = dataManager.getUniqueTestimonialText();
+            const rating = dataManager.getRandomRating();
             
             const testimonial = document.createElement('div');
             testimonial.className = 'testimonial';
@@ -1322,8 +1497,8 @@
                 </div>
                 <div class="testimonial-content">
                     <div class="testimonial-name">${name}</div>
-                    <div class="testimonial-text">"${testimonialItem.text}"</div>
-                    <div class="testimonial-rating">${generateStars(testimonialItem.rating)}</div>
+                    <div class="testimonial-text">"${text}"</div>
+                    <div class="testimonial-rating">${generateStars(rating)}</div>
                 </div>
             `;
             
