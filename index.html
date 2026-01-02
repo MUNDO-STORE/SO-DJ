@@ -16,11 +16,11 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '25652670291043537'); // SUBSTITUA PELO SEU ID DO PIXEL
+    fbq('init', 'SEU_ID_DO_PIXEL_AQUI'); // SUBSTITUA PELO SEU ID DO PIXEL
     fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=25652670291043537&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=SEU_ID_DO_PIXEL_AQUI&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
     
@@ -45,6 +45,8 @@
             background-color: var(--primary);
             color: var(--light);
             line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
         }
 
         .container {
@@ -60,6 +62,8 @@
             text-align: center;
             border-bottom: 3px solid var(--highlight);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 100;
         }
 
         .logo {
@@ -97,6 +101,8 @@
             padding: 60px 0 40px;
             text-align: center;
             background: var(--secondary);
+            position: relative;
+            z-index: 100;
         }
 
         .hero h2 {
@@ -115,6 +121,8 @@
         /* Packages Section */
         .packages {
             padding: 60px 0;
+            position: relative;
+            z-index: 100;
         }
 
         .section-title {
@@ -373,6 +381,8 @@
             padding: 40px 0 20px;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 100;
         }
 
         .footer-logo {
@@ -413,9 +423,237 @@
                 font-size: 1.8rem;
             }
         }
+
+        /* Notificações de Compradores */
+        .purchase-notifications {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 320px;
+        }
+
+        .notification {
+            background: rgba(15, 52, 96, 0.95);
+            border-left: 4px solid var(--highlight);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.5s ease, fadeOut 0.5s ease 9.5s;
+            animation-fill-mode: forwards;
+            transition: transform 0.3s ease;
+        }
+
+        .notification:hover {
+            transform: translateX(-5px);
+        }
+
+        .notification-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid var(--highlight);
+        }
+
+        .notification-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-name {
+            font-weight: bold;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .notification-action {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        .notification-product {
+            color: var(--highlight);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        .notification-time {
+            color: #888;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .notification-time i {
+            color: var(--highlight);
+            font-size: 0.7rem;
+        }
+
+        /* Depoimentos Flutuantes */
+        .testimonials-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9998;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 320px;
+        }
+
+        .testimonial {
+            background: rgba(22, 33, 62, 0.95);
+            border-left: 4px solid #25D366;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideInLeft 0.5s ease, fadeOut 0.5s ease 29.5s;
+            animation-fill-mode: forwards;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateX(5px);
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid #25D366;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-content {
+            flex: 1;
+        }
+
+        .testimonial-name {
+            font-weight: bold;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .testimonial-text {
+            color: #ccc;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
+        .testimonial-rating {
+            color: #FFD700;
+            font-size: 0.8rem;
+            margin-bottom: 3px;
+        }
+
+        .testimonial-time {
+            color: #888;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .testimonial-time i {
+            color: #25D366;
+            font-size: 0.7rem;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                display: none;
+            }
+        }
+
+        /* Para dispositivos móveis */
+        @media (max-width: 768px) {
+            .purchase-notifications {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+            
+            .testimonials-container {
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                max-width: none;
+            }
+            
+            .notification, .testimonial {
+                padding: 12px;
+            }
+            
+            .notification-avatar, .testimonial-avatar {
+                width: 40px;
+                height: 40px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Notificações de Compradores -->
+    <div class="purchase-notifications" id="notifications-container"></div>
+
+    <!-- Depoimentos Flutuantes -->
+    <div class="testimonials-container" id="testimonials-container"></div>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -518,7 +756,7 @@
                     
                     <div>
                         <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/KeLaP35KBX4?si=BHiXLeaWjon8racm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe id="video-player" width="560" height="315" src="https://www.youtube.com/embed/KeLaP35KBX4?si=BHiXLeaWjon8racm&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <p style="text-align: center; margin-top: 15px; color: #ccc;">Assista ao vídeo e veja tudo que você vai receber!</p>
                     </div>
@@ -546,6 +784,269 @@
     </footer>
 
     <script>
+        // Dados para notificações
+        const maleNames = ['Carlos', 'João', 'Pedro', 'Lucas', 'Marcos', 'Fernando', 'Ricardo', 'Roberto', 'Antônio', 'José', 'Paulo', 'Miguel', 'Rafael', 'Daniel', 'Eduardo', 'Felipe', 'Gustavo', 'Leandro', 'Marcelo', 'Sérgio'];
+        const femaleNames = ['Ana', 'Maria', 'Juliana', 'Patrícia', 'Aline', 'Fernanda', 'Camila', 'Beatriz', 'Carla', 'Daniela', 'Eduarda', 'Gabriela', 'Isabela', 'Laura', 'Mariana', 'Natália', 'Renata', 'Sandra', 'Tatiane', 'Vanessa'];
+        const states = ['SP', 'RJ', 'MG', 'RS', 'PR', 'SC', 'BA', 'PE', 'CE', 'GO', 'DF', 'ES', 'MT', 'MS', 'PB', 'RN', 'AL', 'SE', 'MA', 'PI'];
+        
+        const packages = [
+            { name: 'Pack Atualizar Pendrive', price: 'R$ 3,99' },
+            { name: 'Pack Atualizar Pendrive VIP', price: 'R$ 15,00' },
+            { name: 'Pack Profissional DJ', price: 'R$ 50,00' }
+        ];
+        
+        const actions = [
+            'acabou de adquirir',
+            'comprou agora',
+            'adquiriu há poucos instantes',
+            'finalizou a compra de',
+            'acaba de garantir'
+        ];
+
+        // Dados para depoimentos
+        const testimonials = [
+            { text: "Músicas atualizadas perfeitas para minhas festas!", rating: 5 },
+            { text: "O melhor investimento que fiz para meu trabalho como DJ!", rating: 5 },
+            { text: "Atualizei meu pendrive e agora estou pronto para qualquer evento!", rating: 5 },
+            { text: "Material completo e muito organizado. Recomendo!", rating: 4 },
+            { text: "As playlists prontas salvaram meu casamento!", rating: 5 },
+            { text: "Vale cada centavo! As atualizações são constantes!", rating: 5 },
+            { text: "Fácil download e organização impecável!", rating: 4 },
+            { text: "Transformou completamente meu repertório!", rating: 5 }
+        ];
+
+        // URLs das fotos de avatar
+        const malePhotos = [
+            'https://randomuser.me/api/portraits/men/1.jpg',
+            'https://randomuser.me/api/portraits/men/2.jpg',
+            'https://randomuser.me/api/portraits/men/3.jpg',
+            'https://randomuser.me/api/portraits/men/4.jpg',
+            'https://randomuser.me/api/portraits/men/5.jpg',
+            'https://randomuser.me/api/portraits/men/6.jpg',
+            'https://randomuser.me/api/portraits/men/7.jpg',
+            'https://randomuser.me/api/portraits/men/8.jpg',
+            'https://randomuser.me/api/portraits/men/9.jpg',
+            'https://randomuser.me/api/portraits/men/10.jpg'
+        ];
+        
+        const femalePhotos = [
+            'https://randomuser.me/api/portraits/women/1.jpg',
+            'https://randomuser.me/api/portraits/women/2.jpg',
+            'https://randomuser.me/api/portraits/women/3.jpg',
+            'https://randomuser.me/api/portraits/women/4.jpg',
+            'https://randomuser.me/api/portraits/women/5.jpg',
+            'https://randomuser.me/api/portraits/women/6.jpg',
+            'https://randomuser.me/api/portraits/women/7.jpg',
+            'https://randomuser.me/api/portraits/women/8.jpg',
+            'https://randomuser.me/api/portraits/women/9.jpg',
+            'https://randomuser.me/api/portraits/women/10.jpg'
+        ];
+
+        // Função para formatar hora
+        function formatTime(date) {
+            return date.toLocaleTimeString('pt-BR', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: false 
+            });
+        }
+
+        // Função para gerar estrelas de avaliação
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 0; i < 5; i++) {
+                if (i < rating) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            return stars;
+        }
+
+        // Função para criar uma notificação de compra
+        function createNotification() {
+            const isMale = Math.random() > 0.5;
+            const name = isMale ? 
+                maleNames[Math.floor(Math.random() * maleNames.length)] : 
+                femaleNames[Math.floor(Math.random() * femaleNames.length)];
+            
+            const photo = isMale ? 
+                malePhotos[Math.floor(Math.random() * malePhotos.length)] : 
+                femalePhotos[Math.floor(Math.random() * femalePhotos.length)];
+            
+            const state = states[Math.floor(Math.random() * states.length)];
+            const packageItem = packages[Math.floor(Math.random() * packages.length)];
+            const action = actions[Math.floor(Math.random() * actions.length)];
+            const now = new Date(); // SEMPRE HORÁRIO ATUAL
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <div class="notification-avatar">
+                    <img src="${photo}" alt="${name}">
+                </div>
+                <div class="notification-content">
+                    <div class="notification-name">${name} • ${state}</div>
+                    <div class="notification-action">${action}</div>
+                    <div class="notification-product">${packageItem.name} ${packageItem.price}</div>
+                    <div class="notification-time">
+                        <i class="fas fa-clock"></i> ${formatTime(now)}
+                    </div>
+                </div>
+            `;
+            
+            return notification;
+        }
+
+        // Função para criar um depoimento
+        function createTestimonial() {
+            const isMale = Math.random() > 0.5;
+            const name = isMale ? 
+                maleNames[Math.floor(Math.random() * maleNames.length)] : 
+                femaleNames[Math.floor(Math.random() * femaleNames.length)];
+            
+            const photo = isMale ? 
+                malePhotos[Math.floor(Math.random() * malePhotos.length)] : 
+                femalePhotos[Math.floor(Math.random() * femalePhotos.length)];
+            
+            const testimonialItem = testimonials[Math.floor(Math.random() * testimonials.length)];
+            const now = new Date(); // SEMPRE HORÁRIO ATUAL
+            
+            const testimonial = document.createElement('div');
+            testimonial.className = 'testimonial';
+            testimonial.innerHTML = `
+                <div class="testimonial-avatar">
+                    <img src="${photo}" alt="${name}">
+                </div>
+                <div class="testimonial-content">
+                    <div class="testimonial-name">${name}</div>
+                    <div class="testimonial-text">"${testimonialItem.text}"</div>
+                    <div class="testimonial-rating">${generateStars(testimonialItem.rating)}</div>
+                    <div class="testimonial-time">
+                        <i class="fas fa-clock"></i> ${formatTime(now)}
+                    </div>
+                </div>
+            `;
+            
+            return testimonial;
+        }
+
+        // Função para mostrar notificação
+        function showNotification() {
+            const container = document.getElementById('notifications-container');
+            const notification = createNotification();
+            
+            container.appendChild(notification);
+            
+            // Remove a notificação após 10 segundos
+            setTimeout(() => {
+                if (notification.parentNode === container) {
+                    container.removeChild(notification);
+                }
+            }, 10000);
+            
+            // Limita a 3 notificações visíveis simultaneamente
+            if (container.children.length > 3) {
+                container.removeChild(container.firstChild);
+            }
+        }
+
+        // Função para mostrar depoimento
+        function showTestimonial() {
+            const container = document.getElementById('testimonials-container');
+            const testimonial = createTestimonial();
+            
+            container.appendChild(testimonial);
+            
+            // Remove o depoimento após 30 segundos
+            setTimeout(() => {
+                if (testimonial.parentNode === container) {
+                    container.removeChild(testimonial);
+                }
+            }, 30000);
+            
+            // Limita a 2 depoimentos visíveis simultaneamente
+            if (container.children.length > 2) {
+                container.removeChild(container.firstChild);
+            }
+        }
+
+        // Inicia as notificações
+        function startNotifications() {
+            // Mostra a primeira notificação após 3 segundos
+            setTimeout(showNotification, 3000);
+            
+            // Mostra notificações a cada 1 minuto (60000ms)
+            setInterval(showNotification, 60000);
+            
+            // Mostra algumas notificações iniciais
+            setTimeout(showNotification, 10000);
+            setTimeout(showNotification, 20000);
+        }
+
+        // Inicia os depoimentos
+        function startTestimonials() {
+            // Mostra o primeiro depoimento após 5 segundos
+            setTimeout(showTestimonial, 5000);
+            
+            // Mostra depoimentos a cada 2 minutos (120000ms)
+            setInterval(showTestimonial, 120000);
+            
+            // Mostra alguns depoimentos iniciais
+            setTimeout(showTestimonial, 15000);
+            setTimeout(showTestimonial, 25000);
+        }
+
+        // Função para detectar quando o Pack Profissional DJ está visível
+        function setupVideoAutoPlay() {
+            const videoSection = document.querySelector('.pro-package');
+            const videoIframe = document.getElementById('video-player');
+            let player;
+            let hasPlayed = false;
+            
+            // Carrega a API do YouTube
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            
+            // Quando a API do YouTube estiver pronta
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('video-player', {
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+            };
+            
+            function onPlayerReady(event) {
+                // Observador de interseção para detectar quando a seção está visível
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !hasPlayed) {
+                            // Dá play no vídeo
+                            event.target.playVideo();
+                            hasPlayed = true;
+                            
+                            // Pausa o vídeo quando sair da tela
+                            const pauseObserver = new IntersectionObserver((pauseEntries) => {
+                                pauseEntries.forEach(pauseEntry => {
+                                    if (!pauseEntry.isIntersecting) {
+                                        event.target.pauseVideo();
+                                    }
+                                });
+                            }, { threshold: 0.1 });
+                            
+                            pauseObserver.observe(videoSection);
+                        }
+                    });
+                }, { threshold: 0.5 }); // 50% visível
+                
+                observer.observe(videoSection);
+            }
+        }
+
         // Efeito de rolagem suave para os links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -603,6 +1104,13 @@
                     content_name: this.textContent.trim()
                 });
             });
+        });
+
+        // Inicializa as funcionalidades quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            startNotifications();
+            startTestimonials();
+            setupVideoAutoPlay();
         });
     </script>
 </body>
