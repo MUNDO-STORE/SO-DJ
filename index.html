@@ -1297,6 +1297,160 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
+        /* SEÇÃO DA RASPADINHA */
+        .scratch-section {
+            background: transparent;
+            padding: 60px 0;
+            margin-top: 40px;
+            border-top: 3px solid #00ff99;
+            border-bottom: 3px solid #00ff99;
+        }
+
+        .scratch-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(15, 52, 96, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            border: 2px solid #00ff99;
+            backdrop-filter: blur(5px);
+            animation: scratchGlow 2s infinite;
+        }
+
+        @keyframes scratchGlow {
+            0% { box-shadow: 0 0 10px rgba(0, 255, 153, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(0, 255, 153, 0.6); }
+            100% { box-shadow: 0 0 10px rgba(0, 255, 153, 0.3); }
+        }
+
+        .scratch-title {
+            font-size: 28px;
+            color: #fff;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .scratch-subtitle {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .scratch-desc {
+            font-size: 16px;
+            opacity: .9;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #ddd;
+        }
+
+        .scratch-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .scratch-card {
+            animation: scratchPulse 2.5s infinite;
+            position: relative;
+            height: 90px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #222;
+            border: 2px solid rgba(0, 255, 153, 0.3);
+        }
+
+        @keyframes scratchPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .scratch-card span {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff99;
+            z-index: 2;
+        }
+
+        .scratch-canvas {
+            position: absolute;
+            inset: 0;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .scratch-result {
+            font-size: 18px;
+            margin-top: 15px;
+            font-weight: bold;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .scratch-button {
+            animation: scratchShine 3s linear infinite;
+            background: linear-gradient(90deg, #00ff99, #00ccff, #00ff99);
+            background-size: 200%;
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-bottom: 4px solid #00cc99;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+
+        @keyframes scratchShine {
+            0% { background-position: -200%; }
+            100% { background-position: 200%; }
+        }
+
+        .scratch-button:not([disabled]):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        .scratch-button:disabled { 
+            background: #555; 
+            color: #ccc; 
+            cursor: not-allowed; 
+            animation: none;
+        }
+
+        .shake { 
+            animation: scratchShake 0.4s ease-in-out 3; 
+        }
+
+        @keyframes scratchShake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
         /* Footer */
         footer {
             background: rgba(26, 26, 46, 0.9);
@@ -1452,7 +1606,8 @@
                 line-height: 1.3;
             }
             
-            .roulette-container {
+            .roulette-container,
+            .scratch-container {
                 padding: 20px;
             }
             
@@ -1461,7 +1616,8 @@
                 height: 220px;
             }
             
-            .roulette-title {
+            .roulette-title,
+            .scratch-title {
                 font-size: 24px;
             }
             
@@ -1476,6 +1632,14 @@
             
             .testimonials-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .scratch-grid {
+                gap: 8px;
+            }
+            
+            .scratch-card {
+                height: 80px;
             }
         }
 
@@ -1492,12 +1656,21 @@
                 width: 40px;
                 height: 40px;
             }
+            
+            .scratch-card {
+                height: 70px;
+            }
+            
+            .scratch-card span {
+                font-size: 16px;
+            }
         }
 
         /* GARANTIR QUE CONTEÚDO PRINCIPAL SEJA SEMPRE VISÍVEL */
         .packages,
         .hero,
         .roulette-section,
+        .scratch-section,
         .affiliate-section,
         .testimonials-section {
             position: relative;
@@ -1523,6 +1696,9 @@
     </audio>
     <audio id="roulette-sound">
         <source src="roleta.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="scratch-sound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-scratch-sound-2789.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Botão flutuante para controlar música -->
@@ -1814,6 +1990,25 @@
         </div>
     </section>
 
+    <!-- Seção da Raspadinha (NOVA) -->
+    <section class="scratch-section">
+        <div class="container scratch-container">
+            <h2 class="scratch-title">🍀 RASPADINHA DA SORTE</h2>
+            <p class="scratch-subtitle">Ache <b>3 valores iguais</b> e pague apenas <b>R$1,00</b></p>
+            
+            <p class="scratch-desc">
+                <b>Pack com 10 MIL músicas MP3</b>, sem vinhetas + <b>30 ritmos</b><br>
+                <b>Boa sorte!</b>
+            </p>
+
+            <div class="scratch-grid" id="scratch-grid"></div>
+
+            <div class="scratch-result" id="scratch-result"></div>
+
+            <button id="scratch-reset" class="scratch-button">Nova Raspadinha</button>
+        </div>
+    </section>
+
     <!-- Seção de Afiliados -->
     <section class="affiliate-section">
         <div class="container affiliate-container">
@@ -1863,6 +2058,7 @@
         // Elementos de áudio
         const backgroundMusic = document.getElementById('background-music');
         const rouletteSound = document.getElementById('roulette-sound');
+        const scratchSound = document.getElementById('scratch-sound');
         const musicControl = document.getElementById('musicControl');
         let isMusicPlaying = false;
         let youtubePlayer = null;
@@ -1870,6 +2066,7 @@
         // Configurar volume baixo da música
         backgroundMusic.volume = 0.3; // 30% de volume
         rouletteSound.volume = 0.5; // 50% de volume
+        scratchSound.volume = 0.6; // 60% de volume
 
         // Iniciar música de fundo automaticamente quando a página carregar
         document.addEventListener('DOMContentLoaded', function() {
@@ -1885,6 +2082,9 @@
                         musicControl.innerHTML = '<i class="fas fa-play"></i>';
                     });
             }, 1000);
+            
+            // Inicializar a raspadinha
+            initScratch();
         });
 
         // Controlar música
@@ -2703,6 +2903,135 @@
             window.addEventListener('pageshow', initRoleta);
 
         })();
+
+        // Código da Raspadinha
+        function initScratch() {
+            const grid = document.getElementById('scratch-grid');
+            const result = document.getElementById('scratch-result');
+            const resetBtn = document.getElementById('scratch-reset');
+
+            let revealed = 0;
+            let values = [];
+
+            function gerarValores() {
+                const ganhar = Math.random() < 0.5; // 50% ganhar / 50% perder
+                if (ganhar) {
+                    const winValue = 'R$1,00';
+                    values = Array(3).fill(winValue);
+                    const others = ['❌', '💣', '😢'];
+                    while (values.length < 6) {
+                        values.push(others[Math.floor(Math.random() * others.length)]);
+                    }
+                } else {
+                    const loseValues = ['❌', '💣', '😢', 'R$5,00', 'R$10,00'];
+                    values = [];
+                    while (values.length < 6) {
+                        values.push(loseValues[Math.floor(Math.random() * loseValues.length)]);
+                    }
+                    // garantir que não tenha 3 iguais
+                    if (values.filter(v => v === 'R$1,00').length >= 3) gerarValores();
+                }
+                values.sort(() => Math.random() - 0.5);
+            }
+
+            function criarRaspadinha() {
+                grid.innerHTML = '';
+                result.textContent = '';
+                revealed = 0;
+                gerarValores();
+
+                values.forEach((val) => {
+                    const card = document.createElement('div');
+                    card.className = 'scratch-card';
+
+                    const span = document.createElement('span');
+                    span.textContent = val;
+
+                    const canvas = document.createElement('canvas');
+                    canvas.className = 'scratch-canvas';
+                    card.appendChild(span);
+                    card.appendChild(canvas);
+                    grid.appendChild(card);
+
+                    canvas.width = card.offsetWidth;
+                    canvas.height = card.offsetHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#999';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#555';
+                    ctx.font = 'bold 14px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('RASPE', canvas.width / 2, canvas.height / 2);
+
+                    let isDraw = false;
+
+                    function pos(e) {
+                        const r = canvas.getBoundingClientRect();
+                        return {
+                            x: (e.touches ? e.touches[0].clientX : e.clientX) - r.left,
+                            y: (e.touches ? e.touches[0].clientY : e.clientY) - r.top
+                        };
+                    }
+
+                    function scratch(e) {
+                        if (!isDraw) return;
+                        const p = pos(e);
+                        ctx.globalCompositeOperation = 'destination-out';
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, 18, 0, Math.PI * 2);
+                        ctx.fill();
+                        
+                        // Tocar som de raspadinha
+                        playScratchSound();
+                    }
+
+                    canvas.addEventListener('mousedown', () => isDraw = true);
+                    canvas.addEventListener('mouseup', () => { isDraw = false; revelar(); });
+                    canvas.addEventListener('mousemove', scratch);
+                    canvas.addEventListener('touchstart', (e) => { 
+                        e.preventDefault();
+                        isDraw = true; 
+                    });
+                    canvas.addEventListener('touchend', () => { isDraw = false; revelar(); });
+                    canvas.addEventListener('touchmove', (e) => {
+                        e.preventDefault();
+                        scratch(e);
+                    });
+
+                    function revelar() {
+                        if (canvas.dataset.done) return;
+                        canvas.dataset.done = true;
+                        revealed++;
+                        if (revealed === 6) verificar();
+                    }
+                });
+            }
+
+            function playScratchSound() {
+                scratchSound.currentTime = 0;
+                scratchSound.play().catch(e => console.log('Erro ao tocar som da raspadinha:', e));
+            }
+
+            function verificar() {
+                grid.classList.add('shake');
+                const count = values.filter(v => v === 'R$1,00').length;
+                if (count >= 3) {
+                    result.innerHTML = '🎉 <span style="color:#00ff99">PARABÉNS!</span><br>Pague apenas <b>R$1,00</b> no pack de 10 mil músicas!';
+                    
+                    // Rastrear no Facebook Pixel
+                    fbq('track', 'Purchase', {value: 1.00, currency: 'BRL'});
+                    
+                    setTimeout(() => {
+                        window.location.href = 'https://4br.me/QADTXgSwh';
+                    }, 2000);
+                } else {
+                    result.innerHTML = '❌ Não foi dessa vez. Tente novamente!';
+                }
+            }
+
+            resetBtn.addEventListener('click', criarRaspadinha);
+            criarRaspadinha();
+        }
 
         // Efeito de rolagem suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
