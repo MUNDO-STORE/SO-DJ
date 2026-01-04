@@ -215,24 +215,6 @@
             }
         }
 
-        @keyframes moveButton {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            25% {
-                transform: translate(20px, -10px) scale(1.05);
-            }
-            50% {
-                transform: translate(-15px, 15px) scale(1.02);
-            }
-            75% {
-                transform: translate(10px, -5px) scale(1.03);
-            }
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -1116,6 +1098,8 @@
         /* NOVO: Botão Flutuante do Tigrinho */
         .tigrinho-button {
             position: fixed;
+            bottom: 20px;
+            right: 20px;
             z-index: 9997;
             background: linear-gradient(135deg, var(--tigrinho-green), var(--tigrinho-orange));
             border: 2px solid #ffdd00;
@@ -1134,19 +1118,15 @@
             color: #000;
             text-transform: uppercase;
             letter-spacing: 1px;
-            animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite, moveButton 10s infinite ease-in-out;
+            animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
             background-size: 200% auto;
             min-width: 200px;
-            /* Posição inicial */
-            bottom: 20px;
-            right: 20px;
         }
 
         .tigrinho-button:hover {
             transform: scale(1.05) translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 255, 136, 0.6);
             background: linear-gradient(135deg, var(--tigrinho-orange), var(--tigrinho-green));
-            animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
         }
 
         .tigrinho-button i {
@@ -1412,11 +1392,11 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
-        /* Estilos da Raspadinha */
+        /* NOVOS ESTILOS PARA RASPADINHA MELHORADA */
         .scratch-subtitle {
             font-size: 18px;
             color: #ccc;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-weight: 600;
             text-align: center;
         }
@@ -1424,7 +1404,7 @@
         .scratch-desc {
             font-size: 16px;
             opacity: .9;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             line-height: 1.5;
             color: #ddd;
             text-align: center;
@@ -1438,19 +1418,19 @@
         }
 
         .scratch-card {
-            animation: scratchPulse 2.5s infinite;
             position: relative;
-            height: 90px;
+            height: 100px;
             border-radius: 12px;
             overflow: hidden;
-            background: #222;
+            background: #1a1a2e;
             border: 2px solid rgba(0, 255, 153, 0.3);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
         }
 
-        @keyframes scratchPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
+        .scratch-card:hover {
+            transform: scale(1.05);
+            border-color: #00ff99;
         }
 
         .scratch-card span {
@@ -1459,10 +1439,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 22px;
             font-weight: bold;
             color: #00ff99;
             z-index: 2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .scratch-canvas {
@@ -1470,39 +1451,41 @@
             inset: 0;
             cursor: pointer;
             z-index: 3;
+            border-radius: 10px;
         }
 
         .scratch-result {
-            font-size: 18px;
-            margin-top: 15px;
+            font-size: 20px;
+            margin-top: 20px;
             font-weight: bold;
-            min-height: 40px;
+            min-height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 10px;
             background: rgba(255, 255, 255, 0.1);
             color: white;
             text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .scratch-button {
-            animation: scratchShine 3s linear infinite;
             background: linear-gradient(90deg, #00ff99, #00ccff, #00ff99);
             background-size: 200%;
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             border-radius: 12px;
             border: none;
             color: #000;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 25px;
             border-bottom: 4px solid #00cc99;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 153, 0.4);
+            transition: all 0.3s ease;
+            animation: scratchShine 3s linear infinite;
         }
 
         @keyframes scratchShine {
@@ -1511,8 +1494,9 @@
         }
 
         .scratch-button:not([disabled]):hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 255, 153, 0.6);
+            background: linear-gradient(90deg, #00ccff, #00ff99, #00ccff);
         }
 
         .scratch-button:disabled { 
@@ -1520,18 +1504,51 @@
             color: #ccc; 
             cursor: not-allowed; 
             animation: none;
+            box-shadow: none;
         }
 
-        .shake { 
-            animation: scratchShake 0.4s ease-in-out 3; 
+        .scratch-winner {
+            animation: scratchWinner 0.5s ease-in-out 3;
+            border-color: #00ff99;
+            box-shadow: 0 0 20px rgba(0, 255, 153, 0.7);
         }
 
-        @keyframes scratchShake {
+        @keyframes scratchWinner {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .scratch-loser {
+            animation: scratchLoser 0.5s ease-in-out;
+        }
+
+        @keyframes scratchLoser {
             0% { transform: translateX(0); }
             25% { transform: translateX(-5px); }
             50% { transform: translateX(5px); }
             75% { transform: translateX(-5px); }
             100% { transform: translateX(0); }
+        }
+
+        .scratch-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .scratch-tries {
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+        .scratch-prize {
+            color: #00ff99;
+            font-weight: bold;
         }
 
         /* Footer */
@@ -1669,7 +1686,6 @@
                 font-size: 13px;
                 min-width: auto;
                 text-align: center;
-                animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
             }
             
             .notification, .testimonial {
@@ -1737,7 +1753,11 @@
             }
             
             .scratch-card {
-                height: 80px;
+                height: 85px;
+            }
+            
+            .scratch-card span {
+                font-size: 18px;
             }
         }
 
@@ -1761,11 +1781,10 @@
                 left: 15px;
                 font-size: 12px;
                 padding: 10px 15px;
-                animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
             }
             
             .scratch-card {
-                height: 70px;
+                height: 75px;
             }
             
             .scratch-card span {
@@ -1808,7 +1827,7 @@
     </audio>
 
     <!-- NOVO: Botão Flutuante do Tigrinho -->
-    <a href="https://bkbet84.com/?id=972228965" target="_blank" class="tigrinho-button" id="tigrinhoButton">
+    <a href="https://bkbet84.com/?id=972228965" target="_blank" class="tigrinho-button">
         <i class="fas fa-tiger"></i> CASSINO PAGANDO NO TIGRINHO CLICK AQUI E BOA SORTE
     </a>
 
@@ -2107,22 +2126,29 @@
                     </div>
                 </div>
 
-                <!-- Raspadinha -->
+                <!-- NOVA RASPADINHA MELHORADA -->
                 <div class="game-container">
                     <div class="scratch-container">
-                        <h2 class="scratch-title">🍀 RASPADINHA DA SORTE</h2>
-                        <p class="scratch-subtitle">Ache <b>3 valores iguais</b> e pague apenas <b>R$1,00</b></p>
+                        <h2 class="scratch-title">🎲 RASPADINHA DA SORTE</h2>
+                        <p class="scratch-subtitle">Raspe 3 cartas iguais e ganhe o pack por apenas <b>R$1,00</b></p>
                         
                         <p class="scratch-desc">
                             <b>Pack com 10 MIL músicas MP3</b>, sem vinhetas + <b>30 ritmos</b><br>
                             <b>Boa sorte!</b>
                         </p>
 
-                        <div class="scratch-grid" id="scratch-grid"></div>
+                        <div class="scratch-info">
+                            <div class="scratch-tries">Tentativas: <span id="scratch-tries">0</span>/3</div>
+                            <div class="scratch-prize">Prêmio: Pack 10K Músicas por R$1,00</div>
+                        </div>
 
-                        <div class="scratch-result" id="scratch-result"></div>
+                        <div class="scratch-grid" id="scratch-grid">
+                            <!-- As cartas serão geradas pelo JavaScript -->
+                        </div>
 
-                        <button id="scratch-reset" class="scratch-button">Nova Raspadinha</button>
+                        <div class="scratch-result" id="scratch-result">Raspe as cartas para revelar os símbolos!</div>
+
+                        <button id="scratch-reset" class="scratch-button">NOVA RASPADINHA</button>
                     </div>
                 </div>
             </div>
@@ -2211,9 +2237,6 @@
             const oldScratch = document.querySelector('.scratch-section');
             if (oldRoulette) oldRoulette.remove();
             if (oldScratch) oldScratch.remove();
-            
-            // Iniciar movimento do botão do Tigrinho
-            initTigrinhoButtonMovement();
         });
 
         // Controlar música
@@ -3033,170 +3056,296 @@
 
         })();
 
-        // Código da Raspadinha MODIFICADO
+        // NOVO CÓDIGO DA RASPADINHA MELHORADA
         function initScratch() {
             const grid = document.getElementById('scratch-grid');
             const result = document.getElementById('scratch-result');
             const resetBtn = document.getElementById('scratch-reset');
+            const triesElement = document.getElementById('scratch-tries');
 
-            // Configurações da raspadinha
-            const MAX_TRIES = 3; // Máximo de tentativas
+            // Configurações
+            const MAX_TRIES = 3;
             const LOCK_TIME = 2 * 60 * 1000; // 2 minutos em milissegundos
-            let currentTries = parseInt(localStorage.getItem('scratch_tries')) || 0;
-            let lockedUntil = parseInt(localStorage.getItem('scratch_lockedUntil')) || 0;
+            const WIN_CHANCE = 0.5; // 50% de chance de ganhar
 
             let revealed = 0;
             let values = [];
-            let scratchGameActive = true;
+            let tries = parseInt(localStorage.getItem('scratch_tries')) || 0;
+            let lockedUntil = parseInt(localStorage.getItem('scratch_lockedUntil')) || 0;
+            let isLocked = lockedUntil > Date.now();
 
-            // Verificar se está bloqueado
-            function checkLockStatus() {
-                const now = Date.now();
-                if (lockedUntil && lockedUntil > now) {
-                    // Está bloqueado
-                    const remainingTime = Math.ceil((lockedUntil - now) / 1000);
-                    const minutes = Math.floor(remainingTime / 60);
-                    const seconds = remainingTime % 60;
-                    
-                    result.innerHTML = `<span style="color:#dc3545; font-weight:800;">❌ LIMITE DE TENTATIVAS ATINGIDO!<br>Tente novamente em ${minutes}:${seconds.toString().padStart(2, '0')}</span>`;
-                    resetBtn.disabled = true;
-                    resetBtn.textContent = 'AGUARDE...';
-                    scratchGameActive = false;
-                    
-                    // Atualizar contador
-                    const updateTimer = setInterval(() => {
-                        const now = Date.now();
-                        if (lockedUntil <= now) {
-                            clearInterval(updateTimer);
-                            currentTries = 0;
-                            localStorage.setItem('scratch_tries', 0);
-                            localStorage.removeItem('scratch_lockedUntil');
-                            resetBtn.disabled = false;
-                            resetBtn.textContent = 'Nova Raspadinha';
-                            result.textContent = '';
-                            scratchGameActive = true;
-                            criarRaspadinha();
-                        } else {
-                            const remainingTime = Math.ceil((lockedUntil - now) / 1000);
-                            const minutes = Math.floor(remainingTime / 60);
-                            const seconds = remainingTime % 60;
-                            result.innerHTML = `<span style="color:#dc3545; font-weight:800;">❌ LIMITE DE TENTATIVAS ATINGIDO!<br>Tente novamente em ${minutes}:${seconds.toString().padStart(2, '0')}</span>`;
-                        }
-                    }, 1000);
-                    
-                    return true;
+            // Atualizar contador de tentativas
+            triesElement.textContent = tries;
+
+            // Inicializar a raspadinha
+            function criarRaspadinha() {
+                if (isLocked) {
+                    lockScratch();
+                    return;
                 }
-                return false;
-            }
 
-            // Verificar bloqueio ao iniciar
-            if (checkLockStatus()) {
-                return;
-            }
-
-            function gerarValores() {
-                const ganhar = Math.random() < 0.5; // 50% ganhar / 50% perder
+                grid.innerHTML = '';
+                result.textContent = 'Raspe as cartas para revelar os símbolos!';
+                result.style.color = '#fff';
+                revealed = 0;
+                
+                // Gerar valores com base na chance de vitória
+                const ganhar = Math.random() < WIN_CHANCE;
+                
                 if (ganhar) {
-                    const winValue = 'R$1,00';
-                    values = Array(3).fill(winValue);
-                    const others = ['❌', '💣', '😢'];
+                    // Configuração para vitória: 3 símbolos iguais
+                    const winSymbol = getRandomSymbol();
+                    values = [winSymbol, winSymbol, winSymbol];
+                    
+                    // Adicionar símbolos diferentes para completar as 6 cartas
+                    const outrosSymbols = ['❌', '💣', '😢', '💎', '💰'];
                     while (values.length < 6) {
-                        values.push(others[Math.floor(Math.random() * others.length)]);
+                        let symbol = outrosSymbols[Math.floor(Math.random() * outrosSymbols.length)];
+                        // Garantir que não seja igual ao símbolo de vitória
+                        while (symbol === winSymbol) {
+                            symbol = outrosSymbols[Math.floor(Math.random() * outrosSymbols.length)];
+                        }
+                        values.push(symbol);
                     }
                 } else {
-                    const loseValues = ['❌', '💣', '😢', 'R$5,00', 'R$10,00'];
+                    // Configuração para derrota: sem 3 símbolos iguais
+                    const symbols = ['❌', '💣', '😢', '💎', '💰', '🎁'];
                     values = [];
-                    while (values.length < 6) {
-                        values.push(loseValues[Math.floor(Math.random() * loseValues.length)]);
-                    }
-                    // garantir que não tenha 3 iguais
-                    if (values.filter(v => v === 'R$1,00').length >= 3) gerarValores();
+                    
+                    // Garantir que não haja 3 símbolos iguais
+                    let attempts = 0;
+                    do {
+                        values = [];
+                        for (let i = 0; i < 6; i++) {
+                            values.push(symbols[Math.floor(Math.random() * symbols.length)]);
+                        }
+                        attempts++;
+                        if (attempts > 100) break; // Prevenção de loop infinito
+                    } while (hasThreeOfAKind(values));
                 }
-                values.sort(() => Math.random() - 0.5);
-            }
-
-            function criarRaspadinha() {
-                if (!scratchGameActive) return;
                 
-                grid.innerHTML = '';
-                result.textContent = '';
-                revealed = 0;
-                gerarValores();
+                // Embaralhar os valores
+                values.sort(() => Math.random() - 0.5);
 
-                // Atualizar contador de tentativas
-                result.innerHTML = `<span style="color:#ccc;">Tentativa ${currentTries + 1} de ${MAX_TRIES}</span>`;
-
-                values.forEach((val) => {
+                // Criar as cartas
+                values.forEach((val, index) => {
                     const card = document.createElement('div');
                     card.className = 'scratch-card';
+                    card.dataset.index = index;
+                    card.dataset.value = val;
 
                     const span = document.createElement('span');
                     span.textContent = val;
 
                     const canvas = document.createElement('canvas');
                     canvas.className = 'scratch-canvas';
+                    canvas.dataset.index = index;
+                    
                     card.appendChild(span);
                     card.appendChild(canvas);
                     grid.appendChild(card);
 
-                    canvas.width = card.offsetWidth;
-                    canvas.height = card.offsetHeight;
-                    const ctx = canvas.getContext('2d');
-                    ctx.fillStyle = '#999';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = '#555';
-                    ctx.font = 'bold 14px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.fillText('RASPE', canvas.width / 2, canvas.height / 2);
-
-                    let isDraw = false;
-
-                    function pos(e) {
-                        const r = canvas.getBoundingClientRect();
-                        return {
-                            x: (e.touches ? e.touches[0].clientX : e.clientX) - r.left,
-                            y: (e.touches ? e.touches[0].clientY : e.clientY) - r.top
-                        };
-                    }
-
-                    function scratch(e) {
-                        if (!isDraw || !scratchGameActive) return;
-                        const p = pos(e);
-                        ctx.globalCompositeOperation = 'destination-out';
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, 18, 0, Math.PI * 2);
-                        ctx.fill();
+                    // Configurar canvas
+                    setTimeout(() => {
+                        canvas.width = card.offsetWidth;
+                        canvas.height = card.offsetHeight;
+                        const ctx = canvas.getContext('2d');
                         
-                        // Tocar som de raspadinha
-                        playScratchSound();
-                    }
+                        // Desenhar fundo da raspadinha
+                        ctx.fillStyle = '#999';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        
+                        // Desenhar padrão de raspadinha
+                        ctx.fillStyle = '#555';
+                        for (let i = 0; i < canvas.width; i += 20) {
+                            for (let j = 0; j < canvas.height; j += 20) {
+                                if ((i + j) % 40 === 0) {
+                                    ctx.fillRect(i, j, 10, 10);
+                                }
+                            }
+                        }
+                        
+                        // Desenhar texto
+                        ctx.font = 'bold 14px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText('RASPE', canvas.width / 2, canvas.height / 2);
 
-                    canvas.addEventListener('mousedown', () => isDraw = true);
-                    canvas.addEventListener('mouseup', () => { 
-                        isDraw = false; 
-                        revelar(); 
-                    });
-                    canvas.addEventListener('mousemove', scratch);
-                    canvas.addEventListener('touchstart', (e) => { 
-                        e.preventDefault();
-                        isDraw = true; 
-                    });
-                    canvas.addEventListener('touchend', () => { 
-                        isDraw = false; 
-                        revelar(); 
-                    });
-                    canvas.addEventListener('touchmove', (e) => {
-                        e.preventDefault();
-                        scratch(e);
-                    });
+                        let isDrawing = false;
+                        let lastX = 0;
+                        let lastY = 0;
 
-                    function revelar() {
-                        if (canvas.dataset.done || !scratchGameActive) return;
-                        canvas.dataset.done = true;
-                        revealed++;
-                        if (revealed === 6) verificar();
-                    }
+                        function getPosition(e) {
+                            const rect = canvas.getBoundingClientRect();
+                            return {
+                                x: (e.touches ? e.touches[0].clientX : e.clientX) - rect.left,
+                                y: (e.touches ? e.touches[0].clientY : e.clientY) - rect.top
+                            };
+                        }
+
+                        function startDrawing(e) {
+                            isDrawing = true;
+                            const pos = getPosition(e);
+                            lastX = pos.x;
+                            lastY = pos.y;
+                            scratch(e);
+                        }
+
+                        function stopDrawing() {
+                            isDrawing = false;
+                            verificarRevelacao(canvas);
+                        }
+
+                        function scratch(e) {
+                            if (!isDrawing) return;
+                            
+                            const pos = getPosition(e);
+                            
+                            // Tocar som de raspadinha
+                            playScratchSound();
+                            
+                            const ctx = canvas.getContext('2d');
+                            ctx.globalCompositeOperation = 'destination-out';
+                            ctx.lineWidth = 20;
+                            ctx.lineCap = 'round';
+                            ctx.lineJoin = 'round';
+                            
+                            ctx.beginPath();
+                            ctx.moveTo(lastX, lastY);
+                            ctx.lineTo(pos.x, pos.y);
+                            ctx.stroke();
+                            
+                            lastX = pos.x;
+                            lastY = pos.y;
+                            
+                            // Verificar se a carta foi suficientemente raspada
+                            setTimeout(() => verificarRevelacao(canvas), 100);
+                        }
+
+                        // Event listeners para mouse
+                        canvas.addEventListener('mousedown', startDrawing);
+                        canvas.addEventListener('mousemove', scratch);
+                        canvas.addEventListener('mouseup', stopDrawing);
+                        canvas.addEventListener('mouseout', stopDrawing);
+
+                        // Event listeners para touch
+                        canvas.addEventListener('touchstart', (e) => {
+                            e.preventDefault();
+                            startDrawing(e);
+                        });
+                        canvas.addEventListener('touchmove', (e) => {
+                            e.preventDefault();
+                            scratch(e);
+                        });
+                        canvas.addEventListener('touchend', (e) => {
+                            e.preventDefault();
+                            stopDrawing();
+                        });
+                    }, 100);
                 });
+
+                // Habilitar o botão de reset
+                resetBtn.disabled = false;
+                resetBtn.textContent = 'NOVA RASPADINHA';
+            }
+
+            function getRandomSymbol() {
+                const symbols = ['💰', '💎', '🎁', '⭐', '🏆', '💵'];
+                return symbols[Math.floor(Math.random() * symbols.length)];
+            }
+
+            function hasThreeOfAKind(arr) {
+                const count = {};
+                for (const val of arr) {
+                    count[val] = (count[val] || 0) + 1;
+                    if (count[val] >= 3) return true;
+                }
+                return false;
+            }
+
+            function verificarRevelacao(canvas) {
+                if (canvas.dataset.revealed === 'true') return;
+                
+                // Verificar quanto da área foi raspada
+                const ctx = canvas.getContext('2d');
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const pixels = imageData.data;
+                let transparentCount = 0;
+                
+                for (let i = 3; i < pixels.length; i += 4) {
+                    if (pixels[i] === 0) {
+                        transparentCount++;
+                    }
+                }
+                
+                const percentRaspado = (transparentCount / (pixels.length / 4)) * 100;
+                
+                // Se mais de 40% foi raspado, considerar revelado
+                if (percentRaspado > 40) {
+                    canvas.dataset.revealed = 'true';
+                    revealed++;
+                    
+                    // Adicionar classe de animação à carta
+                    const card = canvas.parentElement;
+                    card.classList.add('scratch-winner');
+                    
+                    // Verificar resultado final
+                    if (revealed === 6) {
+                        verificarResultado();
+                    }
+                }
+            }
+
+            function verificarResultado() {
+                // Incrementar tentativas
+                tries++;
+                triesElement.textContent = tries;
+                localStorage.setItem('scratch_tries', tries);
+                
+                // Verificar se há 3 símbolos iguais
+                const cards = Array.from(grid.children);
+                const revealedValues = cards.map(card => card.dataset.value);
+                
+                const count = {};
+                for (const val of revealedValues) {
+                    count[val] = (count[val] || 0) + 1;
+                }
+                
+                const hasWinner = Object.values(count).some(c => c >= 3);
+                
+                if (hasWinner) {
+                    // VITÓRIA
+                    result.innerHTML = '🎉 <span style="color:#00ff99; font-size:24px;">PARABÉNS!</span><br>Você ganhou o pack de 10 mil músicas por apenas <b>R$1,00</b>!';
+                    result.classList.add('scratch-winner');
+                    
+                    // Rastrear no Facebook Pixel
+                    fbq('track', 'Purchase', {value: 1.00, currency: 'BRL'});
+                    
+                    // Redirecionar após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = 'https://4br.me/QADTXgSwh';
+                    }, 2000);
+                    
+                    // Resetar tentativas
+                    tries = 0;
+                    localStorage.setItem('scratch_tries', 0);
+                    triesElement.textContent = 0;
+                } else {
+                    // DERROTA
+                    result.innerHTML = '❌ <span style="color:#dc3545;">Não foi dessa vez!</span><br>Tente novamente!';
+                    result.classList.add('scratch-loser');
+                    
+                    // Verificar se atingiu o limite de tentativas
+                    if (tries >= MAX_TRIES) {
+                        lockScratch();
+                    }
+                }
+                
+                // Desabilitar o botão de reset temporariamente
+                resetBtn.disabled = true;
+                setTimeout(() => {
+                    resetBtn.disabled = false;
+                }, 2000);
             }
 
             function playScratchSound() {
@@ -3204,196 +3353,54 @@
                 scratchSound.play().catch(e => console.log('Erro ao tocar som da raspadinha:', e));
             }
 
-            function verificar() {
-                if (!scratchGameActive) return;
+            function lockScratch() {
+                isLocked = true;
+                const lockedUntilTime = Date.now() + LOCK_TIME;
+                localStorage.setItem('scratch_lockedUntil', lockedUntilTime);
+                lockedUntil = lockedUntilTime;
                 
-                // Incrementar tentativa
-                currentTries++;
-                localStorage.setItem('scratch_tries', currentTries);
+                result.innerHTML = `<span style="color:#ffc107;">⏳ Aguarde ${LOCK_TIME / 60000} minutos para jogar novamente!</span>`;
+                resetBtn.disabled = true;
+                resetBtn.textContent = 'AGUARDE...';
                 
-                grid.classList.add('shake');
-                const count = values.filter(v => v === 'R$1,00').length;
-                if (count >= 3) {
-                    // VITÓRIA
-                    result.innerHTML = '🎉 <span style="color:#00ff99">PARABÉNS!</span><br>Pague apenas <b>R$1,00</b> no pack de 10 mil músicas!';
-                    
-                    // Resetar tentativas
-                    currentTries = 0;
-                    localStorage.setItem('scratch_tries', 0);
-                    localStorage.removeItem('scratch_lockedUntil');
-                    
-                    // Rastrear no Facebook Pixel
-                    fbq('track', 'Purchase', {value: 1.00, currency: 'BRL'});
-                    
-                    // Desativar jogo
-                    scratchGameActive = false;
-                    resetBtn.disabled = true;
-                    resetBtn.textContent = 'VOCÊ GANHOU!';
-                    
-                    setTimeout(() => {
-                        window.location.href = 'https://4br.me/QADTXgSwh';
-                    }, 2000);
-                } else {
-                    // DERROTA
-                    result.innerHTML = '❌ Não foi dessa vez. Tente novamente!';
-                    
-                    // Verificar se atingiu o limite de tentativas
-                    if (currentTries >= MAX_TRIES) {
-                        // Bloquear por 2 minutos
-                        lockedUntil = Date.now() + LOCK_TIME;
-                        localStorage.setItem('scratch_lockedUntil', lockedUntil);
-                        checkLockStatus();
+                // Atualizar contador
+                const updateTimer = () => {
+                    const remainingTime = lockedUntil - Date.now();
+                    if (remainingTime <= 0) {
+                        // Desbloquear
+                        isLocked = false;
+                        localStorage.removeItem('scratch_lockedUntil');
+                        localStorage.setItem('scratch_tries', 0);
+                        tries = 0;
+                        triesElement.textContent = 0;
+                        resetBtn.disabled = false;
+                        resetBtn.textContent = 'NOVA RASPADINHA';
+                        result.textContent = 'Raspe as cartas para revelar os símbolos!';
+                        criarRaspadinha();
                     } else {
-                        // Permitir nova tentativa após 2 segundos
-                        scratchGameActive = false;
-                        resetBtn.disabled = true;
-                        resetBtn.textContent = 'AGUARDE...';
-                        
-                        setTimeout(() => {
-                            scratchGameActive = true;
-                            resetBtn.disabled = false;
-                            resetBtn.textContent = 'Nova Raspadinha';
-                            criarRaspadinha();
-                        }, 2000);
+                        const minutes = Math.floor(remainingTime / 60000);
+                        const seconds = Math.floor((remainingTime % 60000) / 1000);
+                        result.innerHTML = `<span style="color:#ffc107;">⏳ Tente novamente em ${minutes}:${seconds.toString().padStart(2, '0')}</span>`;
+                        setTimeout(updateTimer, 1000);
                     }
-                }
-            }
-
-            resetBtn.addEventListener('click', function() {
-                if (!scratchGameActive || this.disabled) return;
-                
-                // Verificar se ainda tem tentativas
-                if (currentTries >= MAX_TRIES) {
-                    checkLockStatus();
-                    return;
-                }
-                
-                criarRaspadinha();
-            });
-
-            // Inicializar a raspadinha
-            criarRaspadinha();
-        }
-
-        // Função para mover o botão do Tigrinho
-        function initTigrinhoButtonMovement() {
-            const tigrinhoButton = document.getElementById('tigrinhoButton');
-            if (!tigrinhoButton) return;
-            
-            let isMoving = false;
-            
-            // Posições possíveis para o botão (em porcentagem)
-            const positions = [
-                { bottom: '20px', right: '20px' },
-                { bottom: '20px', left: '20px' },
-                { top: '20px', right: '20px' },
-                { top: '20px', left: '20px' },
-                { bottom: '50%', right: '20px', transform: 'translateY(50%)' },
-                { bottom: '50%', left: '20px', transform: 'translateY(50%)' },
-                { top: '50%', right: '20px', transform: 'translateY(-50%)' },
-                { top: '50%', left: '20px', transform: 'translateY(-50%)' }
-            ];
-            
-            // Função para mover o botão para uma nova posição
-            function moveButtonToNewPosition() {
-                if (isMoving) return;
-                
-                isMoving = true;
-                
-                // Escolher uma posição aleatória diferente da atual
-                let currentPosition = {
-                    bottom: tigrinhoButton.style.bottom,
-                    top: tigrinhoButton.style.top,
-                    left: tigrinhoButton.style.left,
-                    right: tigrinhoButton.style.right,
-                    transform: tigrinhoButton.style.transform
                 };
                 
-                let newPosition;
-                let attempts = 0;
-                
-                do {
-                    newPosition = positions[Math.floor(Math.random() * positions.length)];
-                    attempts++;
-                } while (
-                    attempts < 10 && 
-                    (
-                        (currentPosition.bottom === newPosition.bottom && 
-                         currentPosition.right === newPosition.right) ||
-                        (currentPosition.bottom === newPosition.bottom && 
-                         currentPosition.left === newPosition.left) ||
-                        (currentPosition.top === newPosition.top && 
-                         currentPosition.right === newPosition.right) ||
-                        (currentPosition.top === newPosition.top && 
-                         currentPosition.left === newPosition.left)
-                    )
-                );
-                
-                // Aplicar animação suave
-                tigrinhoButton.style.transition = 'all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
-                
-                // Resetar todas as posições primeiro
-                tigrinhoButton.style.bottom = '';
-                tigrinhoButton.style.top = '';
-                tigrinhoButton.style.left = '';
-                tigrinhoButton.style.right = '';
-                tigrinhoButton.style.transform = '';
-                
-                // Aplicar nova posição
-                setTimeout(() => {
-                    if (newPosition.bottom) {
-                        tigrinhoButton.style.bottom = newPosition.bottom;
-                    }
-                    if (newPosition.top) {
-                        tigrinhoButton.style.top = newPosition.top;
-                    }
-                    if (newPosition.left) {
-                        tigrinhoButton.style.left = newPosition.left;
-                    }
-                    if (newPosition.right) {
-                        tigrinhoButton.style.right = newPosition.right;
-                    }
-                    if (newPosition.transform) {
-                        tigrinhoButton.style.transform = newPosition.transform;
-                    }
-                    
-                    // Adicionar efeito de pulso extra
-                    tigrinhoButton.style.animation = 'tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite, moveButton 10s infinite ease-in-out';
-                    
-                    // Permitir novo movimento após um tempo
-                    setTimeout(() => {
-                        isMoving = false;
-                    }, 1000);
-                    
-                }, 50);
+                updateTimer();
             }
-            
-            // Mover o botão periodicamente (a cada 15-30 segundos)
-            setInterval(moveButtonToNewPosition, 15000 + Math.random() * 15000);
-            
-            // Mover o botão quando o usuário rolar a página
-            let scrollTimeout;
-            window.addEventListener('scroll', function() {
-                if (scrollTimeout) clearTimeout(scrollTimeout);
-                
-                scrollTimeout = setTimeout(function() {
-                    // 30% de chance de mover ao rolar
-                    if (Math.random() < 0.3) {
-                        moveButtonToNewPosition();
-                    }
-                }, 1000);
-            });
-            
-            // Mover o botão quando o mouse se aproximar (para evitar ficar sob o cursor)
-            tigrinhoButton.addEventListener('mouseenter', function() {
-                // 50% de chance de mover quando o mouse entra
-                if (Math.random() < 0.5) {
-                    setTimeout(moveButtonToNewPosition, 500);
+
+            // Event listener para o botão de reset
+            resetBtn.addEventListener('click', () => {
+                if (!isLocked) {
+                    criarRaspadinha();
                 }
             });
-            
-            // Mover o botão inicialmente após 5 segundos
-            setTimeout(moveButtonToNewPosition, 5000);
+
+            // Verificar estado inicial
+            if (isLocked) {
+                lockScratch();
+            } else {
+                criarRaspadinha();
+            }
         }
 
         // Efeito de rolagem suave
