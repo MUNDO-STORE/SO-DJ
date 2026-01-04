@@ -215,6 +215,24 @@
             }
         }
 
+        @keyframes moveButton {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(20px, -10px) scale(1.05);
+            }
+            50% {
+                transform: translate(-15px, 15px) scale(1.02);
+            }
+            75% {
+                transform: translate(10px, -5px) scale(1.03);
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -1098,8 +1116,6 @@
         /* NOVO: Botão Flutuante do Tigrinho */
         .tigrinho-button {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
             z-index: 9997;
             background: linear-gradient(135deg, var(--tigrinho-green), var(--tigrinho-orange));
             border: 2px solid #ffdd00;
@@ -1118,15 +1134,19 @@
             color: #000;
             text-transform: uppercase;
             letter-spacing: 1px;
-            animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
+            animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite, moveButton 10s infinite ease-in-out;
             background-size: 200% auto;
             min-width: 200px;
+            /* Posição inicial */
+            bottom: 20px;
+            right: 20px;
         }
 
         .tigrinho-button:hover {
             transform: scale(1.05) translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 255, 136, 0.6);
             background: linear-gradient(135deg, var(--tigrinho-orange), var(--tigrinho-green));
+            animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
         }
 
         .tigrinho-button i {
@@ -1649,6 +1669,7 @@
                 font-size: 13px;
                 min-width: auto;
                 text-align: center;
+                animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
             }
             
             .notification, .testimonial {
@@ -1740,6 +1761,7 @@
                 left: 15px;
                 font-size: 12px;
                 padding: 10px 15px;
+                animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
             }
             
             .scratch-card {
@@ -1786,7 +1808,7 @@
     </audio>
 
     <!-- NOVO: Botão Flutuante do Tigrinho -->
-    <a href="https://bkbet84.com/?id=972228965" target="_blank" class="tigrinho-button">
+    <a href="https://bkbet84.com/?id=972228965" target="_blank" class="tigrinho-button" id="tigrinhoButton">
         <i class="fas fa-tiger"></i> CASSINO PAGANDO NO TIGRINHO CLICK AQUI E BOA SORTE
     </a>
 
@@ -2189,6 +2211,9 @@
             const oldScratch = document.querySelector('.scratch-section');
             if (oldRoulette) oldRoulette.remove();
             if (oldScratch) oldScratch.remove();
+            
+            // Iniciar movimento do botão do Tigrinho
+            initTigrinhoButtonMovement();
         });
 
         // Controlar música
@@ -3008,14 +3033,66 @@
 
         })();
 
-        // Código da Raspadinha
+        // Código da Raspadinha MODIFICADO
         function initScratch() {
             const grid = document.getElementById('scratch-grid');
             const result = document.getElementById('scratch-result');
             const resetBtn = document.getElementById('scratch-reset');
 
+            // Configurações da raspadinha
+            const MAX_TRIES = 3; // Máximo de tentativas
+            const LOCK_TIME = 2 * 60 * 1000; // 2 minutos em milissegundos
+            let currentTries = parseInt(localStorage.getItem('scratch_tries')) || 0;
+            let lockedUntil = parseInt(localStorage.getItem('scratch_lockedUntil')) || 0;
+
             let revealed = 0;
             let values = [];
+            let scratchGameActive = true;
+
+            // Verificar se está bloqueado
+            function checkLockStatus() {
+                const now = Date.now();
+                if (lockedUntil && lockedUntil > now) {
+                    // Está bloqueado
+                    const remainingTime = Math.ceil((lockedUntil - now) / 1000);
+                    const minutes = Math.floor(remainingTime / 60);
+                    const seconds = remainingTime % 60;
+                    
+                    result.innerHTML = `<span style="color:#dc3545; font-weight:800;">❌ LIMITE DE TENTATIVAS ATINGIDO!<br>Tente novamente em ${minutes}:${seconds.toString().padStart(2, '0')}</span>`;
+                    resetBtn.disabled = true;
+                    resetBtn.textContent = 'AGUARDE...';
+                    scratchGameActive = false;
+                    
+                    // Atualizar contador
+                    const updateTimer = setInterval(() => {
+                        const now = Date.now();
+                        if (lockedUntil <= now) {
+                            clearInterval(updateTimer);
+                            currentTries = 0;
+                            localStorage.setItem('scratch_tries', 0);
+                            localStorage.removeItem('scratch_lockedUntil');
+                            resetBtn.disabled = false;
+                            resetBtn.textContent = 'Nova Raspadinha';
+                            result.textContent = '';
+                            scratchGameActive = true;
+                            criarRaspadinha();
+                        } else {
+                            const remainingTime = Math.ceil((lockedUntil - now) / 1000);
+                            const minutes = Math.floor(remainingTime / 60);
+                            const seconds = remainingTime % 60;
+                            result.innerHTML = `<span style="color:#dc3545; font-weight:800;">❌ LIMITE DE TENTATIVAS ATINGIDO!<br>Tente novamente em ${minutes}:${seconds.toString().padStart(2, '0')}</span>`;
+                        }
+                    }, 1000);
+                    
+                    return true;
+                }
+                return false;
+            }
+
+            // Verificar bloqueio ao iniciar
+            if (checkLockStatus()) {
+                return;
+            }
 
             function gerarValores() {
                 const ganhar = Math.random() < 0.5; // 50% ganhar / 50% perder
@@ -3039,10 +3116,15 @@
             }
 
             function criarRaspadinha() {
+                if (!scratchGameActive) return;
+                
                 grid.innerHTML = '';
                 result.textContent = '';
                 revealed = 0;
                 gerarValores();
+
+                // Atualizar contador de tentativas
+                result.innerHTML = `<span style="color:#ccc;">Tentativa ${currentTries + 1} de ${MAX_TRIES}</span>`;
 
                 values.forEach((val) => {
                     const card = document.createElement('div');
@@ -3078,7 +3160,7 @@
                     }
 
                     function scratch(e) {
-                        if (!isDraw) return;
+                        if (!isDraw || !scratchGameActive) return;
                         const p = pos(e);
                         ctx.globalCompositeOperation = 'destination-out';
                         ctx.beginPath();
@@ -3090,20 +3172,26 @@
                     }
 
                     canvas.addEventListener('mousedown', () => isDraw = true);
-                    canvas.addEventListener('mouseup', () => { isDraw = false; revelar(); });
+                    canvas.addEventListener('mouseup', () => { 
+                        isDraw = false; 
+                        revelar(); 
+                    });
                     canvas.addEventListener('mousemove', scratch);
                     canvas.addEventListener('touchstart', (e) => { 
                         e.preventDefault();
                         isDraw = true; 
                     });
-                    canvas.addEventListener('touchend', () => { isDraw = false; revelar(); });
+                    canvas.addEventListener('touchend', () => { 
+                        isDraw = false; 
+                        revelar(); 
+                    });
                     canvas.addEventListener('touchmove', (e) => {
                         e.preventDefault();
                         scratch(e);
                     });
 
                     function revelar() {
-                        if (canvas.dataset.done) return;
+                        if (canvas.dataset.done || !scratchGameActive) return;
                         canvas.dataset.done = true;
                         revealed++;
                         if (revealed === 6) verificar();
@@ -3117,24 +3205,195 @@
             }
 
             function verificar() {
+                if (!scratchGameActive) return;
+                
+                // Incrementar tentativa
+                currentTries++;
+                localStorage.setItem('scratch_tries', currentTries);
+                
                 grid.classList.add('shake');
                 const count = values.filter(v => v === 'R$1,00').length;
                 if (count >= 3) {
+                    // VITÓRIA
                     result.innerHTML = '🎉 <span style="color:#00ff99">PARABÉNS!</span><br>Pague apenas <b>R$1,00</b> no pack de 10 mil músicas!';
+                    
+                    // Resetar tentativas
+                    currentTries = 0;
+                    localStorage.setItem('scratch_tries', 0);
+                    localStorage.removeItem('scratch_lockedUntil');
                     
                     // Rastrear no Facebook Pixel
                     fbq('track', 'Purchase', {value: 1.00, currency: 'BRL'});
+                    
+                    // Desativar jogo
+                    scratchGameActive = false;
+                    resetBtn.disabled = true;
+                    resetBtn.textContent = 'VOCÊ GANHOU!';
                     
                     setTimeout(() => {
                         window.location.href = 'https://4br.me/QADTXgSwh';
                     }, 2000);
                 } else {
+                    // DERROTA
                     result.innerHTML = '❌ Não foi dessa vez. Tente novamente!';
+                    
+                    // Verificar se atingiu o limite de tentativas
+                    if (currentTries >= MAX_TRIES) {
+                        // Bloquear por 2 minutos
+                        lockedUntil = Date.now() + LOCK_TIME;
+                        localStorage.setItem('scratch_lockedUntil', lockedUntil);
+                        checkLockStatus();
+                    } else {
+                        // Permitir nova tentativa após 2 segundos
+                        scratchGameActive = false;
+                        resetBtn.disabled = true;
+                        resetBtn.textContent = 'AGUARDE...';
+                        
+                        setTimeout(() => {
+                            scratchGameActive = true;
+                            resetBtn.disabled = false;
+                            resetBtn.textContent = 'Nova Raspadinha';
+                            criarRaspadinha();
+                        }, 2000);
+                    }
                 }
             }
 
-            resetBtn.addEventListener('click', criarRaspadinha);
+            resetBtn.addEventListener('click', function() {
+                if (!scratchGameActive || this.disabled) return;
+                
+                // Verificar se ainda tem tentativas
+                if (currentTries >= MAX_TRIES) {
+                    checkLockStatus();
+                    return;
+                }
+                
+                criarRaspadinha();
+            });
+
+            // Inicializar a raspadinha
             criarRaspadinha();
+        }
+
+        // Função para mover o botão do Tigrinho
+        function initTigrinhoButtonMovement() {
+            const tigrinhoButton = document.getElementById('tigrinhoButton');
+            if (!tigrinhoButton) return;
+            
+            let isMoving = false;
+            
+            // Posições possíveis para o botão (em porcentagem)
+            const positions = [
+                { bottom: '20px', right: '20px' },
+                { bottom: '20px', left: '20px' },
+                { top: '20px', right: '20px' },
+                { top: '20px', left: '20px' },
+                { bottom: '50%', right: '20px', transform: 'translateY(50%)' },
+                { bottom: '50%', left: '20px', transform: 'translateY(50%)' },
+                { top: '50%', right: '20px', transform: 'translateY(-50%)' },
+                { top: '50%', left: '20px', transform: 'translateY(-50%)' }
+            ];
+            
+            // Função para mover o botão para uma nova posição
+            function moveButtonToNewPosition() {
+                if (isMoving) return;
+                
+                isMoving = true;
+                
+                // Escolher uma posição aleatória diferente da atual
+                let currentPosition = {
+                    bottom: tigrinhoButton.style.bottom,
+                    top: tigrinhoButton.style.top,
+                    left: tigrinhoButton.style.left,
+                    right: tigrinhoButton.style.right,
+                    transform: tigrinhoButton.style.transform
+                };
+                
+                let newPosition;
+                let attempts = 0;
+                
+                do {
+                    newPosition = positions[Math.floor(Math.random() * positions.length)];
+                    attempts++;
+                } while (
+                    attempts < 10 && 
+                    (
+                        (currentPosition.bottom === newPosition.bottom && 
+                         currentPosition.right === newPosition.right) ||
+                        (currentPosition.bottom === newPosition.bottom && 
+                         currentPosition.left === newPosition.left) ||
+                        (currentPosition.top === newPosition.top && 
+                         currentPosition.right === newPosition.right) ||
+                        (currentPosition.top === newPosition.top && 
+                         currentPosition.left === newPosition.left)
+                    )
+                );
+                
+                // Aplicar animação suave
+                tigrinhoButton.style.transition = 'all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
+                
+                // Resetar todas as posições primeiro
+                tigrinhoButton.style.bottom = '';
+                tigrinhoButton.style.top = '';
+                tigrinhoButton.style.left = '';
+                tigrinhoButton.style.right = '';
+                tigrinhoButton.style.transform = '';
+                
+                // Aplicar nova posição
+                setTimeout(() => {
+                    if (newPosition.bottom) {
+                        tigrinhoButton.style.bottom = newPosition.bottom;
+                    }
+                    if (newPosition.top) {
+                        tigrinhoButton.style.top = newPosition.top;
+                    }
+                    if (newPosition.left) {
+                        tigrinhoButton.style.left = newPosition.left;
+                    }
+                    if (newPosition.right) {
+                        tigrinhoButton.style.right = newPosition.right;
+                    }
+                    if (newPosition.transform) {
+                        tigrinhoButton.style.transform = newPosition.transform;
+                    }
+                    
+                    // Adicionar efeito de pulso extra
+                    tigrinhoButton.style.animation = 'tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite, moveButton 10s infinite ease-in-out';
+                    
+                    // Permitir novo movimento após um tempo
+                    setTimeout(() => {
+                        isMoving = false;
+                    }, 1000);
+                    
+                }, 50);
+            }
+            
+            // Mover o botão periodicamente (a cada 15-30 segundos)
+            setInterval(moveButtonToNewPosition, 15000 + Math.random() * 15000);
+            
+            // Mover o botão quando o usuário rolar a página
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (scrollTimeout) clearTimeout(scrollTimeout);
+                
+                scrollTimeout = setTimeout(function() {
+                    // 30% de chance de mover ao rolar
+                    if (Math.random() < 0.3) {
+                        moveButtonToNewPosition();
+                    }
+                }, 1000);
+            });
+            
+            // Mover o botão quando o mouse se aproximar (para evitar ficar sob o cursor)
+            tigrinhoButton.addEventListener('mouseenter', function() {
+                // 50% de chance de mover quando o mouse entra
+                if (Math.random() < 0.5) {
+                    setTimeout(moveButtonToNewPosition, 500);
+                }
+            });
+            
+            // Mover o botão inicialmente após 5 segundos
+            setTimeout(moveButtonToNewPosition, 5000);
         }
 
         // Efeito de rolagem suave
