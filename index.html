@@ -233,14 +233,14 @@
             }
         }
 
-        /* POPUP PACK PROFISSIONAL DJ */
+        /* POPUP PACK PROFISSIONAL DJ - NÃO FECHA AUTOMATICAMENTE */
         .pack-profissional-popup {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.92);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -248,7 +248,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.5s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
         }
 
         .pack-profissional-popup.active {
@@ -257,15 +257,15 @@
         }
 
         .popup-content {
-            background: linear-gradient(135deg, rgba(15, 52, 96, 0.95), rgba(26, 26, 46, 0.98));
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.98), rgba(26, 26, 46, 0.99));
             width: 90%;
             max-width: 900px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            border: 3px solid var(--highlight);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            border: 4px solid var(--highlight);
             position: relative;
-            animation: popupAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation: popupAppear 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             transform: scale(0.9);
         }
 
@@ -276,53 +276,57 @@
 
         .popup-header {
             background: linear-gradient(to right, var(--accent), var(--highlight));
-            padding: 25px;
+            padding: 30px;
             text-align: center;
             position: relative;
         }
 
         .popup-header h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: white;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            font-weight: 900;
         }
 
         .popup-tagline {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: #fff;
-            opacity: 0.9;
-            font-weight: 600;
+            opacity: 0.95;
+            font-weight: 700;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
         .popup-badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--vip-gold);
+            top: 25px;
+            right: 25px;
+            background: linear-gradient(45deg, var(--vip-gold), #ffaa00);
             color: #000;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 0.9rem;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 900;
+            font-size: 1.1rem;
             transform: rotate(5deg);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
             animation: badgePulse 2s infinite;
+            border: 2px solid #fff;
+            z-index: 20;
         }
 
         @keyframes badgePulse {
             0% { transform: rotate(5deg) scale(1); }
-            50% { transform: rotate(5deg) scale(1.05); }
+            50% { transform: rotate(5deg) scale(1.08); }
             100% { transform: rotate(5deg) scale(1); }
         }
 
         .popup-body {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            padding: 30px;
+            gap: 35px;
+            padding: 35px;
         }
 
         @media (max-width: 768px) {
@@ -336,12 +340,13 @@
         }
 
         .popup-features li {
-            padding: 12px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding: 14px 0;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
             color: #fff;
-            font-size: 1.05rem;
+            font-size: 1.15rem;
+            font-weight: 600;
         }
 
         .popup-features li:last-child {
@@ -349,42 +354,53 @@
         }
 
         .popup-features i {
-            color: var(--highlight);
-            margin-right: 12px;
-            font-size: 1.2rem;
+            color: var(--vip-gold);
+            margin-right: 15px;
+            font-size: 1.4rem;
             flex-shrink: 0;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         .popup-video-container {
             position: relative;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            border: 3px solid var(--vip-gold);
         }
 
         #popup-video {
             width: 100%;
             height: 100%;
-            min-height: 250px;
+            min-height: 280px;
             background: #000;
         }
 
         .popup-footer {
-            padding: 0 30px 30px;
+            padding: 0 35px 35px;
             text-align: center;
         }
 
         .popup-price {
-            font-size: 3rem;
-            font-weight: 800;
+            font-size: 3.5rem;
+            font-weight: 900;
             color: var(--vip-gold);
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            text-shadow: 0 3px 15px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, var(--vip-gold), #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: priceGlow 3s infinite alternate;
+        }
+
+        @keyframes priceGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4); }
         }
 
         .popup-buttons {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
         }
 
@@ -394,46 +410,78 @@
             }
         }
 
+        /* BOTÃO DE FECHAR MAIS VISÍVEL */
         .popup-close {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
+            top: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.5);
-            border: 2px solid var(--highlight);
+            background: linear-gradient(135deg, #ff0000, #ff5555);
+            border: 3px solid white;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10;
+            z-index: 100;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5);
+            animation: closePulse 2s infinite;
+        }
+
+        @keyframes closePulse {
+            0% { transform: scale(1); box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5); }
+            50% { transform: scale(1.1); box-shadow: 0 8px 25px rgba(255, 0, 0, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5); }
         }
 
         .popup-close:hover {
-            background: var(--highlight);
-            transform: rotate(90deg);
+            background: linear-gradient(135deg, #ff5555, #ff0000);
+            transform: scale(1.15) rotate(180deg);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.8);
         }
 
-        .popup-countdown {
+        .popup-close-text {
             position: absolute;
-            bottom: 15px;
+            top: 80px;
             right: 15px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 700;
+            background: rgba(0,0,0,0.7);
+            padding: 5px 10px;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .popup-close:hover .popup-close-text {
+            opacity: 1;
+        }
+
+        .popup-instruction {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
             background: rgba(0,0,0,0.7);
             color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
+            padding: 10px 15px;
+            border-radius: 10px;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            border-left: 4px solid var(--vip-gold);
         }
 
-        .popup-countdown i {
-            color: var(--highlight);
+        .popup-instruction i {
+            color: var(--vip-gold);
+            font-size: 1.1rem;
         }
 
         .container {
@@ -1949,6 +1997,21 @@
             .popup-price {
                 font-size: 2.5rem;
             }
+            
+            .popup-close {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+                top: 15px;
+                right: 15px;
+            }
+            
+            .popup-instruction {
+                bottom: 15px;
+                left: 15px;
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -2430,13 +2493,14 @@
         </div>
     </section>
 
-    <!-- POPUP PACK PROFISSIONAL DJ -->
+    <!-- POPUP PACK PROFISSIONAL DJ - NÃO FECHA AUTOMATICAMENTE -->
     <div class="pack-profissional-popup" id="proPackPopup">
         <div class="popup-content">
             <div class="popup-close" id="closePopup">
                 <i class="fas fa-times"></i>
+                <div class="popup-close-text">CLIQUE PARA FECHAR</div>
             </div>
-            <div class="popup-badge">MAIS COMPLETO DA INTERNET!</div>
+            <div class="popup-badge">O MAIS COMPLETO DA INTERNET!</div>
             
             <div class="popup-header">
                 <h2>PACK PROFISSIONAL DJ</h2>
@@ -2460,9 +2524,6 @@
                 
                 <div class="popup-video-container">
                     <iframe id="popup-video" src="https://www.youtube.com/embed/KeLaP35KBX4?si=BHiXLeaWjon8racm&enablejsapi=1&autoplay=1&mute=1" title="Pack Profissional DJ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <div class="popup-countdown">
-                        <i class="fas fa-clock"></i> Fecha em: <span id="popupTimer">10</span>s
-                    </div>
                 </div>
             </div>
             
@@ -2476,6 +2537,10 @@
                         <i class="fab fa-whatsapp"></i> Comprar por R$45,00
                     </a>
                 </div>
+            </div>
+            
+            <div class="popup-instruction">
+                <i class="fas fa-info-circle"></i> Clique no botão vermelho acima para fechar este popup
             </div>
         </div>
     </div>
@@ -3147,15 +3212,12 @@
             console.log(`Compra registrada: ${productName} - R$ ${price}`);
         }
 
-        // POPUP PACK PROFISSIONAL DJ
-        let popupTimerInterval;
-        let popupCloseTimeout;
-
+        // POPUP PACK PROFISSIONAL DJ - NÃO FECHA AUTOMATICAMENTE
         function showProPackPopup() {
             const popup = document.getElementById('proPackPopup');
             if (!popup) return;
             
-            // Verificar se já foi mostrado recentemente (cookie de 1 hora)
+            // Verificar se já foi mostrado recentemente (cookie de 24 horas)
             if (getCookie('proPackPopupShown')) {
                 return;
             }
@@ -3164,26 +3226,8 @@
             setTimeout(() => {
                 popup.classList.add('active');
                 
-                // Iniciar contagem regressiva para fechar (10 segundos)
-                let secondsLeft = 10;
-                const timerElement = document.getElementById('popupTimer');
-                
-                popupTimerInterval = setInterval(() => {
-                    secondsLeft--;
-                    if (timerElement) {
-                        timerElement.textContent = secondsLeft;
-                    }
-                    
-                    if (secondsLeft <= 0) {
-                        closePopup();
-                    }
-                }, 1000);
-                
-                // Configurar fechamento automático após 10 segundos
-                popupCloseTimeout = setTimeout(closePopup, 10000);
-                
-                // Configurar cookie para não mostrar novamente por 1 hora
-                setCookie('proPackPopupShown', 'true', 1);
+                // Configurar cookie para não mostrar novamente por 24 horas
+                setCookie('proPackPopupShown', 'true', 24);
                 
                 // Rastrear visualização do popup
                 fbq('track', 'ViewContent', {
@@ -3200,14 +3244,6 @@
             const popup = document.getElementById('proPackPopup');
             if (popup) {
                 popup.classList.remove('active');
-            }
-            
-            // Limpar intervalos
-            if (popupTimerInterval) {
-                clearInterval(popupTimerInterval);
-            }
-            if (popupCloseTimeout) {
-                clearTimeout(popupCloseTimeout);
             }
             
             // Pausar vídeo do popup
