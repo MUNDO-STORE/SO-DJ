@@ -1498,39 +1498,17 @@
             text-align: center;
         }
 
-        .scratch-button {
-            animation: scratchShine 3s linear infinite;
-            background: linear-gradient(90deg, #00ff99, #00ccff, #00ff99);
-            background-size: 200%;
-            width: 100%;
-            padding: 16px;
-            border-radius: 12px;
-            border: none;
-            color: #000;
-            font-weight: bold;
+        .scratch-timer {
+            margin-top: 15px;
+            font-weight: 700;
             font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            border-bottom: 4px solid #00cc99;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: all 0.2s ease;
-        }
-
-        @keyframes scratchShine {
-            0% { background-position: -200%; }
-            100% { background-position: 200%; }
-        }
-
-        .scratch-button:not([disabled]):hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-        }
-
-        .scratch-button:disabled { 
-            background: #555; 
-            color: #ccc; 
-            cursor: not-allowed; 
-            animation: none;
+            color: #dc3545;
+            min-height: 25px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .shake { 
@@ -2174,8 +2152,11 @@
                         <div class="scratch-grid" id="scratch-grid"></div>
 
                         <div class="scratch-result" id="scratch-result"></div>
-
-                        <button id="scratch-reset" class="scratch-button">Nova Raspadinha</button>
+                        
+                        <!-- TIMER DE BLOQUEIO DA RASPADINHA -->
+                        <div class="scratch-timer" id="scratch-timer"></div>
+                        
+                        <!-- NOTA: Botão "Nova Raspadinha" foi REMOVIDO conforme solicitado -->
                     </div>
                 </div>
             </div>
@@ -3086,11 +3067,11 @@
 
         })();
 
-        // Código da Raspadinha MODIFICADO
+        // Código da Raspadinha MODIFICADO - SEM BOTÃO "NOVA RASPADINHA"
         function initScratch() {
             const grid = document.getElementById('scratch-grid');
             const result = document.getElementById('scratch-result');
-            const resetBtn = document.getElementById('scratch-reset');
+            const scratchTimer = document.getElementById('scratch-timer');
 
             // Configurações da raspadinha
             const MAX_TRIES = 3; // Máximo de tentativas
@@ -3101,45 +3082,68 @@
             let revealed = 0;
             let values = [];
             let scratchGameActive = true;
+            let timerInterval = null;
+
+            // Função para formatar o tempo restante
+            function formatTime(ms) {
+                const totalSeconds = Math.ceil(ms / 1000);
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+
+            // Atualizar timer de bloqueio
+            function updateScratchTimer() {
+                if (!lockedUntil) return;
+                
+                const now = Date.now();
+                const remainingTime = lockedUntil - now;
+                
+                if (remainingTime <= 0) {
+                    // Tempo expirou, resetar raspadinha
+                    clearInterval(timerInterval);
+                    scratchTimer.textContent = '';
+                    currentTries = 0;
+                    localStorage.setItem('scratch_tries', 0);
+                    localStorage.removeItem('scratch_lockedUntil');
+                    lockedUntil = 0;
+                    scratchGameActive = true;
+                    criarRaspadinha();
+                } else {
+                    // Mostrar tempo restante
+                    scratchTimer.textContent = `⏳ Próxima tentativa em: ${formatTime(remainingTime)}`;
+                    scratchTimer.style.color = '#dc3545';
+                    scratchTimer.style.fontWeight = '700';
+                }
+            }
 
             // Verificar se está bloqueado
             function checkLockStatus() {
+                if (!lockedUntil) return false;
+                
                 const now = Date.now();
-                if (lockedUntil && lockedUntil > now) {
+                if (lockedUntil > now) {
                     // Está bloqueado
-                    const remainingTime = Math.ceil((lockedUntil - now) / 1000);
-                    const minutes = Math.floor(remainingTime / 60);
-                    const seconds = remainingTime % 60;
-                    
-                    result.innerHTML = `<span style="color:#dc3545; font-weight:800;">❌ LIMITE DE TENTATIVAS ATINGIDO!<br>Tente novamente em ${minutes}:${seconds.toString().padStart(2, '0')}</span>`;
-                    resetBtn.disabled = true;
-                    resetBtn.textContent = 'AGUARDE...';
                     scratchGameActive = false;
                     
-                    // Atualizar contador
-                    const updateTimer = setInterval(() => {
-                        const now = Date.now();
-                        if (lockedUntil <= now) {
-                            clearInterval(updateTimer);
-                            currentTries = 0;
-                            localStorage.setItem('scratch_tries', 0);
-                            localStorage.removeItem('scratch_lockedUntil');
-                            resetBtn.disabled = false;
-                            resetBtn.textContent = 'Nova Raspadinha';
-                            result.textContent = '';
-                            scratchGameActive = true;
-                            criarRaspadinha();
-                        } else {
-                            const remainingTime = Math.ceil((lockedUntil - now) / 1000);
-                            const minutes = Math.floor(remainingTime / 60);
-                            const seconds = remainingTime % 60;
-                            result.innerHTML = `<span style="color:#dc3545; font-weight:800;">❌ LIMITE DE TENTATIVAS ATINGIDO!<br>Tente novamente em ${minutes}:${seconds.toString().padStart(2, '0')}</span>`;
-                        }
-                    }, 1000);
+                    // Iniciar contador
+                    timerInterval = setInterval(updateScratchTimer, 1000);
+                    updateScratchTimer();
+                    
+                    // Limpar grid
+                    grid.innerHTML = '';
+                    result.innerHTML = `<span style="color:#dc3545; font-weight:800;">❌ LIMITE DE TENTATIVAS ATINGIDO!</span>`;
                     
                     return true;
+                } else {
+                    // Tempo expirou, limpar bloqueio
+                    currentTries = 0;
+                    localStorage.setItem('scratch_tries', 0);
+                    localStorage.removeItem('scratch_lockedUntil');
+                    lockedUntil = 0;
+                    scratchTimer.textContent = '';
+                    return false;
                 }
-                return false;
             }
 
             // Verificar bloqueio ao iniciar
@@ -3173,6 +3177,7 @@
                 
                 grid.innerHTML = '';
                 result.textContent = '';
+                scratchTimer.textContent = '';
                 revealed = 0;
                 gerarValores();
 
@@ -3280,8 +3285,13 @@
                     
                     // Desativar jogo
                     scratchGameActive = false;
-                    resetBtn.disabled = true;
-                    resetBtn.textContent = 'VOCÊ GANHOU!';
+                    
+                    // Limpar timer se existir
+                    if (timerInterval) {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                    }
+                    scratchTimer.textContent = '';
                     
                     setTimeout(() => {
                         window.location.href = 'https://4br.me/QADTXgSwh';
@@ -3299,30 +3309,14 @@
                     } else {
                         // Permitir nova tentativa após 2 segundos
                         scratchGameActive = false;
-                        resetBtn.disabled = true;
-                        resetBtn.textContent = 'AGUARDE...';
                         
                         setTimeout(() => {
                             scratchGameActive = true;
-                            resetBtn.disabled = false;
-                            resetBtn.textContent = 'Nova Raspadinha';
                             criarRaspadinha();
                         }, 2000);
                     }
                 }
             }
-
-            resetBtn.addEventListener('click', function() {
-                if (!scratchGameActive || this.disabled) return;
-                
-                // Verificar se ainda tem tentativas
-                if (currentTries >= MAX_TRIES) {
-                    checkLockStatus();
-                    return;
-                }
-                
-                criarRaspadinha();
-            });
 
             // Inicializar a raspadinha
             criarRaspadinha();
