@@ -1120,7 +1120,7 @@
             background: linear-gradient(135deg, var(--tigrinho-green), var(--tigrinho-orange));
             border: 2px solid #ffdd00;
             border-radius: 50px;
-            padding: 12px 20px; /* Tamanho fixo reduzido */
+            padding: 12px 15px; /* Reduzido padding horizontal */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1130,7 +1130,7 @@
             backdrop-filter: blur(5px);
             text-decoration: none;
             font-weight: 800;
-            font-size: 12px; /* Fonte menor para caber melhor */
+            font-size: 13px; /* Aumentado ligeiramente */
             color: #000;
             text-transform: uppercase;
             letter-spacing: 0.5px; /* Espaçamento reduzido */
@@ -1149,6 +1149,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            text-align: center; /* Centralizar texto */
         }
 
         .tigrinho-button:hover {
@@ -1159,7 +1160,7 @@
         }
 
         .tigrinho-button i {
-            margin-right: 8px;
+            margin-right: 6px; /* Reduzido */
             font-size: 14px;
             color: #000;
             flex-shrink: 0;
@@ -1677,16 +1678,13 @@
                 right: 10px;
                 width: 160px; /* Largura menor para mobile */
                 height: 45px; /* Altura menor para mobile */
-                font-size: 11px;
-                padding: 10px 15px;
-                animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
-                /* Menos movimento em mobile para não atrapalhar */
-                animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
+                font-size: 12px; /* Fonte um pouco menor */
+                padding: 10px 12px; /* Padding reduzido */
             }
             
             .tigrinho-button i {
-                font-size: 12px;
-                margin-right: 6px;
+                font-size: 13px;
+                margin-right: 5px;
             }
             
             .notification, .testimonial {
@@ -1776,15 +1774,41 @@
                 bottom: 15px;
                 right: 15px;
                 width: 150px;
-                height: 40px;
-                font-size: 10px;
-                padding: 8px 12px;
-                animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
+                height: 42px; /* Altura ajustada */
+                font-size: 11px; /* Fonte menor para mobile muito pequeno */
+                padding: 8px 10px;
             }
             
             .tigrinho-button i {
-                font-size: 11px;
-                margin-right: 5px;
+                font-size: 12px;
+                margin-right: 4px;
+            }
+            
+            .notification, .testimonial {
+                padding: 12px 10px;
+                min-width: auto;
+            }
+            
+            .notification-avatar, .testimonial-avatar {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .notification-name,
+            .testimonial-name {
+                font-size: 0.85rem;
+            }
+            
+            .notification-action,
+            .notification-product,
+            .notification-time,
+            .testimonial-text,
+            .testimonial-rating {
+                font-size: 0.75rem;
+            }
+            
+            .testimonial-text {
+                line-height: 1.2;
             }
             
             .scratch-card {
@@ -1838,7 +1862,7 @@
 
     <!-- NOVO: Botão Flutuante do Tigrinho - TAMANHO FIXO E OTIMIZADO -->
     <a href="https://bkbet84.com/?id=972228965" target="_blank" class="tigrinho-button" id="tigrinhoButton">
-        <i class="fas fa-tiger"></i> CASSINO PAGANDO TIGRINHO
+        <i class="fas fa-tiger"></i> TIGRINHO PAGANDO
     </a>
 
     <!-- Botão flutuante para controlar música -->
