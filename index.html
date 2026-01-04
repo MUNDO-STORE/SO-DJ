@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mundo DJ - Pacotes Profissionais de Música para DJs</title>
+    <title>MUNDO STORE - Packs para Atualizar Pendrive, Packs Pro DJ e Jogos Retro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Meta Pixel Code -->
@@ -43,6 +43,8 @@
             --gray: #8a8a8a;
             --success: #28a745;
             --warning: #ffc107;
+            --tigrinho-green: #00ff88;
+            --tigrinho-orange: #ff8800;
         }
 
         body {
@@ -189,6 +191,30 @@
             }
         }
 
+        @keyframes tigrinho-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+                transform: scale(1);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 255, 136, 0);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes tigrinho-shine {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -325,6 +351,14 @@
             .packages-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            
+            /* Reordenar para VIP ficar ao lado do PLUS */
+            .packages-grid .package-card:nth-child(1) { order: 1; } /* Pack Start */
+            .packages-grid .package-card:nth-child(2) { order: 2; } /* Pack PLUS */
+            .packages-grid .package-card:nth-child(3) { order: 3; } /* VIP */
+            .packages-grid .package-card:nth-child(4) { order: 4; } /* SUPER KIDS */
+            .packages-grid .package-card:nth-child(5) { order: 5; } /* CURRÍCULUM */
+            .packages-grid .package-card:nth-child(6) { order: 6; } /* JOGOS RETRO */
         }
 
         .package-card {
@@ -349,7 +383,7 @@
             box-shadow: 0 0 20px var(--vip-glow);
             animation: glow 2s infinite;
             transform: scale(1.05);
-            order: 2;
+            order: 3; /* Posição na ordem do grid */
         }
 
         @media (max-width: 992px) {
@@ -656,6 +690,62 @@
             .pro-buttons {
                 grid-template-columns: 1fr;
             }
+        }
+
+        /* NOVA SEÇÃO: Roleta e Raspadinha lado a lado */
+        .games-section {
+            padding: 60px 0;
+            background: rgba(22, 33, 62, 0.8);
+            position: relative;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 992px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .game-container {
+            background: rgba(15, 52, 96, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid var(--highlight);
+            backdrop-filter: blur(5px);
+        }
+
+        .games-section .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .roulette-container, .scratch-container {
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            padding: 0;
+        }
+
+        .roulette-title, .scratch-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-align: center;
         }
 
         /* Seção de Afiliados */
@@ -978,7 +1068,7 @@
         /* Botão flutuante para controlar música */
         .music-control {
             position: fixed;
-            bottom: 20px;
+            bottom: 100px;
             right: 20px;
             z-index: 9997;
             background: rgba(15, 52, 96, 0.8);
@@ -1005,10 +1095,50 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
+        /* NOVO: Botão Flutuante do Tigrinho */
+        .tigrinho-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9997;
+            background: linear-gradient(135deg, var(--tigrinho-green), var(--tigrinho-orange));
+            border: 2px solid #ffdd00;
+            border-radius: 50px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 14px;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite;
+            background-size: 200% auto;
+            min-width: 200px;
+        }
+
+        .tigrinho-button:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.6);
+            background: linear-gradient(135deg, var(--tigrinho-orange), var(--tigrinho-green));
+        }
+
+        .tigrinho-button i {
+            margin-right: 10px;
+            font-size: 18px;
+            color: #000;
+        }
+
         /* Depoimentos Flutuantes */
         .testimonials-container {
             position: fixed;
-            bottom: 80px;
+            bottom: 180px;
             left: 10px;
             z-index: 9998;
             display: flex;
@@ -1081,42 +1211,7 @@
             margin-top: 3px;
         }
 
-        /* Seção da Roleta */
-        .roulette-section {
-            background: transparent;
-            padding: 60px 0;
-            margin-top: 40px;
-            border-top: 3px solid var(--highlight);
-            border-bottom: 3px solid var(--highlight);
-        }
-
-        .roulette-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(15, 52, 96, 0.8);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-align: center;
-            border: 2px solid var(--highlight);
-            backdrop-filter: blur(5px);
-        }
-
-        .roulette-title {
-            font-size: 28px;
-            color: #fff;
-            font-weight: 800;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .roulette-subtitle {
-            font-size: 18px;
-            color: #ccc;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
+        /* Estilos da Roleta */
         .legend {
             margin: 0 auto 30px;
             font-weight: 700;
@@ -1297,47 +1392,13 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
-        /* SEÇÃO DA RASPADINHA */
-        .scratch-section {
-            background: transparent;
-            padding: 60px 0;
-            margin-top: 40px;
-            border-top: 3px solid #00ff99;
-            border-bottom: 3px solid #00ff99;
-        }
-
-        .scratch-container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: rgba(15, 52, 96, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-align: center;
-            border: 2px solid #00ff99;
-            backdrop-filter: blur(5px);
-            animation: scratchGlow 2s infinite;
-        }
-
-        @keyframes scratchGlow {
-            0% { box-shadow: 0 0 10px rgba(0, 255, 153, 0.3); }
-            50% { box-shadow: 0 0 25px rgba(0, 255, 153, 0.6); }
-            100% { box-shadow: 0 0 10px rgba(0, 255, 153, 0.3); }
-        }
-
-        .scratch-title {
-            font-size: 28px;
-            color: #fff;
-            font-weight: 800;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
+        /* Estilos da Raspadinha */
         .scratch-subtitle {
             font-size: 18px;
             color: #ccc;
             margin-bottom: 30px;
             font-weight: 600;
+            text-align: center;
         }
 
         .scratch-desc {
@@ -1346,6 +1407,7 @@
             margin-bottom: 20px;
             line-height: 1.5;
             color: #ddd;
+            text-align: center;
         }
 
         .scratch-grid {
@@ -1402,6 +1464,7 @@
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.1);
             color: white;
+            text-align: center;
         }
 
         .scratch-button {
@@ -1564,7 +1627,7 @@
             }
             
             .testimonials-container {
-                bottom: 70px;
+                bottom: 180px;
                 left: 5px;
                 right: 5px;
                 max-width: none;
@@ -1572,10 +1635,20 @@
             }
             
             .music-control {
-                bottom: 10px;
+                bottom: 100px;
                 right: 10px;
                 width: 45px;
                 height: 45px;
+            }
+            
+            .tigrinho-button {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                padding: 12px 20px;
+                font-size: 13px;
+                min-width: auto;
+                text-align: center;
             }
             
             .notification, .testimonial {
@@ -1606,8 +1679,12 @@
                 line-height: 1.3;
             }
             
-            .roulette-container,
-            .scratch-container {
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .game-container {
                 padding: 20px;
             }
             
@@ -1618,7 +1695,7 @@
             
             .roulette-title,
             .scratch-title {
-                font-size: 24px;
+                font-size: 22px;
             }
             
             .affiliate-title {
@@ -1651,10 +1728,18 @@
             }
             
             .music-control {
-                bottom: 15px;
+                bottom: 90px;
                 right: 15px;
                 width: 40px;
                 height: 40px;
+            }
+            
+            .tigrinho-button {
+                bottom: 15px;
+                right: 15px;
+                left: 15px;
+                font-size: 12px;
+                padding: 10px 15px;
             }
             
             .scratch-card {
@@ -1669,8 +1754,7 @@
         /* GARANTIR QUE CONTEÚDO PRINCIPAL SEJA SEMPRE VISÍVEL */
         .packages,
         .hero,
-        .roulette-section,
-        .scratch-section,
+        .games-section,
         .affiliate-section,
         .testimonials-section {
             position: relative;
@@ -1701,6 +1785,11 @@
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-scratch-sound-2789.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- NOVO: Botão Flutuante do Tigrinho -->
+    <a href="https://bkbet84.com/?id=972228965" target="_blank" class="tigrinho-button">
+        <i class="fas fa-tiger"></i> CASSINO PAGANDO NO TIGRINHO CLICK AQUI E BOA SORTE
+    </a>
+
     <!-- Botão flutuante para controlar música -->
     <div class="music-control" id="musicControl">
         <i class="fas fa-music"></i>
@@ -1729,17 +1818,17 @@
         <div class="container">
             <div class="logo">
                 <i class="fas fa-compact-disc"></i>
-                <h1>Mundo DJ</h1>
+                <h1>MUNDO STORE</h1>
             </div>
-            <p class="tagline">Os melhores pacotes de música para DJs profissionais e iniciantes. Atualize seu pendrive com as músicas mais tocadas!</p>
+            <p class="tagline">PACKS PARA ATUALIZAR PENDRIVE - PACKS PRO PARA DJ - JOGOS RETRO E MUITO MAIS!</p>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h2>Atualize Seu Repertório com Milhares de Músicas</h2>
-            <p>Pacotes completos com músicas atualizadas, organizadas por ritmo e estilo. Ideal para DJs que querem estar sempre preparados para qualquer evento.</p>
+            <h2>ATUALIZE SEU REPERTÓRIO COM MILHARES DE MÚSICAS E CONTEÚDOS</h2>
+            <p>Pacotes completos com músicas atualizadas, jogos retro, atividades infantis e muito mais! Tudo organizado e pronto para download.</p>
             
             <!-- Timer Promocional -->
             <div class="promo-timer">
@@ -1754,7 +1843,7 @@
     <!-- Packages Section -->
     <section class="packages">
         <div class="container">
-            <h2 class="section-title">Escolha o Pacote Ideal para Você</h2>
+            <h2 class="section-title">ESCOLHA O PACOTE IDEAL PARA VOCÊ</h2>
             
             <div class="packages-grid">
                 <!-- Package 1 - Básico -->
@@ -1779,7 +1868,30 @@
                     </div>
                 </div>
 
-                <!-- Package 2 - VIP (DESTAQUE) -->
+                <!-- Package 2 - Atualizar Pendrive PLUS -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Pack Atualizar Pendrive PLUS</h3>
+                        <div class="package-price">R$<span>9,99</span></div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features basic-features">
+                            <li><i class="fas fa-check-circle"></i> Mais de 25 mil músicas MP3</li>
+                            <li><i class="fas fa-check-circle"></i> +30 ritmos atualizados</li>
+                            <li><i class="fas fa-check-circle"></i> Sem vinhetas</li>
+                            <li><i class="fas fa-check-circle"></i> Download imediato</li>
+                            <li><i class="fas fa-check-circle"></i> Links enviados por email após pagamento</li>
+                            <li><i class="fas fa-check-circle"></i> +10 mil músicas extras + Pack Videoclipes</li>
+                        </ul>
+                        <div class="package-buttons">
+                            <a href="https://4br.me/IbyYKon" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 9.99, currency: 'BRL'}); trackRealPurchase('Pack Atualizar Pendrive PLUS', 9.99);">
+                                <i class="fas fa-shopping-cart"></i> Comprar Agora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 3 - VIP (AGORA AO LADO DO PLUS) -->
                 <div class="package-card vip-highlight">
                     <div class="recommended-badge">RECOMENDADO</div>
                     <div class="package-header">
@@ -1808,30 +1920,7 @@
                     </div>
                 </div>
 
-                <!-- Package 3 - Intermediário -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>Pack Atualizar Pendrive PLUS</h3>
-                        <div class="package-price">R$<span>9,99</span></div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features basic-features">
-                            <li><i class="fas fa-check-circle"></i> Mais de 25 mil músicas MP3</li>
-                            <li><i class="fas fa-check-circle"></i> +30 ritmos atualizados</li>
-                            <li><i class="fas fa-check-circle"></i> Sem vinhetas</li>
-                            <li><i class="fas fa-check-circle"></i> Download imediato</li>
-                            <li><i class="fas fa-check-circle"></i> Links enviados por email após pagamento</li>
-                            <li><i class="fas fa-check-circle"></i> +10 mil músicas extras + Pack Videoclipes</li>
-                        </ul>
-                        <div class="package-buttons">
-                            <a href="https://4br.me/IbyYKon" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 9.99, currency: 'BRL'}); trackRealPurchase('Pack Atualizar Pendrive PLUS', 9.99);">
-                                <i class="fas fa-shopping-cart"></i> Comprar Agora
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Package 6 - SUPER KIDS ATIVIDADES INFANTIL EDUCACIONAL -->
+                <!-- Package 4 - SUPER KIDS ATIVIDADES INFANTIL EDUCACIONAL -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>SUPER KIDS ATIVIDADES INFANTIL EDUCACIONAL</h3>
@@ -1853,7 +1942,7 @@
                     </div>
                 </div>
 
-                <!-- Package 7 - CRIE SEU CURRÍCULUM COM FACILIDADE -->
+                <!-- Package 5 - CRIE SEU CURRÍCULUM COM FACILIDADE -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>CRIE SEU CURRÍCULUM COM FACILIDADE</h3>
@@ -1875,7 +1964,7 @@
                     </div>
                 </div>
 
-                <!-- Package 8 - SUPER JOGOS RETRO -->
+                <!-- Package 6 - SUPER JOGOS RETRO -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>SUPER JOGOS RETRO</h3>
@@ -1951,61 +2040,70 @@
         </div>
     </section>
 
-    <!-- Seção da Roleta -->
-    <section class="roulette-section">
-        <div class="container roulette-container">
-            <h2 class="roulette-title">SORTEIO PACK 25 MIL MÚSICAS + VIDEOCLIPES - PAGA APENAS R$1,00 SE GANHAR!</h2>
+    <!-- NOVA SEÇÃO: Roleta e Raspadinha lado a lado -->
+    <section class="games-section">
+        <div class="container">
+            <h2 class="section-title">JOGOS E SORTEIOS</h2>
             
-            <p class="roulette-subtitle">Gire a roleta e tente ganhar super desconto! Apenas 3 tentativas!</p>
-            
-            <div class="legend">
-                <span class="green">VERDE: GANHA DESCONTO! PAGA SOMENTE R$1,00 NO PACK 25 MIL MÚSICAS</span><br>
-                <span class="red">VERMELHO: NÃO GANHOU!</span>
+            <div class="games-grid">
+                <!-- Roleta -->
+                <div class="game-container">
+                    <div class="roulette-container">
+                        <h2 class="roulette-title">SORTEIO PACK 25 MIL MÚSICAS + VIDEOCLIPES</h2>
+                        
+                        <p class="roulette-subtitle">Gire a roleta e tente ganhar super desconto! Apenas 3 tentativas!</p>
+                        
+                        <div class="legend">
+                            <span class="green">VERDE: GANHA DESCONTO! PAGA SOMENTE R$1,00 NO PACK 25 MIL MÚSICAS</span><br>
+                            <span class="red">VERMELHO: NÃO GANHOU!</span>
+                        </div>
+                        
+                        <div class="roulette-box">
+                            <div class="roulette-item-title">
+                                PACK 25 MIL MÚSICAS + VIDEOCLIPES — SE GANHAR PAGA APENAS R$1,00!
+                            </div>
+
+                            <div class="roulette-display">
+                                <div class="pointer-fixed" aria-hidden="true"></div>
+                                <div id="roulette1" class="roulette" data-redirect="https://4br.me/QADTXgSwh" data-price="R$1,00"></div>
+                            </div>
+                            
+                            <div id="msg1" class="result-message"></div>
+
+                            <div class="tries-counter">
+                                Tentativas usadas: <span id="tries1">0</span>/3
+                            </div>
+
+                            <button id="spinBtn1" class="roulette-button" onclick="spinRoulette('roulette1','msg1','spinBtn1')">GIRAR ROLETA</button>
+
+                            <div id="timer1" class="roulette-timer" aria-live="polite"></div>
+                        </div>
+                        
+                        <a href="https://t.me/+xcMUpCNGNoI3NDUx" target="_blank" class="roulette-telegram-btn">
+                            <span style="font-size:22px;">CLICK AQUI PARA ENTRAR NO GRUPO TELEGRAM</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Raspadinha -->
+                <div class="game-container">
+                    <div class="scratch-container">
+                        <h2 class="scratch-title">🍀 RASPADINHA DA SORTE</h2>
+                        <p class="scratch-subtitle">Ache <b>3 valores iguais</b> e pague apenas <b>R$1,00</b></p>
+                        
+                        <p class="scratch-desc">
+                            <b>Pack com 10 MIL músicas MP3</b>, sem vinhetas + <b>30 ritmos</b><br>
+                            <b>Boa sorte!</b>
+                        </p>
+
+                        <div class="scratch-grid" id="scratch-grid"></div>
+
+                        <div class="scratch-result" id="scratch-result"></div>
+
+                        <button id="scratch-reset" class="scratch-button">Nova Raspadinha</button>
+                    </div>
+                </div>
             </div>
-            
-            <div class="roulette-box">
-                <div class="roulette-item-title">
-                    PACK 25 MIL MÚSICAS + VIDEOCLIPES — SE GANHAR PAGA APENAS R$1,00!
-                </div>
-
-                <div class="roulette-display">
-                    <div class="pointer-fixed" aria-hidden="true"></div>
-                    <div id="roulette1" class="roulette" data-redirect="https://4br.me/QADTXgSwh" data-price="R$1,00"></div>
-                </div>
-                
-                <div id="msg1" class="result-message"></div>
-
-                <div class="tries-counter">
-                    Tentativas usadas: <span id="tries1">0</span>/3
-                </div>
-
-                <button id="spinBtn1" class="roulette-button" onclick="spinRoulette('roulette1','msg1','spinBtn1')">GIRAR ROLETA</button>
-
-                <div id="timer1" class="roulette-timer" aria-live="polite"></div>
-            </div>
-            
-            <a href="https://t.me/+xcMUpCNGNoI3NDUx" target="_blank" class="roulette-telegram-btn">
-                <span style="font-size:22px;">CLICK AQUI PARA ENTRAR NO GRUPO TELEGRAM</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- Seção da Raspadinha (NOVA) -->
-    <section class="scratch-section">
-        <div class="container scratch-container">
-            <h2 class="scratch-title">🍀 RASPADINHA DA SORTE</h2>
-            <p class="scratch-subtitle">Ache <b>3 valores iguais</b> e pague apenas <b>R$1,00</b></p>
-            
-            <p class="scratch-desc">
-                <b>Pack com 10 MIL músicas MP3</b>, sem vinhetas + <b>30 ritmos</b><br>
-                <b>Boa sorte!</b>
-            </p>
-
-            <div class="scratch-grid" id="scratch-grid"></div>
-
-            <div class="scratch-result" id="scratch-result"></div>
-
-            <button id="scratch-reset" class="scratch-button">Nova Raspadinha</button>
         </div>
     </section>
 
@@ -2025,7 +2123,7 @@
         </div>
     </section>
 
-    <!-- SEÇÃO DE DEPOIMENTOS (NOVO) -->
+    <!-- SEÇÃO DE DEPOIMENTOS -->
     <section class="testimonials-section">
         <div class="container">
             <h2 class="section-title">O QUE NOSSOS CLIENTES DIZEM</h2>
@@ -2048,9 +2146,9 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-logo">MUNDO DJ</div>
-            <p class="footer-info">Somos especialistas em fornecer conteúdo musical de alta qualidade para DJs. Todos os nossos pacotes são atualizados regularmente com as músicas mais tocadas do momento.</p>
-            <p class="copyright">© 2023 Mundo DJ. Todos os direitos reservados.</p>
+            <div class="footer-logo">MUNDO STORE</div>
+            <p class="footer-info">Somos especialistas em fornecer conteúdo musical de alta qualidade para DJs e muito mais. Todos os nossos pacotes são atualizados regularmente.</p>
+            <p class="copyright">© 2023 Mundo Store. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -2085,6 +2183,12 @@
             
             // Inicializar a raspadinha
             initScratch();
+            
+            // Remover as seções antigas do DOM para evitar duplicação
+            const oldRoulette = document.querySelector('.roulette-section');
+            const oldScratch = document.querySelector('.scratch-section');
+            if (oldRoulette) oldRoulette.remove();
+            if (oldScratch) oldScratch.remove();
         });
 
         // Controlar música
