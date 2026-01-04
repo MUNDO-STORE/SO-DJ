@@ -233,6 +233,209 @@
             }
         }
 
+        /* POPUP PACK PROFISSIONAL DJ */
+        .pack-profissional-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .pack-profissional-popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.95), rgba(26, 26, 46, 0.98));
+            width: 90%;
+            max-width: 900px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--highlight);
+            position: relative;
+            animation: popupAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            transform: scale(0.9);
+        }
+
+        @keyframes popupAppear {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .popup-header {
+            background: linear-gradient(to right, var(--accent), var(--highlight));
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .popup-header h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .popup-tagline {
+            font-size: 1.2rem;
+            color: #fff;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        .popup-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--vip-gold);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            transform: rotate(5deg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0% { transform: rotate(5deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.05); }
+            100% { transform: rotate(5deg) scale(1); }
+        }
+
+        .popup-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .popup-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .popup-features {
+            list-style: none;
+        }
+
+        .popup-features li {
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-size: 1.05rem;
+        }
+
+        .popup-features li:last-child {
+            border-bottom: none;
+        }
+
+        .popup-features i {
+            color: var(--highlight);
+            margin-right: 12px;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .popup-video-container {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        #popup-video {
+            width: 100%;
+            height: 100%;
+            min-height: 250px;
+            background: #000;
+        }
+
+        .popup-footer {
+            padding: 0 30px 30px;
+            text-align: center;
+        }
+
+        .popup-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--vip-gold);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .popup-buttons {
+                flex-direction: column;
+            }
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid var(--highlight);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .popup-close:hover {
+            background: var(--highlight);
+            transform: rotate(90deg);
+        }
+
+        .popup-countdown {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .popup-countdown i {
+            color: var(--highlight);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -1732,6 +1935,20 @@
             .scratch-card {
                 height: 80px;
             }
+            
+            /* Popup responsivo */
+            .popup-content {
+                width: 95%;
+                margin: 10px;
+            }
+            
+            .popup-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .popup-price {
+                font-size: 2.5rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1795,6 +2012,20 @@
             
             .scratch-card span {
                 font-size: 16px;
+            }
+            
+            /* Popup mobile muito pequeno */
+            .popup-body {
+                padding: 20px;
+            }
+            
+            .popup-features li {
+                font-size: 0.95rem;
+                padding: 10px 0;
+            }
+            
+            .popup-features i {
+                font-size: 1rem;
             }
         }
 
@@ -2198,6 +2429,56 @@
             </div>
         </div>
     </section>
+
+    <!-- POPUP PACK PROFISSIONAL DJ -->
+    <div class="pack-profissional-popup" id="proPackPopup">
+        <div class="popup-content">
+            <div class="popup-close" id="closePopup">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="popup-badge">MAIS COMPLETO DA INTERNET!</div>
+            
+            <div class="popup-header">
+                <h2>PACK PROFISSIONAL DJ</h2>
+                <p class="popup-tagline">O pacote mais completo para DJs profissionais</p>
+            </div>
+            
+            <div class="popup-body">
+                <div>
+                    <ul class="popup-features">
+                        <li><i class="fas fa-check-circle"></i> +7TB Músicas (Todos os Estilos)</li>
+                        <li><i class="fas fa-check-circle"></i> +2TB Efeitos Sonoros (SFX)</li>
+                        <li><i class="fas fa-check-circle"></i> PACK GOSPEL PROFISSIONAL</li>
+                        <li><i class="fas fa-check-circle"></i> DJ RETRO - DISCOTECAS - FLASHBACK</li>
+                        <li><i class="fas fa-check-circle"></i> Playlists Prontas (Casamento, Festas...)</li>
+                        <li><i class="fas fa-check-circle"></i> Videoclipes + Softwares PARA DJ</li>
+                        <li><i class="fas fa-check-circle"></i> Atualizações Constantes 2026</li>
+                        <li><i class="fas fa-check-circle"></i> Material 100% Hospedado no Telegram</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>PAGAMENTO ÚNICO - SEM MENSALIDADES</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="popup-video-container">
+                    <iframe id="popup-video" src="https://www.youtube.com/embed/KeLaP35KBX4?si=BHiXLeaWjon8racm&enablejsapi=1&autoplay=1&mute=1" title="Pack Profissional DJ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="popup-countdown">
+                        <i class="fas fa-clock"></i> Fecha em: <span id="popupTimer">10</span>s
+                    </div>
+                </div>
+            </div>
+            
+            <div class="popup-footer">
+                <div class="popup-price">R$ 50,00</div>
+                <div class="popup-buttons">
+                    <a href="https://4br.me/54Wms" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 50.00, currency: 'BRL'}); trackRealPurchase('Pack Profissional DJ', 50.00); closePopup();">
+                        <i class="fas fa-shopping-cart"></i> Comprar Agora - R$50,00
+                    </a>
+                    <a href="https://wa.link/cj28rm" class="btn btn-whatsapp" target="_blank" onclick="fbq('track', 'Purchase', {value: 45.00, currency: 'BRL'}); trackRealPurchase('Pack Profissional DJ WhatsApp', 45.00); closePopup();">
+                        <i class="fab fa-whatsapp"></i> Comprar por R$45,00
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -2866,6 +3147,110 @@
             console.log(`Compra registrada: ${productName} - R$ ${price}`);
         }
 
+        // POPUP PACK PROFISSIONAL DJ
+        let popupTimerInterval;
+        let popupCloseTimeout;
+
+        function showProPackPopup() {
+            const popup = document.getElementById('proPackPopup');
+            if (!popup) return;
+            
+            // Verificar se já foi mostrado recentemente (cookie de 1 hora)
+            if (getCookie('proPackPopupShown')) {
+                return;
+            }
+            
+            // Mostrar popup após 10 segundos
+            setTimeout(() => {
+                popup.classList.add('active');
+                
+                // Iniciar contagem regressiva para fechar (10 segundos)
+                let secondsLeft = 10;
+                const timerElement = document.getElementById('popupTimer');
+                
+                popupTimerInterval = setInterval(() => {
+                    secondsLeft--;
+                    if (timerElement) {
+                        timerElement.textContent = secondsLeft;
+                    }
+                    
+                    if (secondsLeft <= 0) {
+                        closePopup();
+                    }
+                }, 1000);
+                
+                // Configurar fechamento automático após 10 segundos
+                popupCloseTimeout = setTimeout(closePopup, 10000);
+                
+                // Configurar cookie para não mostrar novamente por 1 hora
+                setCookie('proPackPopupShown', 'true', 1);
+                
+                // Rastrear visualização do popup
+                fbq('track', 'ViewContent', {
+                    content_name: 'Pack Profissional DJ Popup',
+                    content_category: 'Popup',
+                    value: 50.00,
+                    currency: 'BRL'
+                });
+                
+            }, 10000); // 10 segundos
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('proPackPopup');
+            if (popup) {
+                popup.classList.remove('active');
+            }
+            
+            // Limpar intervalos
+            if (popupTimerInterval) {
+                clearInterval(popupTimerInterval);
+            }
+            if (popupCloseTimeout) {
+                clearTimeout(popupCloseTimeout);
+            }
+            
+            // Pausar vídeo do popup
+            const popupVideo = document.getElementById('popup-video');
+            if (popupVideo) {
+                const src = popupVideo.src;
+                popupVideo.src = src; // Reiniciar o iframe
+            }
+        }
+
+        // Funções de cookie
+        function setCookie(name, value, hours) {
+            const date = new Date();
+            date.setTime(date.getTime() + (hours * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Pausar música de fundo quando popup abrir
+        function pauseBackgroundMusicOnPopup() {
+            const popup = document.getElementById('proPackPopup');
+            if (popup && popup.classList.contains('active')) {
+                if (backgroundMusic && !backgroundMusic.paused) {
+                    backgroundMusic.volume = 0.1; // Baixar volume
+                }
+            } else {
+                if (backgroundMusic && backgroundMusic.paused) {
+                    backgroundMusic.volume = 0.3; // Restaurar volume
+                }
+            }
+        }
+
         // Iniciar notificações automáticas
         function startNotifications() {
             // Primeira notificação após 3 segundos
@@ -3474,6 +3859,59 @@
             
             // Mostrar pop-up inicial após 5 segundos
             setTimeout(showSalePopup, 5000);
+            
+            // Configurar eventos do popup do Pack Profissional DJ
+            showProPackPopup();
+            
+            // Botão de fechar
+            const closeBtn = document.getElementById('closePopup');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closePopup);
+            }
+            
+            // Fechar ao clicar fora do conteúdo
+            const popup = document.getElementById('proPackPopup');
+            if (popup) {
+                popup.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closePopup();
+                    }
+                });
+            }
+            
+            // Configurar autoplay do vídeo quando popup abrir
+            const popupObserver = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.attributeName === 'class') {
+                        const popup = document.getElementById('proPackPopup');
+                        if (popup && popup.classList.contains('active')) {
+                            // O vídeo já está configurado para autoplay no iframe
+                            // Forçar play se necessário
+                            setTimeout(() => {
+                                const iframe = document.getElementById('popup-video');
+                                if (iframe) {
+                                    // Tentar dar play via API do YouTube
+                                    try {
+                                        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                                    } catch(e) {
+                                        console.log('YouTube API error:', e);
+                                    }
+                                }
+                            }, 500);
+                            
+                            // Pausar música de fundo quando popup abrir
+                            pauseBackgroundMusicOnPopup();
+                        } else {
+                            // Restaurar música quando popup fechar
+                            pauseBackgroundMusicOnPopup();
+                        }
+                    }
+                });
+            });
+            
+            if (popup) {
+                popupObserver.observe(popup, { attributes: true });
+            }
         });
     </script>
 </body>
