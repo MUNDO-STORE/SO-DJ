@@ -310,6 +310,76 @@
 
         /* Timer Promocional (REMOVIDO) */
 
+        /* NOVA SEÇÃO: Roleta e Raspadinha lado a lado (AGORA VEM ANTES DOS PACOTES) -->
+        <section class="games-section">
+        <div class="container">
+            <h2 class="section-title">JOGOS E SORTEIOS</h2>
+            
+            <div class="games-grid">
+                <!-- Roleta -->
+                <div class="game-container">
+                    <div class="roulette-container">
+                        <h2 class="roulette-title">SORTEIO PACK 25 MIL MÚSICAS + VIDEOCLIPES</h2>
+                        
+                        <p class="roulette-subtitle">Gire a roleta e tente ganhar super desconto! Apenas 3 tentativas!</p>
+                        
+                        <div class="legend">
+                            <span class="green">VERDE: GANHA DESCONTO! PAGA SOMENTE R$1,00 NO PACK 25 MIL MÚSICAS</span><br>
+                            <span class="red">VERMELHO: NÃO GANHOU!</span>
+                        </div>
+                        
+                        <div class="roulette-box">
+                            <div class="roulette-item-title">
+                                PACK 25 MIL MÚSICAS + VIDEOCLIPES — SE GANHAR PAGA APENAS R$1,00!
+                            </div>
+
+                            <div class="roulette-display">
+                                <div class="pointer-fixed" aria-hidden="true"></div>
+                                <div id="roulette1" class="roulette" data-redirect="https://4br.me/QADTXgSwh" data-price="R$1,00"></div>
+                            </div>
+                            
+                            <div id="msg1" class="result-message"></div>
+
+                            <div class="tries-counter">
+                                Tentativas usadas: <span id="tries1">0</span>/3
+                            </div>
+
+                            <button id="spinBtn1" class="roulette-button" onclick="spinRoulette('roulette1','msg1','spinBtn1')">GIRAR ROLETA</button>
+
+                            <div id="timer1" class="roulette-timer" aria-live="polite"></div>
+                        </div>
+                        
+                        <a href="https://t.me/+xcMUpCNGNoI3NDUx" target="_blank" class="roulette-telegram-btn">
+                            <span style="font-size:22px;">CLICK AQUI PARA ENTRAR NO GRUPO TELEGRAM</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Raspadinha -->
+                <div class="game-container">
+                    <div class="scratch-container">
+                        <h2 class="scratch-title">🍀 RASPADINHA DA SORTE</h2>
+                        <p class="scratch-subtitle">Ache <b>3 valores iguais</b> e pague apenas <b>R$1,00</b></p>
+                        
+                        <p class="scratch-desc">
+                            <b>Pack com 10 MIL músicas MP3</b>, sem vinhetas + <b>30 ritmos</b><br>
+                            <b>Boa sorte!</b>
+                        </p>
+
+                        <div class="scratch-grid" id="scratch-grid"></div>
+
+                        <div class="scratch-result" id="scratch-result"></div>
+                        
+                        <!-- TIMER DE BLOQUEIO DA RASPADINHA -->
+                        <div class="scratch-timer" id="scratch-timer"></div>
+                        
+                        <!-- NOTA: Botão "Nova Raspadinha" foi REMOVIDO conforme solicitado -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
         /* Packages Section */
         .packages {
             padding: 60px 0;
@@ -1865,7 +1935,77 @@
         </div>
     </section>
 
-    <!-- Packages Section -->
+    <!-- NOVA SEÇÃO: Roleta e Raspadinha lado a lado (AGORA VEM LOGO APÓS O HERO, ANTES DOS PACKS) -->
+    <section class="games-section">
+        <div class="container">
+            <h2 class="section-title">JOGOS E SORTEIOS</h2>
+            
+            <div class="games-grid">
+                <!-- Roleta -->
+                <div class="game-container">
+                    <div class="roulette-container">
+                        <h2 class="roulette-title">SORTEIO PACK 25 MIL MÚSICAS + VIDEOCLIPES</h2>
+                        
+                        <p class="roulette-subtitle">Gire a roleta e tente ganhar super desconto! Apenas 3 tentativas!</p>
+                        
+                        <div class="legend">
+                            <span class="green">VERDE: GANHA DESCONTO! PAGA SOMENTE R$1,00 NO PACK 25 MIL MÚSICAS</span><br>
+                            <span class="red">VERMELHO: NÃO GANHOU!</span>
+                        </div>
+                        
+                        <div class="roulette-box">
+                            <div class="roulette-item-title">
+                                PACK 25 MIL MÚSICAS + VIDEOCLIPES — SE GANHAR PAGA APENAS R$1,00!
+                            </div>
+
+                            <div class="roulette-display">
+                                <div class="pointer-fixed" aria-hidden="true"></div>
+                                <div id="roulette1" class="roulette" data-redirect="https://4br.me/QADTXgSwh" data-price="R$1,00"></div>
+                            </div>
+                            
+                            <div id="msg1" class="result-message"></div>
+
+                            <div class="tries-counter">
+                                Tentativas usadas: <span id="tries1">0</span>/3
+                            </div>
+
+                            <button id="spinBtn1" class="roulette-button" onclick="spinRoulette('roulette1','msg1','spinBtn1')">GIRAR ROLETA</button>
+
+                            <div id="timer1" class="roulette-timer" aria-live="polite"></div>
+                        </div>
+                        
+                        <a href="https://t.me/+xcMUpCNGNoI3NDUx" target="_blank" class="roulette-telegram-btn">
+                            <span style="font-size:22px;">CLICK AQUI PARA ENTRAR NO GRUPO TELEGRAM</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Raspadinha -->
+                <div class="game-container">
+                    <div class="scratch-container">
+                        <h2 class="scratch-title">🍀 RASPADINHA DA SORTE</h2>
+                        <p class="scratch-subtitle">Ache <b>3 valores iguais</b> e pague apenas <b>R$1,00</b></p>
+                        
+                        <p class="scratch-desc">
+                            <b>Pack com 10 MIL músicas MP3</b>, sem vinhetas + <b>30 ritmos</b><br>
+                            <b>Boa sorte!</b>
+                        </p>
+
+                        <div class="scratch-grid" id="scratch-grid"></div>
+
+                        <div class="scratch-result" id="scratch-result"></div>
+                        
+                        <!-- TIMER DE BLOQUEIO DA RASPADINHA -->
+                        <div class="scratch-timer" id="scratch-timer"></div>
+                        
+                        <!-- NOTA: Botão "Nova Raspadinha" foi REMOVIDO conforme solicitado -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section (AGORA VEM DEPOIS DOS JOGOS E SORTEIOS) -->
     <section class="packages">
         <div class="container">
             <h2 class="section-title">ESCOLHA O PACOTE IDEAL PARA VOCÊ</h2>
@@ -2110,77 +2250,7 @@
         </div>
     </section>
 
-    <!-- NOVA SEÇÃO: Roleta e Raspadinha lado a lado (AGORA VEM LOGO APÓS OS PACKS) -->
-    <section class="games-section">
-        <div class="container">
-            <h2 class="section-title">JOGOS E SORTEIOS</h2>
-            
-            <div class="games-grid">
-                <!-- Roleta -->
-                <div class="game-container">
-                    <div class="roulette-container">
-                        <h2 class="roulette-title">SORTEIO PACK 25 MIL MÚSICAS + VIDEOCLIPES</h2>
-                        
-                        <p class="roulette-subtitle">Gire a roleta e tente ganhar super desconto! Apenas 3 tentativas!</p>
-                        
-                        <div class="legend">
-                            <span class="green">VERDE: GANHA DESCONTO! PAGA SOMENTE R$1,00 NO PACK 25 MIL MÚSICAS</span><br>
-                            <span class="red">VERMELHO: NÃO GANHOU!</span>
-                        </div>
-                        
-                        <div class="roulette-box">
-                            <div class="roulette-item-title">
-                                PACK 25 MIL MÚSICAS + VIDEOCLIPES — SE GANHAR PAGA APENAS R$1,00!
-                            </div>
-
-                            <div class="roulette-display">
-                                <div class="pointer-fixed" aria-hidden="true"></div>
-                                <div id="roulette1" class="roulette" data-redirect="https://4br.me/QADTXgSwh" data-price="R$1,00"></div>
-                            </div>
-                            
-                            <div id="msg1" class="result-message"></div>
-
-                            <div class="tries-counter">
-                                Tentativas usadas: <span id="tries1">0</span>/3
-                            </div>
-
-                            <button id="spinBtn1" class="roulette-button" onclick="spinRoulette('roulette1','msg1','spinBtn1')">GIRAR ROLETA</button>
-
-                            <div id="timer1" class="roulette-timer" aria-live="polite"></div>
-                        </div>
-                        
-                        <a href="https://t.me/+xcMUpCNGNoI3NDUx" target="_blank" class="roulette-telegram-btn">
-                            <span style="font-size:22px;">CLICK AQUI PARA ENTRAR NO GRUPO TELEGRAM</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Raspadinha -->
-                <div class="game-container">
-                    <div class="scratch-container">
-                        <h2 class="scratch-title">🍀 RASPADINHA DA SORTE</h2>
-                        <p class="scratch-subtitle">Ache <b>3 valores iguais</b> e pague apenas <b>R$1,00</b></p>
-                        
-                        <p class="scratch-desc">
-                            <b>Pack com 10 MIL músicas MP3</b>, sem vinhetas + <b>30 ritmos</b><br>
-                            <b>Boa sorte!</b>
-                        </p>
-
-                        <div class="scratch-grid" id="scratch-grid"></div>
-
-                        <div class="scratch-result" id="scratch-result"></div>
-                        
-                        <!-- TIMER DE BLOQUEIO DA RASPADINHA -->
-                        <div class="scratch-timer" id="scratch-timer"></div>
-                        
-                        <!-- NOTA: Botão "Nova Raspadinha" foi REMOVIDO conforme solicitado -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção de Afiliados (AGORA VEM APÓS JOGOS E SORTEIOS) -->
+    <!-- Seção de Afiliados (AGORA VEM APÓS JOGOS E SORTEIOS E PACKS) -->
     <section class="affiliate-section">
         <div class="container affiliate-container">
             <h2 class="affiliate-title">QUER LUCRAR SENDO AFILIADO?</h2>
