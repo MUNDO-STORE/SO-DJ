@@ -233,6 +233,8 @@
             }
         }
 
+        /* POPUP PACK PROFISSIONAL DJ REMOVIDO */
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -306,31 +308,7 @@
             color: #ccc;
         }
 
-        /* Timer Promocional */
-        .promo-timer {
-            background: rgba(220, 53, 69, 0.9);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px auto;
-            max-width: 400px;
-            text-align: center;
-            border: 2px solid #ff6b6b;
-            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
-            animation: pulse-gold 2s infinite;
-        }
-
-        .promo-timer h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: white;
-        }
-
-        .timer {
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
-            font-family: 'Courier New', monospace;
-        }
+        /* Timer Promocional (REMOVIDO) */
 
         /* Packages Section */
         .packages {
@@ -370,13 +348,15 @@
                 grid-template-columns: repeat(3, 1fr);
             }
             
-            /* Reordenar para VIP ficar ao lado do PLUS */
-            .packages-grid .package-card:nth-child(1) { order: 1; } /* Pack Start */
-            .packages-grid .package-card:nth-child(2) { order: 2; } /* Pack PLUS */
-            .packages-grid .package-card:nth-child(3) { order: 3; } /* VIP */
-            .packages-grid .package-card:nth-child(4) { order: 4; } /* SUPER KIDS */
-            .packages-grid .package-card:nth-child(5) { order: 5; } /* CURRÍCULUM */
-            .packages-grid .package-card:nth-child(6) { order: 6; } /* JOGOS RETRO */
+            /* REORDENAÇÃO DOS PACKS */
+            .packages-grid .package-card:nth-child(1) { order: 1; } /* PACK ATUALIZE SEU PENDRIVE */
+            .packages-grid .package-card:nth-child(2) { order: 2; } /* Pack Start */
+            .packages-grid .package-card:nth-child(3) { order: 3; } /* PACK PRO DJ PREMIUM VIP */
+            .packages-grid .package-card:nth-child(4) { order: 4; } /* Pack Atualizar Pendrive PLUS */
+            .packages-grid .package-card:nth-child(5) { order: 5; } /* VIP (ao lado do PLUS) */
+            .packages-grid .package-card:nth-child(6) { order: 6; } /* SUPER KIDS */
+            .packages-grid .package-card:nth-child(7) { order: 7; } /* CURRÍCULUM */
+            .packages-grid .package-card:nth-child(8) { order: 8; } /* JOGOS RETRO */
         }
 
         .package-card {
@@ -401,12 +381,12 @@
             box-shadow: 0 0 20px var(--vip-glow);
             animation: glow 2s infinite;
             transform: scale(1.05);
-            order: 3; /* Posição na ordem do grid */
+            order: 5; /* Posição na ordem do grid (ao lado do PLUS) */
         }
 
         @media (max-width: 992px) {
             .vip-highlight {
-                order: 3;
+                order: 5;
                 transform: scale(1);
             }
         }
@@ -1617,7 +1597,7 @@
             
             .vip-highlight {
                 transform: none;
-                order: 3;
+                order: 5;
             }
             
             .purchase-notifications {
@@ -1882,14 +1862,6 @@
         <div class="container">
             <h2>ATUALIZE SEU REPERTÓRIO COM MILHARES DE MÚSICAS E CONTEÚDOS</h2>
             <p>Pacotes completos com músicas atualizadas, jogos retro, atividades infantis e muito mais! Tudo organizado e pronto para download.</p>
-            
-            <!-- Timer Promocional -->
-            <div class="promo-timer">
-                <h3>🚨 OFERTA ESPECIAL LIMITADA 🚨</h3>
-                <p>Preço promocional do Pack VIP expira em:</p>
-                <div class="timer" id="promo-timer">14:00</div>
-                <p style="font-size: 0.9rem; margin-top: 10px; color: #ffdddd;">Aproveite esta oportunidade única!</p>
-            </div>
         </div>
     </section>
 
@@ -1899,7 +1871,29 @@
             <h2 class="section-title">ESCOLHA O PACOTE IDEAL PARA VOCÊ</h2>
             
             <div class="packages-grid">
-                <!-- Package 1 - Básico -->
+                <!-- Package 1 - PACK ATUALIZE SEU PENDRIVE (AGORA EM 1º LUGAR) -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>PACK ATUALIZE SEU PENDRIVE</h3>
+                        <div class="package-price">R$<span>3,99</span></div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features basic-features">
+                            <li><i class="fas fa-check-circle"></i> Mais de 25 mil músicas MP3</li>
+                            <li><i class="fas fa-check-circle"></i> +30 ritmos atualizados</li>
+                            <li><i class="fas fa-check-circle"></i> Sem vinhetas</li>
+                            <li><i class="fas fa-check-circle"></i> Download imediato</li>
+                            <li><i class="fas fa-check-circle"></i> Sem Atualizações</li>
+                        </ul>
+                        <div class="package-buttons">
+                            <a href="https://4br.me/87EkjZg9" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 3.99, currency: 'BRL'}); trackRealPurchase('PACK ATUALIZE SEU PENDRIVE', 3.99);">
+                                CLICK AQUI PARA COMPRAR R$3,99
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 2 - Pack Start (AGORA EM 2º LUGAR) -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>Pack Start</h3>
@@ -1921,7 +1915,33 @@
                     </div>
                 </div>
 
-                <!-- Package 2 - Atualizar Pendrive PLUS -->
+                <!-- Package 3 - PACK PRO DJ PREMIUM VIP (AGORA EM 3º LUGAR) -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>PACK PRO DJ PREMIUM VIP</h3>
+                        <div class="package-price">R$<span>25,00</span></div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features vip-features">
+                            <li><i class="fas fa-check-circle"></i> +4TB Músicas (Todos os Estilos)</li>
+                            <li><i class="fas fa-check-circle"></i> +2TB Efeitos Sonoros (SFX)</li>
+                            <li><i class="fas fa-check-circle"></i> PACK GOSPEL PROFISSIONAL</li>
+                            <li><i class="fas fa-check-circle"></i> DJ RETRO - DISCOTECAS - FLASHBACK E EURODANCE</li>
+                            <li><i class="fas fa-check-circle"></i> Playlists Prontas (Casamento, Academia, Festas...)</li>
+                            <li><i class="fas fa-check-circle"></i> Videoclipes + Softwares PARA DJ</li>
+                            <li><i class="fas fa-check-circle"></i> Atualizações (Tudo que conseguimos jogamos no grupo)</li>
+                            <li><i class="fas fa-check-circle"></i> Material 100% Hospedado no Telegram</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>PAGAMENTO ÚNICO - SEM MENSALIDADES</strong></li>
+                        </ul>
+                        <div class="package-buttons">
+                            <a href="https://4br.me/eIcSu5w" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 25.00, currency: 'BRL'}); trackRealPurchase('PACK PRO DJ PREMIUM VIP', 25.00);">
+                                CLICK AQUI PARA COMPRAR R$25,00!
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 4 - Pack Atualizar Pendrive PLUS (AGORA EM 4º LUGAR) -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>Pack Atualizar Pendrive PLUS</h3>
@@ -1944,7 +1964,7 @@
                     </div>
                 </div>
 
-                <!-- Package 3 - VIP (AGORA AO LADO DO PLUS) -->
+                <!-- Package 5 - VIP (AO LADO DO PLUS) -->
                 <div class="package-card vip-highlight">
                     <div class="recommended-badge">RECOMENDADO</div>
                     <div class="package-header">
@@ -1966,14 +1986,11 @@
                             <a href="https://4br.me/nfUdIhDGC" class="btn vip-btn" target="_blank" onclick="fbq('track', 'Purchase', {value: 15.00, currency: 'BRL'}); trackRealPurchase('PACK VIP 2026', 15.00);">
                                 <i class="fas fa-crown"></i> COMPRAR AGORA - R$15,00
                             </a>
-                            <a href="https://wa.link/wyxz3h" class="btn btn-whatsapp" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Tire suas dúvidas
-                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Package 4 - SUPER KIDS ATIVIDADES INFANTIL EDUCACIONAL -->
+                <!-- Package 6 - SUPER KIDS ATIVIDADES INFANTIL EDUCACIONAL -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>SUPER KIDS ATIVIDADES INFANTIL EDUCACIONAL</h3>
@@ -1995,7 +2012,7 @@
                     </div>
                 </div>
 
-                <!-- Package 5 - CRIE SEU CURRÍCULUM COM FACILIDADE -->
+                <!-- Package 7 - CRIE SEU CURRÍCULUM COM FACILIDADE -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>CRIE SEU CURRÍCULUM COM FACILIDADE</h3>
@@ -2017,7 +2034,7 @@
                     </div>
                 </div>
 
-                <!-- Package 6 - SUPER JOGOS RETRO -->
+                <!-- Package 8 - SUPER JOGOS RETRO -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>SUPER JOGOS RETRO</h3>
@@ -2083,7 +2100,7 @@
                 
                 <div class="pro-buttons">
                     <a href="https://4br.me/54Wms" class="btn btn-primary" target="_blank" onclick="fbq('track', 'Purchase', {value: 50.00, currency: 'BRL'}); trackRealPurchase('Pack Profissional DJ', 50.00);">
-                        <i class="fas fa-shopping-cart"></i> Clique Aqui para Comprar Pack Pro DJ R$50,00 pelo Site!
+                        <i class="fas fa-shopping-cart"></i> CLICK AQUI PARA COMPRAR PACK PRO DJ R$50,00!
                     </a>
                     <a href="https://wa.link/cj28rm" class="btn btn-whatsapp" target="_blank" onclick="fbq('track', 'Purchase', {value: 45.00, currency: 'BRL'}); trackRealPurchase('Pack Profissional DJ WhatsApp', 45.00);">
                         <i class="fab fa-whatsapp"></i> Clique Aqui para Comprar Pack Pro DJ R$45,00 pelo WhatsApp!
@@ -2093,7 +2110,7 @@
         </div>
     </section>
 
-    <!-- NOVA SEÇÃO: Roleta e Raspadinha lado a lado -->
+    <!-- NOVA SEÇÃO: Roleta e Raspadinha lado a lado (AGORA VEM LOGO APÓS OS PACKS) -->
     <section class="games-section">
         <div class="container">
             <h2 class="section-title">JOGOS E SORTEIOS</h2>
@@ -2163,7 +2180,7 @@
         </div>
     </section>
 
-    <!-- Seção de Afiliados -->
+    <!-- Seção de Afiliados (AGORA VEM APÓS JOGOS E SORTEIOS) -->
     <section class="affiliate-section">
         <div class="container affiliate-container">
             <h2 class="affiliate-title">QUER LUCRAR SENDO AFILIADO?</h2>
@@ -2268,46 +2285,10 @@
             isMusicPlaying = !isMusicPlaying;
         }
 
-        // Timer promocional
+        // Timer promocional (REMOVIDO)
         function startPromoTimer() {
-            const timerElement = document.getElementById('promo-timer');
-            let minutes = 14;
-            let seconds = 0;
-            
-            const timer = setInterval(() => {
-                if (seconds === 0) {
-                    minutes--;
-                    seconds = 59;
-                } else {
-                    seconds--;
-                }
-                
-                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                // Quando o timer chegar a 5 minutos, adicionar efeito de urgência
-                if (minutes === 5 && seconds === 0) {
-                    timerElement.style.color = '#ff0000';
-                    timerElement.style.animation = 'pulse 1s infinite';
-                }
-                
-                if (minutes === 0 && seconds === 0) {
-                    clearInterval(timer);
-                    timerElement.textContent = "Oferta expirada!";
-                    timerElement.style.color = '#ff0000';
-                    
-                    // Desabilitar botão de compra do VIP
-                    const vipButton = document.querySelector('.vip-btn');
-                    if (vipButton) {
-                        vipButton.textContent = 'OFERTA EXPIRADA';
-                        vipButton.style.background = '#999';
-                        vipButton.style.cursor = 'not-allowed';
-                        vipButton.onclick = function(e) {
-                            e.preventDefault();
-                            alert('Esta oferta promocional expirou!');
-                        };
-                    }
-                }
-            }, 1000);
+            // Esta função foi desativada pois o timer foi removido
+            return;
         }
 
         // Controlar volume do vídeo do YouTube
@@ -2373,15 +2354,16 @@
                 this.states = ['SP', 'RJ', 'MG', 'RS', 'PR', 'SC', 'BA', 'PE', 'CE', 'GO', 'DF', 'ES', 'MT', 'MS', 'PB', 'RN', 'AL', 'SE', 'MA', 'PI'];
                 
                 this.packages = [
-                    { name: 'Pack Atualizar Pendrive', price: 'R$ 3,99' },
+                    { name: 'PACK ATUALIZE SEU PENDRIVE', price: 'R$ 3,99' },
+                    { name: 'Pack Start', price: 'R$ 2,00' },
+                    { name: 'PACK PRO DJ PREMIUM VIP', price: 'R$ 25,00' },
                     { name: 'Pack Atualizar Pendrive PLUS', price: 'R$ 9,99' },
                     { name: 'PACK VIP 2026', price: 'R$ 15,00' },
-                    { name: 'Pack Profissional DJ', price: 'R$ 50,00' },
-                    { name: 'Pack Profissional DJ WhatsApp', price: 'R$ 45,00' },
-                    { name: 'Pack Start', price: 'R$ 2,00' },
                     { name: 'SUPER KIDS ATIVIDADES INFANTIL EDUCACIONAL', price: 'R$ 20,00' },
                     { name: 'CRIE SEU CURRÍCULUM COM FACILIDADE', price: 'R$ 2,00' },
-                    { name: 'SUPER JOGOS RETRO', price: 'R$ 30,00' }
+                    { name: 'SUPER JOGOS RETRO', price: 'R$ 30,00' },
+                    { name: 'Pack Profissional DJ', price: 'R$ 50,00' },
+                    { name: 'Pack Profissional DJ WhatsApp', price: 'R$ 45,00' }
                 ];
                 
                 this.actions = [
@@ -2812,4 +2794,673 @@
         }
 
         // Mostrar depoimento flutuante
-       
+        function showTestimonial() {
+            const container = document.getElementById('testimonials-container');
+            if (!container) return;
+            
+            const testimonial = createTestimonial();
+            
+            container.appendChild(testimonial);
+            
+            // Remover após 21.5 segundos (aumentado para dar tempo de leitura)
+            setTimeout(() => {
+                if (testimonial.parentNode === container) {
+                    container.removeChild(testimonial);
+                }
+            }, 21500);
+            
+            // Limitar a 2 depoimentos visíveis
+            if (container.children.length > 2) {
+                container.removeChild(container.firstChild);
+            }
+        }
+
+        // Controlar pop-up de venda
+        function showSalePopup() {
+            const popup = document.getElementById('sale-popup');
+            if (!popup) return;
+            
+            // Mostrar pop-up
+            popup.style.display = 'block';
+            
+            // Ocultar após 10 segundos
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 10000);
+            
+            // Mostrar novamente a cada 2 minutos
+            setTimeout(showSalePopup, 120000);
+        }
+
+        // Rastrear compra real (quando alguém clica em comprar)
+        function trackRealPurchase(productName, price) {
+            // Mostrar notificação em tempo real imediatamente
+            showRealTimeNotification(productName, price);
+            
+            // Mostrar pop-up de venda se for o pacote VIP
+            if (productName.includes('VIP') || productName.includes('Vitalício')) {
+                showSalePopup();
+            }
+            
+            // Rastrear no Facebook Pixel
+            fbq('track', 'Purchase', {value: price, currency: 'BRL'});
+            
+            console.log(`Compra registrada: ${productName} - R$ ${price}`);
+        }
+
+        // REMOVIDO: POPUP PACK PROFISSIONAL DJ
+
+        // Iniciar notificações automáticas
+        function startNotifications() {
+            // Primeira notificação após 3 segundos
+            setTimeout(() => showRealTimeNotification(), 3000);
+            
+            // Notificações automáticas a cada 1 minuto
+            setInterval(() => showRealTimeNotification(), 60000);
+            
+            // Notificações iniciais
+            setTimeout(() => showRealTimeNotification(), 10000);
+            setTimeout(() => showRealTimeNotification(), 20000);
+        }
+
+        // Iniciar depoimentos flutuantes
+        function startTestimonials() {
+            // Primeiro depoimento após 5 segundos
+            setTimeout(showTestimonial, 5000);
+            
+            // Depoimentos a cada 2 minutos
+            setInterval(showTestimonial, 120000);
+            
+            // Depoimentos iniciais
+            setTimeout(showTestimonial, 15000);
+            setTimeout(showTestimonial, 25000);
+        }
+
+        // Iniciar atualização de depoimentos da seção
+        function startSectionTestimonials() {
+            // Primeira atualização após 2 segundos
+            setTimeout(updateTestimonialsSection, 2000);
+            
+            // Atualizar a cada 1 minuto (60000 ms)
+            setInterval(updateTestimonialsSection, 60000);
+        }
+
+        // Código da Roleta
+        (function(){
+            // Configurações
+            const MAX_TRIES = 3;
+            const LOCK_MINUTES = 2; // Bloqueia por 2 minutos
+            const animationTime = 4200;
+            const WIN_CHANCE = 0.5; // 50% de chance de ganhar
+
+            // Funções utilitárias
+            function nowMs(){ return Date.now(); }
+            function keyTries(){ return 'roleta_tries'; }
+            function keyLockedUntil(){ return 'roleta_lockedUntil'; }
+
+            function formatTime(ms) {
+                const totalSeconds = Math.ceil(ms / 1000);
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+
+            function lockButtonUntil(btn, timerDiv, lockedUntil) {
+                btn.disabled = true;
+                btn.textContent = 'AGUARDE...';
+
+                function updateTimer() {
+                    const remainingTime = lockedUntil - nowMs();
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+                        timerDiv.textContent = '';
+                        btn.disabled = false;
+                        btn.textContent = 'GIRAR ROLETA';
+                        localStorage.removeItem(keyLockedUntil());
+                        document.getElementById('tries1').textContent = 0;
+                        localStorage.setItem(keyTries(), 0);
+                    } else {
+                        timerDiv.textContent = `Tente novamente em ${formatTime(remainingTime)}`;
+                    }
+                }
+
+                const timerInterval = setInterval(updateTimer, 1000);
+                updateTimer();
+            }
+
+            // Função principal para girar a roleta
+            window.spinRoulette = function(rouletteId, msgId, btnId){
+                const roulette = document.getElementById(rouletteId);
+                const msg = document.getElementById(msgId);
+                const btn = document.getElementById(btnId);
+                const triesSpan = document.getElementById('tries1');
+
+                // Verificar se está bloqueado
+                const lockedUntil = parseInt(localStorage.getItem(keyLockedUntil())) || 0;
+                if(lockedUntil && lockedUntil > nowMs()){
+                    return;
+                }
+
+                // Verificar tentativas
+                let tries = parseInt(localStorage.getItem(keyTries())) || 0;
+                if(tries >= MAX_TRIES){
+                    const lockedUntilTs = nowMs() + LOCK_MINUTES * 60 * 1000;
+                    localStorage.setItem(keyLockedUntil(), lockedUntilTs);
+                    const timerDiv = document.getElementById('timer1');
+                    lockButtonUntil(btn, timerDiv, lockedUntilTs);
+                    return;
+                }
+
+                if(btn.disabled) return;
+                btn.disabled = true;
+
+                // Tocar som da roleta
+                rouletteSound.currentTime = 0;
+                rouletteSound.play().catch(e => console.log('Erro ao tocar som da roleta:', e));
+
+                // Determinar se ganhou ou não
+                const win = Math.random() < WIN_CHANCE;
+
+                // Ângulos para vitória (verde) e derrota (vermelho)
+                const anglesWin = [330, 90, 210]; // Posições verdes
+                const anglesLose = [30, 150, 270]; // Posições vermelhas
+                
+                const chosenBaseAngle = win ? 
+                    anglesWin[Math.floor(Math.random() * anglesWin.length)]
+                    : anglesLose[Math.floor(Math.random() * anglesLose.length)];
+                
+                const variation = Math.floor(Math.random() * 50) - 25;
+                const chosenStopAngle = chosenBaseAngle + variation;
+                const fullRotations = 360 * (8 + Math.floor(Math.random()*3));
+                const finalAngle = fullRotations + chosenStopAngle;
+
+                // Aplicar animação
+                roulette.style.transition = `transform ${animationTime}ms cubic-bezier(.22,.98,.35,1)`;
+                roulette.style.transform = `rotate(${finalAngle}deg)`;
+
+                msg.innerHTML = '<span style="color:#ccc;">Girando...</span>';
+
+                // Resultado após animação
+                setTimeout(() => {
+                    roulette.style.transition = 'none';
+                    roulette.style.transform = `rotate(${chosenStopAngle}deg)`;
+
+                    if(win){
+                        // VITÓRIA
+                        msg.innerHTML = `<span style="color:#28a745; font-weight:800;">🎉 VOCÊ GANHOU! PAGUE APENAS R$1,00 🎉</span>`;
+                        triesSpan.textContent = 0;
+                        localStorage.setItem(keyTries(), 0);
+                        
+                        // Rastrear no Facebook Pixel
+                        fbq('track', 'Purchase', {value: 1.00, currency: 'BRL'});
+                        
+                        // Redirecionar após 1.5 segundos
+                        setTimeout(() => {
+                            window.location.href = roulette.dataset.redirect;
+                        }, 1500);
+                        
+                    } else {
+                        // DERROTA
+                        tries = tries + 1;
+                        localStorage.setItem(keyTries(), tries);
+                        triesSpan.textContent = tries;
+                        msg.innerHTML = `<span style="color:#dc3545; font-weight:800;">❌ NÃO GANHOU! TENTE NOVAMENTE</span>`;
+
+                        if(tries >= MAX_TRIES){
+                            // Bloquear por 2 minutos
+                            const lockedUntilTs = nowMs() + LOCK_MINUTES * 60 * 1000;
+                            localStorage.setItem(keyLockedUntil(), lockedUntilTs);
+                            const timerDiv = document.getElementById('timer1');
+                            lockButtonUntil(btn, timerDiv, lockedUntilTs);
+                        } else {
+                            btn.disabled = false;
+                            btn.textContent = 'GIRAR ROLETA';
+                        }
+                    }
+                }, animationTime + 50);
+            };
+
+            // Inicialização
+            function initRoleta(){
+                const btn = document.getElementById('spinBtn1');
+                const timerDiv = document.getElementById('timer1');
+                const triesSpan = document.getElementById('tries1');
+
+                const lockedUntil = parseInt(localStorage.getItem(keyLockedUntil())) || 0;
+                const tries = parseInt(localStorage.getItem(keyTries())) || 0;
+
+                triesSpan.textContent = tries;
+
+                if (lockedUntil > nowMs()) {
+                    lockButtonUntil(btn, timerDiv, lockedUntil);
+                } else {
+                    if (tries >= MAX_TRIES) {
+                        const lockedUntilTs = nowMs() + LOCK_MINUTES * 60 * 1000;
+                        localStorage.setItem(keyLockedUntil(), lockedUntilTs);
+                        lockButtonUntil(btn, timerDiv, lockedUntilTs);
+                    } else {
+                        btn.disabled = false;
+                        btn.textContent = 'GIRAR ROLETA';
+                    }
+                }
+            }
+
+            // Inicializar quando a página carregar
+            document.addEventListener('DOMContentLoaded', initRoleta);
+            window.addEventListener('pageshow', initRoleta);
+
+        })();
+
+        // Código da Raspadinha MODIFICADO - SEM BOTÃO "NOVA RASPADINHA"
+        function initScratch() {
+            const grid = document.getElementById('scratch-grid');
+            const result = document.getElementById('scratch-result');
+            const scratchTimer = document.getElementById('scratch-timer');
+
+            // Configurações da raspadinha
+            const MAX_TRIES = 3; // Máximo de tentativas
+            const LOCK_TIME = 2 * 60 * 1000; // 2 minutos em milissegundos
+            let currentTries = parseInt(localStorage.getItem('scratch_tries')) || 0;
+            let lockedUntil = parseInt(localStorage.getItem('scratch_lockedUntil')) || 0;
+
+            let revealed = 0;
+            let values = [];
+            let scratchGameActive = true;
+            let timerInterval = null;
+
+            // Função para formatar o tempo restante
+            function formatTime(ms) {
+                const totalSeconds = Math.ceil(ms / 1000);
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+
+            // Atualizar timer de bloqueio
+            function updateScratchTimer() {
+                if (!lockedUntil) return;
+                
+                const now = Date.now();
+                const remainingTime = lockedUntil - now;
+                
+                if (remainingTime <= 0) {
+                    // Tempo expirou, resetar raspadinha
+                    clearInterval(timerInterval);
+                    scratchTimer.textContent = '';
+                    currentTries = 0;
+                    localStorage.setItem('scratch_tries', 0);
+                    localStorage.removeItem('scratch_lockedUntil');
+                    lockedUntil = 0;
+                    scratchGameActive = true;
+                    criarRaspadinha();
+                } else {
+                    // Mostrar tempo restante
+                    scratchTimer.textContent = `⏳ Próxima tentativa em: ${formatTime(remainingTime)}`;
+                    scratchTimer.style.color = '#dc3545';
+                    scratchTimer.style.fontWeight = '700';
+                }
+            }
+
+            // Verificar se está bloqueado
+            function checkLockStatus() {
+                if (!lockedUntil) return false;
+                
+                const now = Date.now();
+                if (lockedUntil > now) {
+                    // Está bloqueado
+                    scratchGameActive = false;
+                    
+                    // Iniciar contador
+                    timerInterval = setInterval(updateScratchTimer, 1000);
+                    updateScratchTimer();
+                    
+                    // Limpar grid
+                    grid.innerHTML = '';
+                    result.innerHTML = `<span style="color:#dc3545; font-weight:800;">❌ LIMITE DE TENTATIVAS ATINGIDO!</span>`;
+                    
+                    return true;
+                } else {
+                    // Tempo expirou, limpar bloqueio
+                    currentTries = 0;
+                    localStorage.setItem('scratch_tries', 0);
+                    localStorage.removeItem('scratch_lockedUntil');
+                    lockedUntil = 0;
+                    scratchTimer.textContent = '';
+                    return false;
+                }
+            }
+
+            // Verificar bloqueio ao iniciar
+            if (checkLockStatus()) {
+                return;
+            }
+
+            function gerarValores() {
+                const ganhar = Math.random() < 0.5; // 50% ganhar / 50% perder
+                if (ganhar) {
+                    const winValue = 'R$1,00';
+                    values = Array(3).fill(winValue);
+                    const others = ['❌', '💣', '😢'];
+                    while (values.length < 6) {
+                        values.push(others[Math.floor(Math.random() * others.length)]);
+                    }
+                } else {
+                    const loseValues = ['❌', '💣', '😢', 'R$5,00', 'R$10,00'];
+                    values = [];
+                    while (values.length < 6) {
+                        values.push(loseValues[Math.floor(Math.random() * loseValues.length)]);
+                    }
+                    // garantir que não tenha 3 iguais
+                    if (values.filter(v => v === 'R$1,00').length >= 3) gerarValores();
+                }
+                values.sort(() => Math.random() - 0.5);
+            }
+
+            function criarRaspadinha() {
+                if (!scratchGameActive) return;
+                
+                grid.innerHTML = '';
+                result.textContent = '';
+                scratchTimer.textContent = '';
+                revealed = 0;
+                gerarValores();
+
+                // Atualizar contador de tentativas
+                result.innerHTML = `<span style="color:#ccc;">Tentativa ${currentTries + 1} de ${MAX_TRIES}</span>`;
+
+                values.forEach((val) => {
+                    const card = document.createElement('div');
+                    card.className = 'scratch-card';
+
+                    const span = document.createElement('span');
+                    span.textContent = val;
+
+                    const canvas = document.createElement('canvas');
+                    canvas.className = 'scratch-canvas';
+                    card.appendChild(span);
+                    card.appendChild(canvas);
+                    grid.appendChild(card);
+
+                    canvas.width = card.offsetWidth;
+                    canvas.height = card.offsetHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#999';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#555';
+                    ctx.font = 'bold 14px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('RASPE', canvas.width / 2, canvas.height / 2);
+
+                    let isDraw = false;
+
+                    function pos(e) {
+                        const r = canvas.getBoundingClientRect();
+                        return {
+                            x: (e.touches ? e.touches[0].clientX : e.clientX) - r.left,
+                            y: (e.touches ? e.touches[0].clientY : e.clientY) - r.top
+                        };
+                    }
+
+                    function scratch(e) {
+                        if (!isDraw || !scratchGameActive) return;
+                        const p = pos(e);
+                        ctx.globalCompositeOperation = 'destination-out';
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, 18, 0, Math.PI * 2);
+                        ctx.fill();
+                        
+                        // Tocar som de raspadinha
+                        playScratchSound();
+                    }
+
+                    canvas.addEventListener('mousedown', () => isDraw = true);
+                    canvas.addEventListener('mouseup', () => { 
+                        isDraw = false; 
+                        revelar(); 
+                    });
+                    canvas.addEventListener('mousemove', scratch);
+                    canvas.addEventListener('touchstart', (e) => { 
+                        e.preventDefault();
+                        isDraw = true; 
+                    });
+                    canvas.addEventListener('touchend', () => { 
+                        isDraw = false; 
+                        revelar(); 
+                    });
+                    canvas.addEventListener('touchmove', (e) => {
+                        e.preventDefault();
+                        scratch(e);
+                    });
+
+                    function revelar() {
+                        if (canvas.dataset.done || !scratchGameActive) return;
+                        canvas.dataset.done = true;
+                        revealed++;
+                        if (revealed === 6) verificar();
+                    }
+                });
+            }
+
+            function playScratchSound() {
+                scratchSound.currentTime = 0;
+                scratchSound.play().catch(e => console.log('Erro ao tocar som da raspadinha:', e));
+            }
+
+            function verificar() {
+                if (!scratchGameActive) return;
+                
+                // Incrementar tentativa
+                currentTries++;
+                localStorage.setItem('scratch_tries', currentTries);
+                
+                grid.classList.add('shake');
+                const count = values.filter(v => v === 'R$1,00').length;
+                if (count >= 3) {
+                    // VITÓRIA
+                    result.innerHTML = '🎉 <span style="color:#00ff99">PARABÉNS!</span><br>Pague apenas <b>R$1,00</b> no pack de 10 mil músicas!';
+                    
+                    // Resetar tentativas
+                    currentTries = 0;
+                    localStorage.setItem('scratch_tries', 0);
+                    localStorage.removeItem('scratch_lockedUntil');
+                    
+                    // Rastrear no Facebook Pixel
+                    fbq('track', 'Purchase', {value: 1.00, currency: 'BRL'});
+                    
+                    // Desativar jogo
+                    scratchGameActive = false;
+                    
+                    // Limpar timer se existir
+                    if (timerInterval) {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                    }
+                    scratchTimer.textContent = '';
+                    
+                    setTimeout(() => {
+                        window.location.href = 'https://4br.me/QADTXgSwh';
+                    }, 2000);
+                } else {
+                    // DERROTA
+                    result.innerHTML = '❌ Não foi dessa vez. Tente novamente!';
+                    
+                    // Verificar se atingiu o limite de tentativas
+                    if (currentTries >= MAX_TRIES) {
+                        // Bloquear por 2 minutos
+                        lockedUntil = Date.now() + LOCK_TIME;
+                        localStorage.setItem('scratch_lockedUntil', lockedUntil);
+                        checkLockStatus();
+                    } else {
+                        // Permitir nova tentativa após 2 segundos
+                        scratchGameActive = false;
+                        
+                        setTimeout(() => {
+                            scratchGameActive = true;
+                            criarRaspadinha();
+                        }, 2000);
+                    }
+                }
+            }
+
+            // Inicializar a raspadinha
+            criarRaspadinha();
+        }
+
+        // Função otimizada para mover o botão do Tigrinho SEM ATRAPALHAR
+        function initOptimizedTigrinhoButton() {
+            const tigrinhoButton = document.getElementById('tigrinhoButton');
+            if (!tigrinhoButton) return;
+            
+            // Configurações do movimento
+            const SAFE_ZONE_PADDING = 20; // Margem de segurança
+            const MOVEMENT_INTERVAL = 20000; // Mover a cada 20 segundos (aumentado para menos intrusivo)
+            const MOVEMENT_DISTANCE = 50; // Distância máxima de movimento
+            
+            // Posições seguras (evitando áreas importantes)
+            const safePositions = [
+                // Canto inferior direito (posição padrão)
+                { bottom: SAFE_ZONE_PADDING + 'px', right: SAFE_ZONE_PADDING + 'px' },
+                // Canto inferior esquerdo
+                { bottom: SAFE_ZONE_PADDING + 'px', left: SAFE_ZONE_PADDING + 'px' },
+                // Meio inferior direito
+                { bottom: SAFE_ZONE_PADDING + 'px', right: (SAFE_ZONE_PADDING + 100) + 'px' },
+                // Meio inferior esquerdo
+                { bottom: SAFE_ZONE_PADDING + 'px', left: (SAFE_ZONE_PADDING + 100) + 'px' },
+                // Lado direito meio
+                { bottom: '50%', right: SAFE_ZONE_PADDING + 'px', transform: 'translateY(50%)' },
+                // Lado esquerdo meio
+                { bottom: '50%', left: SAFE_ZONE_PADDING + 'px', transform: 'translateY(50%)' }
+            ];
+            
+            // Função para mover o botão para uma posição segura
+            function moveToSafePosition() {
+                // Escolher uma posição aleatória das seguras
+                const randomPosition = safePositions[Math.floor(Math.random() * safePositions.length)];
+                
+                // Aplicar transição suave
+                tigrinhoButton.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                
+                // Resetar posições
+                tigrinhoButton.style.bottom = '';
+                tigrinhoButton.style.top = '';
+                tigrinhoButton.style.left = '';
+                tigrinhoButton.style.right = '';
+                tigrinhoButton.style.transform = '';
+                
+                // Aplicar nova posição após pequeno delay
+                setTimeout(() => {
+                    Object.keys(randomPosition).forEach(key => {
+                        tigrinhoButton.style[key] = randomPosition[key];
+                    });
+                    
+                    // Restaurar animações após movimento
+                    setTimeout(() => {
+                        tigrinhoButton.style.animation = 'tigrinho-pulse 2s infinite, tigrinho-shine 3s linear infinite, moveButton 15s infinite ease-in-out';
+                    }, 800);
+                    
+                }, 50);
+            }
+            
+            // Mover periodicamente (menos frequente para não incomodar)
+            setInterval(moveToSafePosition, MOVEMENT_INTERVAL);
+            
+            // Mover quando a página é rolada (com debounce)
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    // Apenas 20% de chance de mover ao rolar
+                    if (Math.random() < 0.2) {
+                        moveToSafePosition();
+                    }
+                }, 1500);
+            });
+            
+            // Mover inicialmente após 8 segundos
+            setTimeout(moveToSafePosition, 8000);
+            
+            // Garantir que o botão não cubra conteúdo importante
+            window.addEventListener('resize', function() {
+                // Ajustar posição em caso de redimensionamento
+                setTimeout(moveToSafePosition, 500);
+            });
+        }
+
+        // Efeito de rolagem suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animação dos cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.package-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Rastrear cliques nos botões de compra
+        document.querySelectorAll('.btn-primary, .btn-whatsapp, .vip-btn, .btn-secondary').forEach(button => {
+            button.addEventListener('click', function() {
+                const priceText = this.closest('.package-card')?.querySelector('.package-price')?.textContent || 
+                                this.closest('.pro-package')?.querySelector('.package-price')?.textContent;
+                let price = 0;
+                
+                if (priceText) {
+                    const match = priceText.match(/R\$\s*([\d,]+)/);
+                    if (match) {
+                        price = parseFloat(match[1].replace(',', '.'));
+                    }
+                }
+                
+                // Rastrear clique
+                fbq('track', 'AddToCart', {
+                    value: price,
+                    currency: 'BRL',
+                    content_name: this.textContent.trim()
+                });
+            });
+        });
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar eventos
+            musicControl.addEventListener('click', toggleMusic);
+            
+            // Iniciar outras funcionalidades
+            startPromoTimer();
+            startNotifications();
+            startTestimonials();
+            startSectionTestimonials();
+            setupVideoAudioControl();
+            
+            // Mostrar pop-up inicial após 5 segundos
+            setTimeout(showSalePopup, 5000);
+            
+            // NÃO MAIS CONFIGURAR EVENTOS DO POPUP (REMOVIDO)
+        });
+    </script>
+</body>
+</html>
